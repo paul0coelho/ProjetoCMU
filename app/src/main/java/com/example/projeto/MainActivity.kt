@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.projeto.screens.Desafio
+import com.example.projeto.screens.AdiconarLivro
 import com.example.projeto.ui.theme.ProjetoTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ProjetoTheme {
-                Desafio(10, listOf("Andry Frisella","John Due", "Paulo Coelho", "Eu"), listOf(1000, 900, 852, 10))
+                AdiconarLivro()
             }
         }
     }

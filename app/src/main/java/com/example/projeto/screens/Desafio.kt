@@ -40,7 +40,6 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                     text = "A sua streak está no dia $dia!",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(10.dp, 0.dp)
                 )
 
                 Box(
