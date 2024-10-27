@@ -1,5 +1,6 @@
 package com.example.projeto.reuse
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -21,7 +22,7 @@ fun Header() {
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxSize()
     ) {
-        Icon(Icons.Sharp.AccountCircle, contentDescription = null, modifier = Modifier.size(80.dp).padding(10.dp, 0.dp))
-        Icon(Icons.Sharp.Notifications, contentDescription = null, modifier = Modifier.size(80.dp).padding(10.dp, 0.dp))
+        Icon(Icons.Sharp.AccountCircle, contentDescription = null, modifier = Modifier.size(80.dp).padding(10.dp, 0.dp) .clickable {})
+        Icon(Icons.Sharp.Notifications, contentDescription = null, modifier = Modifier.size(80.dp).padding(10.dp, 0.dp).clickable {})
     }
 }
