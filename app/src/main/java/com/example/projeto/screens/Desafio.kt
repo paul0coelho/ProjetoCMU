@@ -104,7 +104,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
 
                 Image(
                     painter = painterResource(id = R.drawable.logo75),
-                    contentDescription = "Cristiano Ronaldo",
+                    contentDescription = "Logo",
                     modifier = Modifier.fillMaxWidth()
                         .height(400.dp),
                     contentScale = ContentScale.Crop

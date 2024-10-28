@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -35,7 +36,9 @@ import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AdiconarLivro() {
+fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
+    val leaderboardData = nomes.zip(paginas)
+
     Scaffold(
         topBar = {
             Header()
@@ -48,6 +51,8 @@ fun AdiconarLivro() {
                     fontWeight = FontWeight.Bold,
                 )
 
+                Spacer(modifier = Modifier.height(10.dp))
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -59,11 +64,63 @@ fun AdiconarLivro() {
                         contentDescription = "Ver detalhes",
                         tint = Color(0xFFFF5722),
                         modifier = Modifier.size(50.dp).clickable {}.align(Alignment.CenterStart).padding(10.dp,0.dp)
-
+                    )
+                    Text(
+                        text = "Pesquisar",
+                        fontWeight = FontWeight.Medium,
+                        color = Color.DarkGray,
+                        modifier = Modifier.align(Alignment.CenterStart).padding(50.dp,0.dp)
                     )
                 }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = "Histórico",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+
+                Column {
+                    leaderboardData.forEach { (name, pages) ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(60.dp)
+                                .background(Color.LightGray, RoundedCornerShape(8.dp))
+                                .padding(8.dp, 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Text(
+                                    text = name,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                                Text(
+                                    text = "$pages Páginas Lidas",
+                                    color = Color.DarkGray,
+                                    fontSize = 14.sp
+                                )
+                            }
+
+                            Icon(
+                                imageVector = Icons.Filled.AddCircle,
+                                contentDescription = "Ver detalhes",
+                                tint = Color(0xFFFF5722),
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clickable { }
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+                    }
                 }
-        },
+
+            }
+            },
         bottomBar = {
             BottomNavigationBar()
         }
@@ -73,5 +130,5 @@ fun AdiconarLivro() {
 @Preview(showBackground = true)
 @Composable
 fun AdicionarLivroPreview() {
-    AdiconarLivro()
+    AdiconarLivro(listOf("A Arte de ter sempre razão","Efeito 1%"), listOf(16, 40))
 }
