@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projeto.R
@@ -114,4 +115,10 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
             BottomNavigationBar()
         }
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DesafioPreview() {
+    //Desafio()
 }
