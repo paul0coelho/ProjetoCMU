@@ -17,32 +17,82 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
-
-
-//Nao esta a dar como quero
-
-
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CalorieScreen() {
     Scaffold(
-        topBar = { Header() },
+        topBar = { TopBar() },
+        content= { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                CalorieHeader()
+                MealSection(
+                    "Pequeno-Almoço",
+                    50,
+                    listOf("Bolacha Marinheira" to 25, "Bolacha Marinheira" to 25)
+                )
+                MealSection(
+                    "Almoço",
+                    500,
+                    listOf("Picanha grelhada(100g)" to 250, "Picanha grelhada(100g)" to 250)
+                )
+                MealSection("Jantar", 750, listOf("Hamburguer fast food" to 750))
+            }
+        },
         bottomBar = { BottomNavigationBar() },
         containerColor = Color.White
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            CalorieHeader()
-            MealSection("Pequeno-Almoço", 50, listOf("Bolacha Marinheira" to 25, "Bolacha Marinheira" to 25))
-            MealSection("Almoço", 500, listOf("Picanha grelhada(100g)" to 250, "Picanha grelhada(100g)" to 250))
-            MealSection("Jantar", 750, listOf("Hamburguer fast food" to 750))
+
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar() {
+    TopAppBar(
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = Color.White,
+            titleContentColor = Color.Black,
+            actionIconContentColor = Color.Black
+
+        ),
+        title = {
+            //Text(text = "Calorias", fontSize = 26.sp, fontWeight = FontWeight.Bold)
+        },
+        navigationIcon = {
+            Icon(
+                Icons.Default.AccountCircle,
+                contentDescription = "Profile",
+                modifier = Modifier.size(40.dp),
+                tint = Color.Black
+            )
+        },
+        actions = {
+            Icon(
+                Icons.Default.Notifications,
+                contentDescription = "Notifications",
+                modifier = Modifier.size(40.dp),
+                tint = Color.Black
+            )
         }
-    }
+    )
 }
 
 @Composable
@@ -91,10 +141,10 @@ fun MealSection(mealName: String, totalCalories: Int, items: List<Pair<String, I
             fontSize = 14.sp,
             color = Color(0xFFFF5722),
             fontWeight = FontWeight.Bold,
-            //Falta adicionar a opcao de botao para ir para a pagina de adicionar alimento
         )
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

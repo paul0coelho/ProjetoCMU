@@ -13,13 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.projeto.screens.AdiconarLivro
 import com.example.projeto.ui.theme.ProjetoTheme
+import com.example.projeto.screens.CalorieScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ProjetoTheme {
-                AdiconarLivro()
+               CalorieScreen()
             }
         }
     }
