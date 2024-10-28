@@ -18,6 +18,11 @@ import androidx.compose.ui.unit.sp
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
+
+//Nao esta a dar como quero
+
+
+
 @Composable
 fun CalorieScreen() {
     Scaffold(
