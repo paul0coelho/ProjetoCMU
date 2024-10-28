@@ -5,6 +5,12 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+<<<<<<< Updated upstream
+=======
+      <SelectionState runConfigName="CalorieScreenPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+>>>>>>> Stashed changes
       <SelectionState runConfigName="DesafioPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

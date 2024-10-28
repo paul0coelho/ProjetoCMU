@@ -120,5 +120,10 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
 @Preview(showBackground = true)
 @Composable
 fun DesafioPreview() {
+<<<<<<< Updated upstream
     //Desafio()
 }
+=======
+    Desafio(10, listOf("Andry Frisella","John Due", "Paulo Coelho", "Eu"), listOf(1000, 900, 852, 10))
+}
+>>>>>>> Stashed changes

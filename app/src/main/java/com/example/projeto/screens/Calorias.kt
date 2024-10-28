@@ -1,5 +1,9 @@
 package com.example.projeto.screens
 
+<<<<<<< Updated upstream
+=======
+import androidx.compose.foundation.Image
+>>>>>>> Stashed changes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -12,9 +16,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+<<<<<<< Updated upstream
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+=======
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.projeto.R
+>>>>>>> Stashed changes
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
@@ -40,6 +53,10 @@ fun CalorieScreen() {
     }
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 @Composable
 fun CalorieHeader() {
     Text(text = "Calorias", fontSize = 26.sp, fontWeight = FontWeight.Bold)
