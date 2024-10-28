@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CalorieScreen() {
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { Header() },
         content= { paddingValues ->
             Column(
                 modifier = Modifier
@@ -60,38 +60,6 @@ fun CalorieScreen() {
         bottomBar = { BottomNavigationBar() },
         containerColor = Color.White
 
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar() {
-    TopAppBar(
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = Color.White,
-            titleContentColor = Color.Black,
-            actionIconContentColor = Color.Black
-
-        ),
-        title = {
-            //Text(text = "Calorias", fontSize = 26.sp, fontWeight = FontWeight.Bold)
-        },
-        navigationIcon = {
-            Icon(
-                Icons.Default.AccountCircle,
-                contentDescription = "Profile",
-                modifier = Modifier.size(40.dp),
-                tint = Color.Black
-            )
-        },
-        actions = {
-            Icon(
-                Icons.Default.Notifications,
-                contentDescription = "Notifications",
-                modifier = Modifier.size(40.dp),
-                tint = Color.Black
-            )
-        }
     )
 }
 
