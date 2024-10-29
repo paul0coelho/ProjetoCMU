@@ -34,9 +34,12 @@ import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
+
+//É preciso rever todo inclusive o mockup porquee nao esta bem
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
+fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
     val leaderboardData = nomes.zip(paginas)
 
     Scaffold(
@@ -46,7 +49,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 Text(
-                    text = "Livros",
+                    text = "Treinos",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -58,7 +61,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                         .fillMaxWidth()
                         .height(60.dp)
                         .background(Color.LightGray, RoundedCornerShape(10.dp))
-                    ){
+                ){
                     Icon(
                         imageVector = Icons.Filled.Search,
                         contentDescription = "Ver detalhes",
@@ -121,7 +124,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                 }
 
             }
-            },
+        },
         bottomBar = {
             BottomNavigationBar()
         }
@@ -130,6 +133,6 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
 
 @Preview(showBackground = true)
 @Composable
-fun AdicionarLivroPreview() {
-    AdiconarLivro(listOf("A Arte de ter sempre razão","Efeito 1%"), listOf(16, 40))
+fun AdiconarTreinoPreview() {
+    AdiconarTreino(listOf("A Arte de ter sempre razão","Efeito 1%"), listOf(16, 40))
 }

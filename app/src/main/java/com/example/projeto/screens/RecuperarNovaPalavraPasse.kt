@@ -49,8 +49,9 @@ import com.example.projeto.R
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RecuperarPalavraPasse() {
+fun RecuperarNovaPalavraPasse() {
     Scaffold(
+
         topBar = {
             TopAppBar(
                 title = {
@@ -88,15 +89,34 @@ fun RecuperarPalavraPasse() {
                         modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)
                     )
                 }
-
                 Spacer(modifier = Modifier.height(20.dp))
-
-                Text(
-                    text = "Por favor, insira o email associado à sua conta para procedermos ao envio de um código de reposição de palavra passe",
-                    fontSize = 14.sp,
-                    color = Color.DarkGray,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .background(Color.LightGray, RoundedCornerShape(10.dp))
+                ){
+                    Text(
+                        text = "Nova palavra passe",
+                        fontWeight = FontWeight.Medium,
+                        color = Color.DarkGray,
+                        modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .background(Color.LightGray, RoundedCornerShape(10.dp))
+                ){
+                    Text(
+                        text = "Comfirme nova palavra passe",
+                        fontWeight = FontWeight.Medium,
+                        color = Color.DarkGray,
+                        modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -109,7 +129,7 @@ fun RecuperarPalavraPasse() {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Solicitar Código",
+                        text = "Alterar Palavra-Passe",
                         modifier = Modifier.padding(20.dp),
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
@@ -127,6 +147,6 @@ fun RecuperarPalavraPasse() {
 
 @Preview(showBackground = true)
 @Composable
-fun RecuperarPalavraPassePreview() {
-    RecuperarPalavraPasse()
+fun RecuperarNovaPalavraPassePreview() {
+    RecuperarNovaPalavraPasse()
 }
