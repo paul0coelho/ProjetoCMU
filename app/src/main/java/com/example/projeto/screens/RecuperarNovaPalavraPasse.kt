@@ -33,10 +33,16 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -82,6 +88,28 @@ fun RecuperarNovaPalavraPasse() {
                         .height(60.dp)
                         .background(Color.LightGray, RoundedCornerShape(10.dp))
                 ){
+//                    var email by remember { mutableStateOf("") }
+//                    OutlinedTextField(
+//                        value = email,
+//                        onValueChange = { email = it },
+//                        label = {
+//                            Text(
+//                                text = "Email",
+//                                style = TextStyle(
+//                                    fontSize = 20.sp,
+//                                    fontWeight = FontWeight.Bold
+//                                )
+//                            )
+//                        },
+//                        modifier = Modifier
+//                            .fillMaxWidth(),
+//                        textStyle = TextStyle(
+//                            fontSize = 16.sp,
+//                            color = Color.Black
+//                        ),
+//                        shape = MaterialTheme.shapes.small,
+//                        singleLine = true
+//                    )
                     Text(
                         text = "Email",
                         fontWeight = FontWeight.Medium,
@@ -111,7 +139,7 @@ fun RecuperarNovaPalavraPasse() {
                         .background(Color.LightGray, RoundedCornerShape(10.dp))
                 ){
                     Text(
-                        text = "Comfirme nova palavra passe",
+                        text = "Confirme nova palavra passe",
                         fontWeight = FontWeight.Medium,
                         color = Color.DarkGray,
                         modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)

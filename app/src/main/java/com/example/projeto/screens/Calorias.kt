@@ -19,15 +19,11 @@ import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
 
-
-//É preciso rever todo
-
-
-
-
-
 @Composable
-fun CalorieScreen() {
+fun CalorieScreen( metaCalorias: Int, caloriasIngeridas: Int, refeicoes: List<Pair<String, Pair<Int, List<Pair<String, Int>>>>>) {
+
+    val caloriasRestantes = metaCalorias - caloriasIngeridas
+
     Scaffold(
         topBar = { Header() },
         content= { paddingValues ->
@@ -38,18 +34,12 @@ fun CalorieScreen() {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                CalorieHeader()
-                MealSection(
-                    "Pequeno-Almoço",
-                    50,
-                    listOf("Bolacha Marinheira" to 25, "Bolacha Marinheira" to 25)
-                )
-                MealSection(
-                    "Almoço",
-                    500,
-                    listOf("Picanha grelhada(100g)" to 250, "Picanha grelhada(100g)" to 250)
-                )
-                MealSection("Jantar", 750, listOf("Hamburguer fast food" to 750))
+                CalorieHeader(metaCalorias, caloriasIngeridas, caloriasRestantes)
+
+                refeicoes.forEach { (nomeRefeicao, infoRefeicao) ->
+                    val (totalCalorias, itens) = infoRefeicao
+                    MealSection(mealName = nomeRefeicao, totalCalories = totalCalorias, items = itens)
+                }
             }
         },
         bottomBar = { BottomNavigationBar() },
@@ -59,7 +49,7 @@ fun CalorieScreen() {
 }
 
 @Composable
-fun CalorieHeader() {
+fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: Int) {
     Text(text = "Calorias", fontSize = 26.sp, fontWeight = FontWeight.Bold)
     Row(
         modifier = Modifier
@@ -69,11 +59,11 @@ fun CalorieHeader() {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = "1750\nMeta", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+        Text(text = "$metaCalorias\nMeta", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
         Text(text = "-", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
-        Text(text = "1250\nIngeridas", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+        Text(text = "$caloriasIngeridas\nIngeridas", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
         Text(text = "=", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
-        Text(text = "500\nRestantes", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+        Text(text = "$caloriasRestantes\nRestantes", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
     }
 }
 
@@ -112,5 +102,13 @@ fun MealSection(mealName: String, totalCalories: Int, items: List<Pair<String, I
 @Preview(showBackground = true)
 @Composable
 fun CalorieScreenPreview() {
-    CalorieScreen()
+    CalorieScreen(
+        metaCalorias = 1750,
+        caloriasIngeridas = 1250,
+        refeicoes = listOf(
+            "Pequeno-Almoço" to (50 to listOf("Bolacha Marinheira" to 25, "Bolacha Marinheira" to 25)),
+            "Almoço" to (500 to listOf("Picanha grelhada (100g)" to 250, "Arroz branco" to 250)),
+            "Jantar" to (750 to listOf("Hambúrguer fast food" to 750))
+        )
+    )
 }

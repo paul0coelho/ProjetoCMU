@@ -34,9 +34,6 @@ import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
-
-//É preciso rever todo inclusive o mockup porquee nao esta bem
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
