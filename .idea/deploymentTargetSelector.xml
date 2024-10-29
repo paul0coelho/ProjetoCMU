@@ -8,6 +8,12 @@
       <SelectionState runConfigName="CalorieScreenPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="LoginScreenPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="AdicionarLivroPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
       <SelectionState runConfigName="AdicionarLivroPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
