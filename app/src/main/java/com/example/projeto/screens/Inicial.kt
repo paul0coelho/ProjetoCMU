@@ -16,21 +16,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material3.Text
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.R
 
 @Composable
-fun InicialScreen() {
+fun InicialScreen(navController: NavHostController) {
     Scaffold(
         content= { paddingValues ->
             Column(
@@ -69,15 +67,14 @@ fun InicialScreen() {
 
                     )
                 }
-                ClickableText(
-                    text = AnnotatedString("Entrar"),
-                    modifier = Modifier.padding(20.dp),
-                    style = TextStyle(
-                        color = Color(0xFFFF5722),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    onClick = {}
+                Text(
+                    text = "Entrar",
+                    color = Color(0xFFFF5722),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(16.dp).clickable {
+                        navController.navigate("login")
+                    }
                 )
             }
         },
@@ -90,5 +87,6 @@ fun InicialScreen() {
 @Preview(showBackground = true)
 @Composable
 fun InicialScreenPreview() {
-    InicialScreen()
+    val navController = rememberNavController()
+    InicialScreen(navController = navController)
 }
