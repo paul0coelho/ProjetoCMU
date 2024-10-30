@@ -1,7 +1,6 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.login
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,12 +20,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.CaixaTexto
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -42,7 +43,9 @@ fun LoginScreen() {
                     Icon(
                         Icons.Default.ArrowBack,
                         contentDescription = "Voltar",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.navigate("inicial")
+                        },
                         tint = Color.Black
                     )
                 },
@@ -60,7 +63,6 @@ fun LoginScreen() {
                 var email by remember { mutableStateOf("") }
                 var password by remember { mutableStateOf("") }
 
-                // Campo de Email usando CaixaTexto
                 CaixaTexto(
                     label = "Email",
                     value = email,
@@ -68,7 +70,6 @@ fun LoginScreen() {
                     isPassword = false
                 )
 
-                // Campo de Senha usando CaixaTexto
                 CaixaTexto(
                     label = "Palavra-Passe",
                     value = password,
@@ -78,9 +79,8 @@ fun LoginScreen() {
 
                 Spacer(modifier = Modifier.height(5.dp))
 
-                // Botão Entrar
                 Button(
-                    onClick = { /* Ação ao clicar */ },
+                    onClick = { navController.navigate("Diario") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(30.dp)),
@@ -98,7 +98,7 @@ fun LoginScreen() {
                 ClickableText(
                     text = AnnotatedString("Recuperar Palavra-Passe"),
                     style = TextStyle(color = Color(0xFFFF5722), fontSize = 15.sp, fontWeight = FontWeight.Bold),
-                    onClick = {}
+                    onClick = {navController.navigate("RecuperarSenha")}
                 )
 
                 // Separador "OU"
@@ -158,6 +158,6 @@ fun LoginScreen() {
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    val navController = rememberNavController()
+    LoginScreen(navController = navController)
 }
-

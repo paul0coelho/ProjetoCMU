@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.login
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -19,12 +19,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.CaixaTexto
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CriarContaScreen() {
+fun CriarContaScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -39,7 +41,9 @@ fun CriarContaScreen() {
                     Icon(
                         Icons.Default.ArrowBack,
                         contentDescription = "Voltar",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.navigate("login")
+                        },
                         tint = Color.Black
                     )
                 },
@@ -51,10 +55,9 @@ fun CriarContaScreen() {
                     .fillMaxSize()
                     .padding(paddingValues)
                     .padding(15.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(5.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Espaço para a foto de perfil
                 Box(
                     modifier = Modifier
                         .size(100.dp)
@@ -70,9 +73,8 @@ fun CriarContaScreen() {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
-                // Campo de nome
                 var nome by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Nome",
@@ -80,7 +82,6 @@ fun CriarContaScreen() {
                     onValueChange = { nome = it }
                 )
 
-                // Campo de email
                 var email by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Email",
@@ -88,7 +89,6 @@ fun CriarContaScreen() {
                     onValueChange = { email = it }
                 )
 
-                // Campo de gênero
                 var genero by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Gênero",
@@ -96,7 +96,6 @@ fun CriarContaScreen() {
                     onValueChange = { genero = it }
                 )
 
-                // Campo de data de nascimento
                 var dataNascimento by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Data de nascimento",
@@ -104,7 +103,6 @@ fun CriarContaScreen() {
                     onValueChange = { dataNascimento = it }
                 )
 
-                // Campo de telefone
                 var telefone by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Telemóvel",
@@ -112,7 +110,6 @@ fun CriarContaScreen() {
                     onValueChange = { telefone = it }
                 )
 
-                // Campo de senha
                 var senha by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Senha",
@@ -121,7 +118,6 @@ fun CriarContaScreen() {
                     isPassword = true
                 )
 
-                // Campo de confirmação de senha
                 var confirmarSenha by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = "Confirmar senha",
@@ -132,7 +128,6 @@ fun CriarContaScreen() {
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                // Botão Criar Conta
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -160,5 +155,6 @@ fun CriarContaScreen() {
 @Preview(showBackground = true)
 @Composable
 fun CriarContaScreenPreview() {
-    CriarContaScreen()
+    val navController = rememberNavController()
+    CriarContaScreen(navController = navController)
 }

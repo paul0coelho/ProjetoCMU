@@ -1,10 +1,8 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.livro
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,8 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,31 +24,30 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.projeto.R
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
+fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier, navController: NavHostController) {
     val leaderboardData = nomes.zip(paginas)
-    var treino by remember { mutableStateOf("") }
+    var livro by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
-            Header()
+            Header(navController)
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 Text(
-                    text = "Treinos",
+                    text = "Livros",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -61,8 +56,8 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
 
                 CaixaTexto(
                     label = "Pesquisar",
-                    value = treino,
-                    onValueChange = { treino = it },
+                    value = livro,
+                    onValueChange = { livro = it },
                     isPassword = false
                 )
 
@@ -102,7 +97,7 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
 
                             Icon(
                                 imageVector = Icons.Filled.AddCircle,
-                                contentDescription = "Ver detalhes",
+                                contentDescription = "Adicionar",
                                 tint = Color(0xFFFF5722),
                                 modifier = Modifier
                                     .size(24.dp)
@@ -116,13 +111,14 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
             }
         },
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         }
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun AdiconarTreinoPreview() {
-    AdiconarTreino(listOf("A Arte de ter sempre razão","Efeito 1%"), listOf(16, 40))
+fun AdicionarLivroPreview() {
+    val navController = rememberNavController()
+    AdiconarLivro(listOf("A Arte de ter sempre razão","Efeito 1%"), listOf(16, 40), navController = navController)
 }

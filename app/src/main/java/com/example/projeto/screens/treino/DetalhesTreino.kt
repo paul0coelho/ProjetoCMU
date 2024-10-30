@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.treino
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -13,13 +13,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
 @Composable
-fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdoor: Boolean, pontoInicial: String, pontoFinal: String) {
+fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdoor: Boolean, pontoInicial: String, pontoFinal: String, navController: NavHostController) {
     Scaffold(
-        topBar = { Header() },
+        topBar = { Header(navController) },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -116,7 +118,7 @@ fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdo
                 }
             }
         },
-        bottomBar = { BottomNavigationBar() },
+        bottomBar = { BottomNavigationBar(navController) },
         containerColor = Color.White
     )
 }
@@ -124,12 +126,14 @@ fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdo
 @Preview(showBackground = true)
 @Composable
 fun DetalhesTreinoScreenPreview() {
+    val navController = rememberNavController()
     DetalhesTreinoScreen(
         tipoExercicio = "Corrida 45 minutos",
         dia = 10,
         duracao = "45 minutos",
         outdoor = true,
         pontoInicial = "Lustosa",
-        pontoFinal = "Lustosa"
+        pontoFinal = "Lustosa",
+        navController = navController
     )
 }

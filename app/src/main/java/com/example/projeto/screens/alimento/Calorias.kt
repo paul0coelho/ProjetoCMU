@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.alimento
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,15 +14,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
 @Composable
-fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Triple<String, Int, String>>) {
+fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Triple<String, Int, String>>, navController: NavHostController) {
     val caloriasRestantes = metaCalorias - caloriasIngeridas
 
     Scaffold(
-        topBar = { Header() },
+        topBar = { Header(navController) },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -57,12 +59,14 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                         fontSize = 14.sp,
                         color = Color(0xFFFF5722),
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.align(Alignment.Start).clickable {  }
+                        modifier = Modifier.align(Alignment.Start).clickable {
+                            navController.navigate("AdicionarAlimento")
+                        }
                     )
                 }
             }
         },
-        bottomBar = { BottomNavigationBar() },
+        bottomBar = { BottomNavigationBar(navController) },
         containerColor = Color.White
     )
 }
@@ -89,9 +93,11 @@ fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: 
 @Preview(showBackground = true)
 @Composable
 fun CalorieScreenPreview() {
+    val navController = rememberNavController()
     CalorieScreen(
         metaCalorias = 1750,
         caloriasIngeridas = 1250,
+        navController = navController,
         alimentos = listOf(
             Triple("Bolacha Marinheira", 25, "8:00"),
             Triple("Bolacha Marinheira", 25, "8:30"),

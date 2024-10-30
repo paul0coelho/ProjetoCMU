@@ -10,9 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavHostController
 
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(navController: NavHostController) {
     NavigationBar(
         containerColor = Color.Black,
         contentColor = Color.White
@@ -21,7 +22,7 @@ fun BottomNavigationBar() {
             icon = { Text(text = "75", color = Color(0xFFFF5722), fontWeight = FontWeight.Bold) },
             label = { Text("Desafio", color = Color(0xFFFF5722)) },
             selected = false,
-            onClick = {}
+            onClick = {navController.navigate("Desafio")}
         )
         NavigationBarItem(
             icon = {
@@ -33,7 +34,7 @@ fun BottomNavigationBar() {
             },
             label = { Text("Diário", color = Color.White) },
             selected = true,
-            onClick = {}
+            onClick = {navController.navigate("Diario")}
         )
         NavigationBarItem(
             icon = {
@@ -45,7 +46,7 @@ fun BottomNavigationBar() {
             },
             label = { Text("More", color = Color(0xFFFF5722)) },
             selected = false,
-            onClick = {}
+            onClick = {navController.navigate("More")}
         )
     }
 }

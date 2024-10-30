@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.alimento
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,16 +22,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AdiconarAlimento() {
+fun AdiconarAlimento(navController: NavHostController) {
     Scaffold(
         topBar = {
-            Header()
+            Header(navController)
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
@@ -98,7 +99,7 @@ fun AdiconarAlimento() {
             }
         },
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         },
         containerColor = Color.White
     )
@@ -107,5 +108,6 @@ fun AdiconarAlimento() {
 @Preview(showBackground = true)
 @Composable
 fun AdiconarAlimentoPreview() {
-    AdiconarAlimento()
+    val navController = rememberNavController()
+    AdiconarAlimento(navController = navController)
 }

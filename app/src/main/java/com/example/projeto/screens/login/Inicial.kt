@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,12 +17,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.projeto.R
@@ -60,7 +57,9 @@ fun InicialScreen(navController: NavHostController) {
                 ) {
                     Text(
                         text = "REGISTAR-SE GRATUITAMENTE",
-                        modifier = Modifier.padding(20.dp),
+                        modifier = Modifier.padding(20.dp).clickable {
+                            navController.navigate("Registar")
+                        },
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp

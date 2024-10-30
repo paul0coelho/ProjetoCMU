@@ -1,6 +1,5 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.principais
 
-import com.example.projeto.reuse.Header
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,18 +21,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
+import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier = Modifier) {
+fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier = Modifier, navController: NavHostController) {
     val leaderboardData = nomes.zip(dias)
     val progress = dia / 75f
 
     Scaffold(
         topBar = {
-            Header()
+            Header(navController)
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
@@ -67,6 +69,9 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                     modifier = Modifier.padding(10.dp)
                 )
 
+                //navController.navigate("LeaderBoardDetalhes")
+                //Adicionar opcao para ir para a leaderboard normal
+
                 Column {
                     leaderboardData.forEach { (name, streakDays) ->
                         Row(
@@ -96,6 +101,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable {
+                                        navController.navigate("LeaderBoardDetalhes")
                                     }
                             )
                         }
@@ -112,7 +118,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
             }
         },
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         }
     )
 }
@@ -120,5 +126,6 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
 @Preview(showBackground = true)
 @Composable
 fun DesafioPreview() {
-    Desafio(10, listOf("Andry Frisella","John Due", "Paulo Coelho", "Eu"), listOf(1000, 900, 852, 10))
+    val navController = rememberNavController()
+    Desafio(10, listOf("Andry Frisella","John Due", "Paulo Coelho", "Eu"), listOf(1000, 900, 852, 10), navController = navController)
 }

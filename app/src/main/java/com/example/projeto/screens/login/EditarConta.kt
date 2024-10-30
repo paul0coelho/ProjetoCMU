@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -6,21 +6,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.CaixaTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +30,8 @@ fun EditarContaScreen(
     gender: String = "",
     birthDate: String = "",
     phone: String = "",
-    onButtonClick: () -> Unit
+    onButtonClick: () -> Unit,
+    navController: NavHostController
 ) {
     var nameState by remember { mutableStateOf(name) }
     var emailState by remember { mutableStateOf(email) }
@@ -51,7 +49,9 @@ fun EditarContaScreen(
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Back",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.navigate("More")
+                        },
                         tint = Color.Black
                     )
                 },
@@ -109,7 +109,8 @@ fun EditProfileScreen(
     email: String,
     gender: String,
     birthDate: String,
-    phone: String
+    phone: String,
+    navController: NavHostController
 ) {
     EditarContaScreen(
         title = "Editar Perfil",
@@ -119,18 +120,21 @@ fun EditProfileScreen(
         gender = gender,
         birthDate = birthDate,
         phone = phone,
-        onButtonClick = { /* Ação ao clicar em Guardar */ }
+        onButtonClick = {},
+        navController
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun EditProfileScreenPreview() {
+    val navController = rememberNavController()
     EditProfileScreen(
         name = "João Santos",
         email = "joao.santos@gmail.com",
         gender = "Masculino",
         birthDate = "01/01/1990",
-        phone = "912345678"
+        phone = "912345678",
+        navController = navController
     )
 }

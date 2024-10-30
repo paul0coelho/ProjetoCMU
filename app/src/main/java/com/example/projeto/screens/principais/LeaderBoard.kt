@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.principais
 
 import com.example.projeto.reuse.Header
 import android.annotation.SuppressLint
@@ -18,11 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier = Modifier) {
+fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier = Modifier, navController: NavHostController) {
     val leaderboardData = nomes.zip(dias)
 
     var expanded by remember { mutableStateOf(false) }
@@ -31,7 +33,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
 
     Scaffold(
         topBar = {
-            Header()
+            Header(navController)
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
@@ -117,7 +119,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                                 tint = if (name == "Eu") Color.White else Color(0xFFFF5722),
                                 modifier = Modifier
                                     .size(24.dp)
-                                    .clickable { }
+                                    .clickable { navController.navigate("LeaderBoardDetalhes") }
                             )
                         }
                     }
@@ -125,7 +127,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
             }
         },
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         }
     )
 }
@@ -133,5 +135,6 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
 @Preview(showBackground = true)
 @Composable
 fun LeaderBoardPreview() {
-    LeaderBoard(10, listOf("Andy Frisella", "John Doe", "Paulo Coelho", "Eu"), listOf(1000, 950, 851, 10))
+    val navController = rememberNavController()
+    LeaderBoard(10, listOf("Andy Frisella", "John Doe", "Paulo Coelho", "Eu"), listOf(1000, 950, 851, 10), navController = navController)
 }
