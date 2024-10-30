@@ -18,9 +18,14 @@ import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,6 +43,7 @@ import com.example.projeto.reuse.Header
 @Composable
 fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
     val leaderboardData = nomes.zip(paginas)
+    var livro by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -53,25 +59,25 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Box(
+                OutlinedTextField(
+                    value = livro,
+                    onValueChange = {livro = it},
+                    placeholder = {
+                        Text("Pesquisar", color = Color.DarkGray)
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Filled.Search,
+                            contentDescription = "Ícone de pesquisa",
+                            tint = Color(0xFFFF5722),
+                            modifier = Modifier.clickable { }
+                        )
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(60.dp)
                         .background(Color.LightGray, RoundedCornerShape(10.dp))
-                    ){
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Ver detalhes",
-                        tint = Color(0xFFFF5722),
-                        modifier = Modifier.size(50.dp).clickable {}.align(Alignment.CenterStart).padding(10.dp,0.dp)
-                    )
-                    Text(
-                        text = "Pesquisar",
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray,
-                        modifier = Modifier.align(Alignment.CenterStart).padding(50.dp,0.dp)
-                    )
-                }
+                        .height(60.dp)
+                )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -109,7 +115,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
 
                             Icon(
                                 imageVector = Icons.Filled.AddCircle,
-                                contentDescription = "Ver detalhes",
+                                contentDescription = "Adicionar",
                                 tint = Color(0xFFFF5722),
                                 modifier = Modifier
                                     .size(24.dp)
@@ -121,7 +127,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                 }
 
             }
-            },
+        },
         bottomBar = {
             BottomNavigationBar()
         }
