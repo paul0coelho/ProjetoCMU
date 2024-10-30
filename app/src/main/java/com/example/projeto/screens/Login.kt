@@ -199,6 +199,26 @@ fun LoginScreen() {
                         fontSize = 25.sp
                     )
                 }
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().clip(RoundedCornerShape(30.dp))
+                        .shadow(
+                            elevation = 8.dp,
+                            shape = RoundedCornerShape(30.dp),
+                            clip = false
+                        )
+                        .clickable {
+
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Entrar com o Facebook",
+                        Modifier.padding(10.dp),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 25.sp
+                    )
+                }
             }
         },
         containerColor = Color.White
