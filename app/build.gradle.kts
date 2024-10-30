@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
