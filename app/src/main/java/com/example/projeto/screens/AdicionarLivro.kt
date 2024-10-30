@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
+import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -59,24 +60,11 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                OutlinedTextField(
+                CaixaTexto(
+                    label = "Pesquisar",
                     value = livro,
-                    onValueChange = {livro = it},
-                    placeholder = {
-                        Text("Pesquisar", color = Color.DarkGray)
-                    },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Filled.Search,
-                            contentDescription = "Ícone de pesquisa",
-                            tint = Color(0xFFFF5722),
-                            modifier = Modifier.clickable { }
-                        )
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.LightGray, RoundedCornerShape(10.dp))
-                        .height(60.dp)
+                    onValueChange = { livro = it },
+                    isPassword = false
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))

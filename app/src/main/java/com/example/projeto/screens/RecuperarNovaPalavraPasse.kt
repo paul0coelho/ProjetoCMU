@@ -1,63 +1,38 @@
 package com.example.projeto.screens
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.projeto.reuse.BottomNavigationBar
-import com.example.projeto.reuse.Header
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.projeto.R
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.projeto.reuse.CaixaTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RecuperarNovaPalavraPasse() {
-    Scaffold(
+    // Variáveis de estado para os campos de entrada
+    var email by remember { mutableStateOf("") }
+    var novaSenha by remember { mutableStateOf("") }
+    var confirmeSenha by remember { mutableStateOf("") }
 
+    Scaffold(
         topBar = {
             TopAppBar(
                 title = {
@@ -72,7 +47,7 @@ fun RecuperarNovaPalavraPasse() {
                     IconButton(onClick = { /* ação para o botão de voltar */ }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "arrowback",
+                            contentDescription = "Voltar",
                             modifier = Modifier.size(30.dp),
                             tint = Color.Black
                         )
@@ -81,97 +56,56 @@ fun RecuperarNovaPalavraPasse() {
             )
         },
         content = {
-            Column(modifier = Modifier.padding(10.dp, 80.dp)) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                        .background(Color.LightGray, RoundedCornerShape(10.dp))
-                ){
-//                    var email by remember { mutableStateOf("") }
-//                    OutlinedTextField(
-//                        value = email,
-//                        onValueChange = { email = it },
-//                        label = {
-//                            Text(
-//                                text = "Email",
-//                                style = TextStyle(
-//                                    fontSize = 20.sp,
-//                                    fontWeight = FontWeight.Bold
-//                                )
-//                            )
-//                        },
-//                        modifier = Modifier
-//                            .fillMaxWidth(),
-//                        textStyle = TextStyle(
-//                            fontSize = 16.sp,
-//                            color = Color.Black
-//                        ),
-//                        shape = MaterialTheme.shapes.small,
-//                        singleLine = true
-//                    )
-                    Text(
-                        text = "Email",
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray,
-                        modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.height(20.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                        .background(Color.LightGray, RoundedCornerShape(10.dp))
-                ){
-                    Text(
-                        text = "Nova palavra passe",
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray,
-                        modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.height(20.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                        .background(Color.LightGray, RoundedCornerShape(10.dp))
-                ){
-                    Text(
-                        text = "Confirme nova palavra passe",
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray,
-                        modifier = Modifier.align(Alignment.CenterStart).padding(20.dp,0.dp)
-                    )
-                }
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 20.dp, vertical = 80.dp)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                // Campo de texto para o Email
+                CaixaTexto(
+                    label = "Email",
+                    value = email,
+                    onValueChange = { email = it }
+                )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                // Campo de texto para a Nova Palavra-Passe
+                CaixaTexto(
+                    label = "Nova Palavra-Passe",
+                    value = novaSenha,
+                    onValueChange = { novaSenha = it },
+                    isPassword = true
+                )
 
+                // Campo de texto para Confirmar a Nova Palavra-Passe
+                CaixaTexto(
+                    label = "Confirme Nova Palavra-Passe",
+                    value = confirmeSenha,
+                    onValueChange = { confirmeSenha = it },
+                    isPassword = true
+                )
+
+                // Botão para alterar a palavra-passe
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth().clip(RoundedCornerShape(16.dp))
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(16.dp))
                         .background(color = Color(0xFFFF5722))
-                        .clickable {
-                        },
+                        .clickable { /* Ação ao clicar */ },
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = "Alterar Palavra-Passe",
-                        modifier = Modifier.padding(20.dp),
+                        modifier = Modifier.padding(16.dp),
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
-
                     )
                 }
-
             }
         }
     )
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

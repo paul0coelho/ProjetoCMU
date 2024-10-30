@@ -1,55 +1,24 @@
 package com.example.projeto.screens
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.projeto.reuse.BottomNavigationBar
-import com.example.projeto.reuse.Header
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.projeto.R
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.projeto.reuse.CaixaTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -72,7 +41,7 @@ fun RecuperarPalavraPasse() {
                     IconButton(onClick = { /* ação para o botão de voltar */ }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "arrowback",
+                            contentDescription = "Voltar",
                             modifier = Modifier.size(30.dp),
                             tint = Color.Black
                         )
@@ -81,39 +50,29 @@ fun RecuperarPalavraPasse() {
             )
         },
         content = {
-            Column(modifier = Modifier.padding(10.dp, 80.dp)) {
-                OutlinedTextField(
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 20.dp, vertical = 80.dp)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                // Campo de texto para o Email usando CaixaTexto
+                CaixaTexto(
+                    label = "Email",
                     value = email,
-                    onValueChange = { email = it },
-                    label = {
-                        Text(
-                            text = "Email",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    textStyle = TextStyle(
-                        fontSize = 16.sp,
-                        color = Color.Black
-                    ),
-                    singleLine = true,
-                    shape = RoundedCornerShape(10.dp)
+                    onValueChange = { email = it }
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
-
+                // Texto explicativo
                 Text(
-                    text = "Por favor, insira o email associado à sua conta para procedermos ao envio de um código de reposição de palavra passe",
+                    text = "Por favor, insira o email associado à sua conta para procedermos ao envio de um código de reposição de palavra passe.",
                     fontSize = 14.sp,
                     color = Color.DarkGray,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
-
+                // Botão para solicitar o código
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -126,7 +85,7 @@ fun RecuperarPalavraPasse() {
                 ) {
                     Text(
                         text = "Solicitar Código",
-                        modifier = Modifier.padding(20.dp),
+                        modifier = Modifier.padding(16.dp),
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
@@ -136,10 +95,6 @@ fun RecuperarPalavraPasse() {
         }
     )
 }
-
-
-
-
 
 @Preview(showBackground = true)
 @Composable

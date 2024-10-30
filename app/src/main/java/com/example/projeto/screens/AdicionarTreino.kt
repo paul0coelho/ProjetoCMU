@@ -21,6 +21,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,12 +36,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
+import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier = Modifier) {
     val leaderboardData = nomes.zip(paginas)
+    var treino by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -53,25 +59,12 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                        .background(Color.LightGray, RoundedCornerShape(10.dp))
-                ){
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Ver detalhes",
-                        tint = Color(0xFFFF5722),
-                        modifier = Modifier.size(50.dp).clickable {}.align(Alignment.CenterStart).padding(10.dp,0.dp)
-                    )
-                    Text(
-                        text = "Pesquisar",
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray,
-                        modifier = Modifier.align(Alignment.CenterStart).padding(50.dp,0.dp)
-                    )
-                }
+                CaixaTexto(
+                    label = "Pesquisar",
+                    value = treino,
+                    onValueChange = { treino = it },
+                    isPassword = false
+                )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
