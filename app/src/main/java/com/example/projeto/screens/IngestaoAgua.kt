@@ -30,16 +30,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun IngestaoAgua() {
+fun IngestaoAgua(navController: NavHostController) {
     Scaffold(
         topBar = {
-            Header()
+            Header(navController)
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
@@ -119,7 +121,7 @@ fun IngestaoAgua() {
             }
             },
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         },
         containerColor = Color.White
     )
@@ -128,5 +130,6 @@ fun IngestaoAgua() {
 @Preview(showBackground = true)
 @Composable
 fun IngestaoAguaPreview() {
-    IngestaoAgua()
+    val navController = rememberNavController()
+    IngestaoAgua(navController = navController)
 }
