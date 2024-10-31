@@ -78,7 +78,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                         tint = Color.Black,
                         modifier = Modifier
                             .size(36.dp)
-                            .clickable {}
+                            .clickable {navController.navigate("LeaderBoard")}
                     )
                 }
 

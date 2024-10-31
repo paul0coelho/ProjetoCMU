@@ -74,7 +74,7 @@ fun Treinos(navController: NavHostController) {
                             Icons.Filled.AddCircle,
                             contentDescription = "Profile",
                             modifier = Modifier.size(24.dp).clickable {
-                                navController.navigate("AdicionarLivro")
+                                navController.navigate("AdicionarTreino")
                             },
                             tint = Color(0xFFFF5722),
                         )

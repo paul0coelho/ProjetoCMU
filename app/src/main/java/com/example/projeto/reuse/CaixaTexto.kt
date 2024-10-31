@@ -29,7 +29,8 @@ fun CaixaTexto(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    enabled: Boolean = true
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -62,6 +63,7 @@ fun CaixaTexto(
                 )
             }
         },
-        singleLine = true
+        singleLine = true,
+        enabled = enabled
     )
 }

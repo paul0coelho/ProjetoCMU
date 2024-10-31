@@ -32,7 +32,7 @@ fun Header(navController: NavHostController) {
                 Icons.Default.AccountCircle,
                 contentDescription = "Profile",
                 modifier = Modifier.size(60.dp).clickable {
-                    navController.navigate("EditarConta")
+                    navController.navigate("")
                 },
                 tint = Color.Black
             )
