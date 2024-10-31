@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -60,12 +61,25 @@ fun Treinos(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(25.dp))
 
                 Column {
-                    Text(
-                        text = "Indoor:",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFFF5722)
-                    )
+                    Row(modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically){
+                        Text(
+                            text = "Indoor:",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFFFF5722),
+                            modifier = Modifier.weight(1f)
+                        )
+                        Icon(
+                            Icons.Filled.AddCircle,
+                            contentDescription = "Profile",
+                            modifier = Modifier.size(24.dp).clickable {
+                                navController.navigate("AdicionarLivro")
+                            },
+                            tint = Color(0xFFFF5722),
+                        )
+                    }
+
                     Spacer(modifier = Modifier.height(15.dp))
                         Row(
                             modifier = Modifier
@@ -82,14 +96,6 @@ fun Treinos(navController: NavHostController) {
                                     text = "Corrida 45 minutos",
                                     fontWeight = FontWeight.Bold,
                                     color = Color.Black
-                                )
-                                Text(
-                                    text = "AdicionarTreino",
-                                    color = Color(0xFFFF5722),
-                                    fontSize = 14.sp,
-                                    modifier = Modifier.clickable {
-                                        navController.navigate("AdicionarTreino")
-                                    }
                                 )
                             }
 
@@ -110,12 +116,24 @@ fun Treinos(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(25.dp))
 
                 Column {
-                    Text(
-                        text = "Outdoor:",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFFF5722)
-                    )
+                    Row(modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically){
+                        Text(
+                            text = "Outdoor:",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFFFF5722),
+                            modifier = Modifier.weight(1f)
+                        )
+                        Icon(
+                            Icons.Filled.AddCircle,
+                            contentDescription = "Profile",
+                            modifier = Modifier.size(24.dp).clickable {
+                                navController.navigate("AdicionarLivro")
+                            },
+                            tint = Color(0xFFFF5722),
+                        )
+                    }
                     Spacer(modifier = Modifier.height(15.dp))
                     Row(
                         modifier = Modifier
@@ -128,14 +146,6 @@ fun Treinos(navController: NavHostController) {
                         Column(
                             modifier = Modifier.weight(1f)
                         ) {
-                            Text(
-                                text = "AdicionarTreino",
-                                color = Color(0xFFFF5722),
-                                fontSize = 14.sp,
-                                modifier = Modifier.clickable {
-                                    navController.navigate("AdicionarTreino")
-                                }
-                            )
                         }
                     }
 

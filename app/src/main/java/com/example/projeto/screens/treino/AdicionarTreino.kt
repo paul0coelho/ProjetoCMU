@@ -46,11 +46,24 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
-                Text(
-                    text = "Treinos",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+                Row(modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically){
+                    Text(
+                        text = "Treino:",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Icon(
+                        Icons.Filled.AddCircle,
+                        contentDescription = "Profile",
+                        modifier = Modifier.size(24.dp).clickable {
+                            navController.navigate("AdicionarLivro")
+                        },
+                        tint = Color(0xFFFF5722),
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -89,7 +102,7 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
                                     color = Color.Black
                                 )
                                 Text(
-                                    text = "$pages Páginas Lidas",
+                                    text = "4 Séries de 10 repetições",
                                     color = Color.DarkGray,
                                     fontSize = 14.sp
                                 )
@@ -122,5 +135,5 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
 @Composable
 fun AdiconarTreinoPreview() {
     val navController = rememberNavController()
-    AdiconarTreino(listOf("A Arte de ter sempre razão","Efeito 1%"), listOf(16, 40), navController = navController)
+    AdiconarTreino(listOf("Supino com barra","Agachamento barra livre"), listOf(16, 40), navController = navController)
 }
