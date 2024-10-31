@@ -4,22 +4,28 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,27 +64,29 @@ fun IngestaoAgua(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp)
-                        .background(Color.LightGray, RoundedCornerShape(10.dp))
+                        .background(Color(0xFFEEEEF0), RoundedCornerShape(10.dp)), contentAlignment = Alignment.Center
                     ){
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Ver detalhes",
-                        tint = Color(0xFFFF5722),
-                        modifier = Modifier.size(50.dp).clickable {}.align(Alignment.CenterStart).padding(10.dp,0.dp)
-                    )
-                    Text(
-                        text = "Pesquisar",
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray,
-                        modifier = Modifier.align(Alignment.CenterStart).padding(50.dp,0.dp)
-                    )
+                    Row(Modifier.fillMaxSize(),horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text("3L", Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                            Text("Meta",Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                        }
+                        Column(Modifier.weight(1f)) {
+                            Text("1,5L",Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                            Text("Ingeridas",Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                        }
+                        Column(Modifier.weight(1f)) {
+                            Text("1,5L",Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                            Text("Restantes",Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                        }
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Histórico",
-                    fontSize = 22.sp,
+                    text = "Hoje ingeriu água nestes momentos:",
+                    fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -87,32 +96,24 @@ fun IngestaoAgua(navController: NavHostController) {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(60.dp)
-                                .background(Color.LightGray, RoundedCornerShape(8.dp))
-                                .padding(8.dp, 4.dp),
+                                .background(Color(0xFFEEEEF0), RoundedCornerShape(8.dp))
+                                .padding(30.dp, 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Column(
                                 modifier = Modifier.weight(1f)
                             ) {
                                 Text(
-                                    text = "Bolacha Marinheira",
+                                    text = "20:45",
                                     fontWeight = FontWeight.Bold,
                                     color = Color.Black
                                 )
-                                Text(
-                                    text = " 26Cal, 1 bolacha",
-                                    color = Color.DarkGray,
-                                    fontSize = 14.sp
-                                )
                             }
 
-                            Icon(
-                                imageVector = Icons.Filled.AddCircle,
-                                contentDescription = "Ver detalhes",
-                                tint = Color(0xFFFF5722),
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .clickable { }
+                            Text(
+                                text = "1.5L",
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFFF5722)
                             )
                         }
                         Spacer(modifier = Modifier.height(10.dp))

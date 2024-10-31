@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -47,7 +48,7 @@ fun DiaryScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
 
-                Column(Modifier.weight(1f).align(Alignment.CenterHorizontally)) {
+                Column(Modifier.align(Alignment.CenterHorizontally)) {
                     Text(
                     "Foto do dia",
                         Modifier.fillMaxWidth(),
@@ -67,86 +68,29 @@ fun DiaryScreen(navController: NavHostController) {
                     ) {}
                 }
 
-                Spacer(modifier = Modifier.height(5.dp))
-
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth().fillMaxHeight().weight(1f),
-                    contentAlignment = Alignment.Center // Alinha tudo no centro
+                        .fillMaxWidth().fillMaxHeight().padding(horizontal = 20.dp).align(Alignment.CenterHorizontally),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Column(Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.spacedBy(16.dp) // Espaço entre as linhas
+                    Column(Modifier.fillMaxSize().align(Alignment.Center),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(16.dp),
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Box(
-                                Modifier
-                                    .background(color = Color(0xFFEEEEF0)).weight(1f)
-                                    .clip(RoundedCornerShape(30.dp))
-                                    .clickable {
-                                        navController.navigate("Calorias")
-                                    },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Column {
-                                    Text(text = "Calorias", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                                    Text(text = "500 restantes", fontWeight = FontWeight.Bold, fontSize = 40.sp, color = Color(0xFFFF5722))
-                                }
-                            }
-                            Box(
-                                Modifier
-                                    .background(color = Color(0xFFEEEEF0))
-                                    .weight(1f)
-                                    .clip(RoundedCornerShape(30.dp))
-                                    .clickable {
-                                        navController.navigate("IngestaoAgua")
-                                    },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Column {
-                                    Text(text = "Água", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                                    Text(text = "1,5/3 L", fontWeight = FontWeight.Bold, fontSize = 40.sp, color = Color(0xFFFF5722))
-                                }
-                            }
+                            section("Calorias","500 restantes",navController,"Calorias")
+                            section("Água","1,5/3L",navController,"IngestaoAgua")
                         }
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(16.dp),
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Box(
-                                Modifier
-                                    .background(color = Color(0xFFEEEEF0))
-                                    .weight(1f)
-                                    .clip(RoundedCornerShape(30.dp))
-                                    .clickable {
-                                        navController.navigate("Livros")
-                                    },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Column {
-                                    Text(text = "Páginas Lidas", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                                    Text(text = "3/10", fontWeight = FontWeight.Bold, fontSize = 40.sp, color = Color(0xFFFF5722))
-                                }
-                            }
-                            Box(
-                                Modifier
-                                    .background(color = Color(0xFFEEEEF0))
-                                    .weight(1f)
-                                    .clip(RoundedCornerShape(30.dp))
-                                    .clickable {
-                                        navController.navigate("Treinos")
-                                    },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Column {
-                                    Text(text = "Treinos", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                                    Text(text = "0/2", fontWeight = FontWeight.Bold, fontSize = 30.sp, color = Color(0xFFFF5722))
-                                }
-                            }
+                            section("Páginas Lidas","3/10",navController,"Livros")
+                            section("Treinos","0/2",navController,"Treinos")
                         }
                     }
                 }
@@ -155,6 +99,36 @@ fun DiaryScreen(navController: NavHostController) {
         bottomBar = { BottomNavigationBar(navController) },
         containerColor = Color.White
     )
+}
+
+@Composable
+fun section(title:String,content:String,navController: NavHostController,route:String){
+    Box(
+        Modifier
+            .height(160.dp).width(160.dp)
+            .clip(RoundedCornerShape(30.dp))
+            .clickable {
+                navController.navigate(route)
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        Column(Modifier.background(color = Color(0xFFEEEEF0)).fillMaxHeight()) {
+            Text(modifier = Modifier.fillMaxWidth().weight(.4f).padding(top = 15.dp),text = title, fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1.4f),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = content,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 35.sp,
+                    color = Color(0xFFFF5722),
+                    textAlign = TextAlign.Center
+                )
+            }}
+    }
 }
 
 
