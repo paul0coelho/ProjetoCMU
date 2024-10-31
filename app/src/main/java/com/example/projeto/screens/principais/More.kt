@@ -48,15 +48,15 @@ fun More(navController: NavHostController) {
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 val menuItems = listOf(
-                    Pair(Icons.Default.AccountCircle, "Editar Perfil"),
-                    Pair(Icons.Default.History, "Histórico"),
-                    Pair(Icons.Default.Calculate, "Calorias Diárias"),
-                    Pair(Icons.Default.Book, "Livros"),
-                    Pair(Icons.Default.FitnessCenter, "Treinos"),
-                    Pair(Icons.Default.WaterDrop, "Água"),
-                    Pair(Icons.Default.Leaderboard, "LeaderBoards"),
-                    Pair(Icons.Default.Image, "Evolução por fotos"),
-                    Pair(Icons.Default.Settings, "Definições")
+                    Triple(Icons.Default.AccountCircle, "Editar Perfil","EditarConta"),
+                    Triple(Icons.Default.History, "Histórico","EvolucaoFotos"),
+                    Triple(Icons.Default.Calculate, "Calorias Diárias","Calorias"),
+                    Triple(Icons.Default.Book, "Livros","Livros"),
+                    Triple(Icons.Default.FitnessCenter, "Treinos","Treinos"),
+                    Triple(Icons.Default.WaterDrop, "Água","IngestaoAgua"),
+                    Triple(Icons.Default.Leaderboard, "LeaderBoards","LeaderBoard"),
+                    Triple(Icons.Default.Image, "Evolução por fotos","EvolucaoFotos"),
+                    Triple(Icons.Default.Settings, "Definições","Definicoes")
                 )
 
                 menuItems.forEach { item ->
@@ -66,7 +66,7 @@ fun More(navController: NavHostController) {
                             .height(60.dp)
                             .background(Color(0xFFEEEEF0), RoundedCornerShape(8.dp))
                             .padding(8.dp, 4.dp)
-                            .clickable { /* Adicionar ação de navegação, se necessário */ },
+                            .clickable { navController.navigate(item.third) },
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
