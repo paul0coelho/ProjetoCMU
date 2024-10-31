@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
 
@@ -86,9 +87,11 @@ fun CriarTreinoScreen(navController: NavHostController) {
 
             }
         },
+            bottomBar = {
+                BottomNavigationBar(navController)
+            },
         containerColor = Color.White
     )
-
 }
 
 @Preview(showBackground = true)

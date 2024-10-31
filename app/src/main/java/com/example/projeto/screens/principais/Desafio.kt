@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -62,15 +63,24 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(
-                    text = "Leaderboard Atual:",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(10.dp)
-                )
+                Row(modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically){
+                    Text(
+                        text = "Leaderboard Atual:",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(10.dp).weight(4f)
+                    )
 
-                //navController.navigate("LeaderBoardDetalhes")
-                //Adicionar opcao para ir para a leaderboard normal
+                    Icon(
+                        imageVector = Icons.Default.ArrowForward,
+                        contentDescription = "Ver página leaderboard",
+                        tint = Color.Black,
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clickable {}
+                    )
+                }
 
                 Column {
                     leaderboardData.forEach { (name, streakDays) ->
