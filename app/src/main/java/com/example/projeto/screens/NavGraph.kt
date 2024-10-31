@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.example.projeto.screens.alimento.AdiconarAlimento
 import com.example.projeto.screens.principais.DiaryScreen
 import com.example.projeto.screens.login.CriarContaScreen
+import com.example.projeto.screens.login.EditarContaScreen
 import com.example.projeto.screens.login.InicialScreen
 import com.example.projeto.screens.login.LoginScreen
 import com.example.projeto.screens.login.RecuperarNovaPalavraPasse
