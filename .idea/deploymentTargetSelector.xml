@@ -1,19 +1,164 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="deploymentTargetSelector">
-    <selectionStates>
-      <SelectionState runConfigName="IngestaoAguaPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="MorePreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="DesafioPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="DetalhesTreinoScreenPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-    </selectionStates>
-  </component>
-</project>
+using System.Collections.Generic;
+using System.Linq;
+using LDS_OutWork.Controllers;
+using LDS_OutWork.Data;
+using LDS_OutWork.Models.Planos;
+using LDS_OutWork.Models.Utilizadores;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Assert = Xunit.Assert;
+
+namespace LDS_OutWork.test
+{
+    public class PlanosAlimentacaoTests : IDisposable
+    {
+        private readonly OutWorkContext _context;
+        private readonly PlanosAlimentacaoController _controller;
+
+        public PlanosAlimentacaoTests()
+        {
+            var options = new DbContextOptionsBuilder<OutWorkContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
+
+            _context = new OutWorkContext(options);
+            _controller = new PlanosAlimentacaoController(_context);
+
+            // Seed data
+            SeedDatabase();
+        }
+
+        private void SeedDatabase()
+        {
+            var user1 = new Utilizador { Id = 1, Nome = "Joao Pereira", Email = "joaopereira@gmail.com", Genero = "M", Password = "123456789101112", Tipo = "C" };
+            var plan1 = new Plano_alimentacao { Id = 1, Nome = "Plano 1", Id_Criador = user1.Id, Duracao_Semanas = 4, Objetivo = "New Objective", Data_Criacao = new DateTime(2024, 11, 12)};
+            var plan2 = new Plano_alimentacao { Id = 2, Nome = "Plano 2", Id_Criador =  user1.Id, Duracao_Semanas = 6, Objetivo = "New Objective", Data_Criacao = new DateTime(2024, 11, 12) };
+
+            _context.Utilizador.Add(user1);
+            _context.Plano_alimentacao.Add(plan1);
+            _context.Plano_alimentacao.Add(plan2);
+            _context.Utilizador_plano_alimentacao.Add(new Utilizador_plano_alimentacao { Id_Utilizador = 1, Id_Plano_Alimentacao = 1 });
+            _context.SaveChanges();
+        }
+
+        [Fact]
+        public void GetAssociatedPlans_UserHasAssociatedPlans_ReturnsOkWithPlans()
+        {
+            var result = _controller.GetAssociatedPlans(1);
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+            var planos = Assert.IsAssignableFrom<IEnumerable<Plano_alimentacao>>(okResult.Value);
+            Assert.Single(planos);
+        }
+
+        [Fact]
+        public void GetAssociatedPlans_UserHasNoAssociatedPlans_ReturnsNotFound()
+        {
+            var result = _controller.GetAssociatedPlans(2);
+            Assert.IsType<NotFoundObjectResult>(result.Result);
+        }
+
+        [Fact]
+        public void GetMyPlans_UserHasCreatedPlans_ReturnsOkWithPlans()
+        {
+            var result = _controller.GetMyPlans(1);
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+            var planos = Assert.IsAssignableFrom<IEnumerable<Plano_alimentacao>>(okResult.Value);
+            Assert.Equal(2, planos.Count());
+        }
+
+        [Fact]
+        public void GetMyPlans_UserHasNoCreatedPlans_ReturnsNotFound()
+        {
+            var result = _controller.GetMyPlans(2);
+            Assert.IsType<NotFoundObjectResult>(result.Result);
+        }
+
+        [Fact]
+        public void Create_ValidPlano_ReturnsCreated()
+        {
+            var plano = new Plano_alimentacao { Nome = "Plano Teste", Duracao_Semanas = 3, Id_Criador = 1, Objetivo = "New Objective" };
+            var result = _controller.Create(plano);
+            var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
+            Assert.NotNull(createdResult.Value);
+        }
+
+        [Fact]
+        public void Create_InvalidPlano_ReturnsBadRequest()
+        {
+            var plano = new Plano_alimentacao { Nome = "", Duracao_Semanas = 0, Id_Criador = 1 };
+            var result = _controller.Create(plano);
+            Assert.IsType<BadRequestObjectResult>(result.Result);
+        }
+
+        [Fact]
+        public void AssociatePlan_ValidAssociation_ReturnsOk()
+        {
+            var association = new Utilizador_plano_alimentacao { Id_Utilizador = 1, Id_Plano_Alimentacao = 2, Data_Inicio = DateTime.UtcNow, Data_Fim = DateTime.UtcNow.AddDays(7) };
+            var result = _controller.AssociatePlan(association);
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void AssociatePlan_InvalidAssociation_ReturnsBadRequestOrNotFound()
+        {
+            // Test missing Data_Inicio
+            var association1 = new Utilizador_plano_alimentacao { Id_Utilizador = 1, Id_Plano_Alimentacao = 2, Data_Inicio = DateTime.MinValue, Data_Fim = DateTime.UtcNow.AddDays(7) };
+            var result1 = _controller.AssociatePlan(association1);
+            Assert.IsType<BadRequestObjectResult>(result1);
+
+            // Test plan not found
+            var association2 = new Utilizador_plano_alimentacao { Id_Utilizador = 1, Id_Plano_Alimentacao = 999, Data_Inicio = DateTime.UtcNow, Data_Fim = DateTime.UtcNow.AddDays(7) };
+            var result2 = _controller.AssociatePlan(association2);
+            Assert.IsType<NotFoundObjectResult>(result2);
+        }
+
+        [Fact]
+        public void Update_ValidUpdate_ReturnsNoContent()
+        {
+            var updateData = new Plano_alimentacao { Nome = "Updated Nome", Duracao_Semanas = 8 };
+            var result = _controller.Update(1, updateData);
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public void Update_InvalidUpdate_ReturnsNotFound()
+        {
+            var updateData = new Plano_alimentacao { Nome = "Non-existent Nome", Duracao_Semanas = 5 };
+            var result = _controller.Update(999, updateData);
+            Assert.IsType<NotFoundObjectResult>(result);
+        }
+
+        [Fact]
+        public void Delete_ValidDeletion_ReturnsNoContent()
+        {
+            var association = _context.Utilizador_plano_alimentacao
+                .FirstOrDefault(up => up.Id_Plano_Alimentacao == 1);
+            if (association != null)
+            {
+                _context.Utilizador_plano_alimentacao.Remove(association);
+                _context.SaveChanges();
+            }
+
+            var result = _controller.Delete(1);
+            Assert.IsType<NoContentResult>(result);
+        }
+
+
+        [Fact]
+        public void Delete_InvalidDeletion_ReturnsNotFoundOrBadRequest()
+        {
+            var resultNotFound = _controller.Delete(999);
+            Assert.IsType<NotFoundObjectResult>(resultNotFound);
+            _context.Utilizador_plano_alimentacao.Add(new Utilizador_plano_alimentacao { Id_Utilizador = 1, Id_Plano_Alimentacao = 2 });
+            _context.SaveChanges();
+            var resultBadRequest = _controller.Delete(2);
+            Assert.IsType<BadRequestObjectResult>(resultBadRequest);
+        }
+
+        public void Dispose()
+        {
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
+        }
+    }
+}
