@@ -1,6 +1,7 @@
 package com.example.projeto.screens.treino
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
@@ -19,7 +20,7 @@ import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
 @Composable
-fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdoor: Boolean, pontoInicial: String, pontoFinal: String, navController: NavHostController) {
+fun DetalhesTreinoScreen(nome:String,tipoExercicio: String, dia: Int, duracao: String, outdoor: Boolean, pontoInicial: String, pontoFinal: String, navController: NavHostController) {
     Scaffold(
         topBar = { Header(navController) },
         content = { paddingValues ->
@@ -31,7 +32,7 @@ fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdo
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = "$tipoExercicio",
+                    text = "$nome",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
@@ -67,16 +68,39 @@ fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdo
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Outdoor: ",
+                        text = "Tipo: ",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Text(
-                        text = if (outdoor) "Sim" else "Não",
+                        text = tipoExercicio,
                         fontSize = 16.sp,
                         color = Color(0xFFFF5722)
                     )
+                }
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "Descricao: ",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                        .border(
+                            width = 0.5.dp,
+                            color = Color.Black,
+                            shape = RoundedCornerShape(20.dp)
+                ),
+                    contentAlignment = Alignment.TopStart
+                ) {
+                    Text(text = "Descricao", color = Color.Black, modifier = Modifier.padding(horizontal = 20.dp))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -128,7 +152,8 @@ fun DetalhesTreinoScreen(tipoExercicio: String, dia: Int, duracao: String, outdo
 fun DetalhesTreinoScreenPreview() {
     val navController = rememberNavController()
     DetalhesTreinoScreen(
-        tipoExercicio = "Corrida 45 minutos",
+        nome = "Corrida 45 minutos",
+        tipoExercicio = "Outdoor",
         dia = 10,
         duracao = "45 minutos",
         outdoor = true,

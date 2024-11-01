@@ -1,4 +1,4 @@
-package com.example.projeto.screens
+package com.example.projeto.screens.treino
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background

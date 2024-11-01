@@ -12,6 +12,7 @@ import com.example.projeto.screens.login.InicialScreen
 import com.example.projeto.screens.login.LoginScreen
 import com.example.projeto.screens.login.RecuperarNovaPalavraPasse
 import com.example.projeto.screens.login.RecuperarPalavraPasse
+import com.example.projeto.screens.principais.More
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -22,7 +23,7 @@ fun NavGraph(navController: NavHostController) {
         //composable("EditarConta") { EditarContaScreen(navController) }
         composable("RecuperarSenha") { RecuperarPalavraPasse(navController) }
         composable("RecuperarSenhaConfirmacao") { RecuperarNovaPalavraPasse(navController) }
-
+        composable("More") { More(navController) }
         //composable("Desafio") { Desafio(navController) }
         //composable("LeaderBoard") { LeaderBoard(navController) }
         //composable("LeaderBoardDetalhes") { LeaderBoardDetalhes(navController) }
@@ -44,11 +45,11 @@ fun NavGraph(navController: NavHostController) {
         //composable("Calorias") { CalorieScreen(navController) }
         composable("AdicionarAlimento") { AdiconarAlimento(navController) }
 
-        //composable("Historico") { FotosScreen(navController) }
+        //composable("EvolucaoFotos") { FotosScreen(navController) }
 
         //composable("Definicoes") { DefinicoesScreen(navController) }
 
         //composable("Notificacoes") { DefinicoesScreen(navController) }
-
+        //
     }
 }
