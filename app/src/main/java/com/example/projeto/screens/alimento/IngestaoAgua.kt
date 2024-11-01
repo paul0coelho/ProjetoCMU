@@ -2,6 +2,7 @@ package com.example.projeto.screens.alimento
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,11 +42,21 @@ fun IngestaoAgua(navController: NavHostController) {
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
-                Text(
-                    text = "Ingestão de água",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+                Row (verticalAlignment = Alignment.CenterVertically){
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Back",
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.popBackStack()
+                        },
+                        tint = Color.Black
+                    )
+                    Text(
+                        text = "Ingestão de água",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(10.dp))
 

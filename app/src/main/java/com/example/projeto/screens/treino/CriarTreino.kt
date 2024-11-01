@@ -35,11 +35,21 @@ fun CriarTreinoScreen(navController: NavHostController) {
         },
         content = {
             Column(Modifier.padding(10.dp,80.dp).fillMaxHeight()) {
-                Text(
-                    text = "Criar Treino",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+                Row (verticalAlignment = Alignment.CenterVertically){
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Back",
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.popBackStack()
+                        },
+                        tint = Color.Black
+                    )
+                    Text(
+                        text = "Criar Treino",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(10.dp))
                 var nome by remember { mutableStateOf("") }

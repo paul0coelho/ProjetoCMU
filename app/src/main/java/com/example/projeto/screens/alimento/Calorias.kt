@@ -4,6 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +36,7 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                CalorieHeader(metaCalorias, caloriasIngeridas, caloriasRestantes)
+                CalorieHeader(metaCalorias, caloriasIngeridas, caloriasRestantes, navController)
 
                 Column(
                     modifier = Modifier
@@ -72,8 +75,23 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
 }
 
 @Composable
-fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: Int) {
-    Text(text = "Calorias", fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
+fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: Int, navController: NavHostController) {
+    Row (verticalAlignment = Alignment.CenterVertically){
+        Icon(
+            imageVector = Icons.Default.ArrowBack,
+            contentDescription = "Back",
+            modifier = Modifier.size(30.dp).clickable {
+                navController.popBackStack()
+            },
+            tint = Color.Black
+        )
+        Text(
+            text = "Calorias",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+        )
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()

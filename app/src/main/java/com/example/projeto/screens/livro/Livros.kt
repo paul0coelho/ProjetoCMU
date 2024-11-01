@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -41,11 +42,21 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
-                Text(
-                    text = "Páginas Lidas",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+                Row (verticalAlignment = Alignment.CenterVertically){
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Back",
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.popBackStack()
+                        },
+                        tint = Color.Black
+                    )
+                    Text(
+                        text = "Páginas Lidas",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(10.dp))
 

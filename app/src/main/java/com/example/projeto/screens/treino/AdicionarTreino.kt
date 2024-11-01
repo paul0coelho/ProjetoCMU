@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -48,6 +49,15 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 Row(modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically){
+
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            modifier = Modifier.size(30.dp).clickable {
+                                navController.popBackStack()
+                            },
+                            tint = Color.Black
+                        )
                     Text(
                         text = "Treino:",
                         fontSize = 22.sp,
@@ -127,7 +137,8 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
         },
         bottomBar = {
             BottomNavigationBar(navController)
-        }
+        },
+        containerColor = Color.White
     )
 }
 

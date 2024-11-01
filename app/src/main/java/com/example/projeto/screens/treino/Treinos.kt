@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -39,11 +40,21 @@ fun Treinos(navController: NavHostController) {
         },
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
-                Text(
-                    text = "Treinos",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+                Row (verticalAlignment = Alignment.CenterVertically){
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Back",
+                        modifier = Modifier.size(30.dp).clickable {
+                            navController.popBackStack()
+                        },
+                        tint = Color.Black
+                    )
+                    Text(
+                        text = "Treinos",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
                 Text(
                     text = "Hoje ja treinou 1 vez! Falta 1",
                     Modifier.padding(top = 20.dp),

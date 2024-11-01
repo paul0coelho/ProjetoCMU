@@ -2,10 +2,12 @@ package com.example.projeto.screens.principais
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessibilityNew
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -28,12 +30,21 @@ fun Notificacoes(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Notificações",
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(10.dp, 20.dp)
-                    )
+                    Row (verticalAlignment = Alignment.CenterVertically){
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            modifier = Modifier.size(30.dp).clickable {
+                                navController.popBackStack()
+                            },
+                            tint = Color.Black
+                        )
+                        Text(
+                            text = "Notificações",
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
                 }
             )
         },

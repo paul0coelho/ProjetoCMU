@@ -136,5 +136,6 @@ fun section(title:String,content:String,navController: NavHostController,route:S
 @Composable
 fun DiaryScreenPreview() {
     val navController = rememberNavController()
+
     DiaryScreen(navController = navController)
 }
