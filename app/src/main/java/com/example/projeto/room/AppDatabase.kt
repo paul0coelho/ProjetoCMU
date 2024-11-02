@@ -22,6 +22,7 @@ import com.example.projeto.room.entities.*
     version = 1,
     exportSchema = false
 )
+@TypeConverters(DateConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun utilizadorDao(): UtilizadorDao
     abstract fun livroDao(): LivroDao
