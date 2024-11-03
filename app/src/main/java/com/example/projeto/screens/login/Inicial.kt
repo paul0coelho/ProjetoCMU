@@ -20,9 +20,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.projeto.R
+
 
 @Composable
 fun InicialScreen(navController: NavHostController) {
@@ -36,7 +38,10 @@ fun InicialScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-               Text("Bem vindo ao", fontSize = 20.sp,fontWeight = FontWeight.Bold)
+               Text(
+                   stringResource(id = R.string.Bem_Vindo),
+                   fontSize = 20.sp,fontWeight = FontWeight.Bold
+               )
                 Text("75 HARD", fontSize = 50.sp, color = Color(0xFFFF5722), fontWeight = FontWeight.Bold)
                 Image(
                     painter = painterResource(id = R.drawable.logo75),
