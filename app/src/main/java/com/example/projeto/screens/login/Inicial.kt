@@ -80,13 +80,11 @@ fun InicialScreen(navController: NavHostController) {
                         navController.navigate("login")
                     }
                 )
-            }
-        },
+                }
+            },
         containerColor = Color.White
     )
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
