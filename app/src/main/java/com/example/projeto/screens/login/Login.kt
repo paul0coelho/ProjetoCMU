@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
 
 @SuppressLint("UnrememberedMutableState")
@@ -34,11 +37,16 @@ fun LoginScreen(navController: NavHostController) {
                 modifier = Modifier
                     .padding(top = 20.dp, start = 10.dp, end = 10.dp),
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black,
-                    actionIconContentColor = Color.Black
+                    containerColor = colorResource(id = R.color.white),
+                    titleContentColor = colorResource(id = R.color.black),
+                    actionIconContentColor = colorResource(id = R.color.black)
                 ),
-                title = { Text("Entrar", fontWeight = FontWeight.Bold, fontSize = 25.sp) },
+                title = {
+                    Text(
+                        stringResource(id = R.string.Entrar),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 25.sp)
+                        },
                 navigationIcon = {
                     Icon(
                         Icons.Default.ArrowBack,
@@ -46,7 +54,7 @@ fun LoginScreen(navController: NavHostController) {
                         modifier = Modifier.size(30.dp).clickable {
                             navController.navigate("inicial")
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                 },
             )
@@ -64,14 +72,14 @@ fun LoginScreen(navController: NavHostController) {
                 var password by remember { mutableStateOf("") }
 
                 CaixaTexto(
-                    label = "Email",
+                    label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it },
                     isPassword = false
                 )
 
                 CaixaTexto(
-                    label = "Palavra-Passe",
+                    label = stringResource(id = R.string.Palavra_Passe),
                     value = password,
                     onValueChange = { password = it },
                     isPassword = true
@@ -84,11 +92,11 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(30.dp)),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5722))
+                    colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.LaranjaGeral))
                 ) {
                     Text(
-                        text = "Entrar",
-                        color = Color.White,
+                        text = stringResource(id = R.string.Entrar),
+                        color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
@@ -96,14 +104,14 @@ fun LoginScreen(navController: NavHostController) {
 
                 // Link para Recuperar Senha
                 ClickableText(
-                    text = AnnotatedString("Recuperar Palavra-Passe"),
-                    style = TextStyle(color = Color(0xFFFF5722), fontSize = 15.sp, fontWeight = FontWeight.Bold),
+                    text = AnnotatedString(stringResource(id = R.string.RecuperarPalavraPasse)),
+                    style = TextStyle(color = colorResource(id = R.color.LaranjaGeral), fontSize = 15.sp, fontWeight = FontWeight.Bold),
                     onClick = {navController.navigate("RecuperarSenha")}
                 )
 
                 // Separador "OU"
                 Text(
-                    text = "OU",
+                    text = stringResource(id = R.string.Ou),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     modifier = Modifier.padding(vertical = 10.dp)
@@ -123,7 +131,7 @@ fun LoginScreen(navController: NavHostController) {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Entrar com o Google",
+                        text = stringResource(id = R.string.EntrarGoogle),
                         Modifier.padding(10.dp),
                         fontWeight = FontWeight.Bold,
                         fontSize = 25.sp
@@ -143,7 +151,7 @@ fun LoginScreen(navController: NavHostController) {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Entrar com o Facebook",
+                        text = stringResource(id = R.string.EntrarFacebook),
                         Modifier.padding(10.dp),
                         fontWeight = FontWeight.Bold,
                         fontSize = 25.sp
@@ -151,7 +159,7 @@ fun LoginScreen(navController: NavHostController) {
                 }
             }
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

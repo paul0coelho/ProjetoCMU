@@ -19,12 +19,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
+import androidx.compose.ui.res.stringResource
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
@@ -45,10 +48,10 @@ fun AdiconarAlimento(navController: NavHostController) {
                     modifier = Modifier.size(30.dp).clickable {
                         navController.popBackStack()
                     },
-                    tint = Color.Black
+                    tint = colorResource(id = R.color.black)
                 )
                     Text(
-                        text = "Alimentos",
+                        text = stringResource(id = R.string.Alimentos),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -59,7 +62,7 @@ fun AdiconarAlimento(navController: NavHostController) {
                 
                 var pesquisa by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Pesquisar",
+                    label = stringResource(id = R.string.Pesquisar),
                     value = pesquisa,
                     onValueChange = { pesquisa = it }
                 )
@@ -67,7 +70,7 @@ fun AdiconarAlimento(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Histórico",
+                    text = stringResource(id = R.string.Historico),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -78,7 +81,7 @@ fun AdiconarAlimento(navController: NavHostController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp)
-                            .background(Color.LightGray, RoundedCornerShape(8.dp))
+                            .background(colorResource(id = R.color.Cinza), RoundedCornerShape(8.dp))
                             .padding(8.dp, 4.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -88,11 +91,11 @@ fun AdiconarAlimento(navController: NavHostController) {
                             Text(
                                 text = "Bolacha Marinheira",
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black
+                                color = colorResource(id = R.color.black)
                             )
                             Text(
                                 text = " 26Cal, 1 bolacha",
-                                color = Color.DarkGray,
+                                color = colorResource(id = R.color.DarkGray),
                                 fontSize = 14.sp
                             )
                         }
@@ -113,7 +116,7 @@ fun AdiconarAlimento(navController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController)
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

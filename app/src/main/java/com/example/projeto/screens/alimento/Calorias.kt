@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,6 +22,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
+import androidx.compose.ui.res.stringResource
+import com.example.projeto.R
+import com.example.projeto.reuse.CaixaTexto
 
 @Composable
 fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Triple<String, Int, String>>, navController: NavHostController) {
@@ -41,7 +45,7 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFFF5F5F5), RoundedCornerShape(8.dp))
+                        .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                         .padding(8.dp)
                 ) {
                     alimentos.forEach { (food, calories, time) ->
@@ -51,16 +55,16 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                                 .padding(vertical = 10.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = time, fontSize = 16.sp, color = Color.Gray)
-                            Text(text = food, fontSize = 16.sp, color = Color.Black)
-                            Text(text = "$calories kcal", fontSize = 16.sp, color = Color.Black)
+                            Text(text = time, fontSize = 16.sp, color = colorResource(id = R.color.Gray))
+                            Text(text = food, fontSize = 16.sp, color = colorResource(id = R.color.black))
+                            Text(text = "$calories kcal", fontSize = 16.sp, color = colorResource(id = R.color.black))
                         }
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "ADICIONAR ALIMENTO",
+                        text = stringResource(id = R.string.AdicionarAlimento),
                         fontSize = 14.sp,
-                        color = Color(0xFFFF5722),
+                        color = colorResource(id = R.color.LaranjaGeral),
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.align(Alignment.Start).clickable {
                             navController.navigate("AdicionarAlimento")
@@ -70,7 +74,7 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
             }
         },
         bottomBar = { BottomNavigationBar(navController) },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 
@@ -83,10 +87,10 @@ fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: 
             modifier = Modifier.size(30.dp).clickable {
                 navController.popBackStack()
             },
-            tint = Color.Black
+            tint = colorResource(id = R.color.black)
         )
         Text(
-            text = "Calorias",
+            text = stringResource(id = R.string.Calorias),
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
         )
@@ -95,16 +99,16 @@ fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFFD5D4D4), shape = RoundedCornerShape(8.dp))
+            .background(colorResource(id = R.color.Cinza), shape = RoundedCornerShape(8.dp))
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = "$metaCalorias\nMeta", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
+        Text(text = "$metaCalorias\n${stringResource(id = R.string.Meta)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = 16.sp)
         Text(text = "-", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
-        Text(text = "$caloriasIngeridas\nIngeridas", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
+        Text(text = "$caloriasIngeridas\n${stringResource(id = R.string.Ingeridas)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = 16.sp)
         Text(text = "=", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
-        Text(text = "$caloriasRestantes\nRestantes", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
+        Text(text = "$caloriasRestantes\n${stringResource(id = R.string.Restantes)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = 16.sp)
     }
 }
 

@@ -17,12 +17,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.projeto.R
 
 @Composable
 fun CaixaTexto(
@@ -49,7 +51,7 @@ fun CaixaTexto(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+        textStyle = TextStyle(fontSize = 16.sp, color = colorResource(id = R.color.black)),
         visualTransformation = if (isPassword && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         trailingIcon = {
             if (isPassword) {

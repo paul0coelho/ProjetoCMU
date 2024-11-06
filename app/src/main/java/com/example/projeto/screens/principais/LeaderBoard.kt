@@ -14,12 +14,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -42,7 +45,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Leaderboard:",
+                        text = stringResource(id = R.string.Board),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -88,7 +91,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                                 .fillMaxWidth()
                                 .padding(vertical = 4.dp)
                                 .background(
-                                    color = if (name == "Eu") Color(0xFFFF5722) else Color(0xFFEEEEEE),
+                                    color = if (name == "Eu") colorResource(id = R.color.LaranjaGeral) else colorResource(id = R.color.CinzaClaro),
                                     shape = RoundedCornerShape(8.dp)
                                 )
                                 .padding(8.dp),
@@ -98,25 +101,25 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                                 text = "${index + 1}#",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp,
-                                color = if (name == "Eu") Color.White else Color.Black,
+                                color = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.black),
                                 modifier = Modifier.padding(end = 8.dp)
                             )
                             Text(
                                 text = name,
                                 fontWeight = FontWeight.Bold,
-                                color = if (name == "Eu") Color.White else Color.Black,
+                                color = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.black),
                                 modifier = Modifier.weight(1f)
                             )
                             Text(
-                                text = "$streakDays dias",
+                                text = stringResource(id = R.string.Dias, streakDays) ,
                                 fontWeight = FontWeight.Medium,
-                                color = if (name == "Eu") Color.White else Color.DarkGray,
+                                color = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.DarkGray),
                                 modifier = Modifier.padding(end = 8.dp)
                             )
                             Icon(
                                 imageVector = Icons.Filled.Info,
                                 contentDescription = "Ver detalhes",
-                                tint = if (name == "Eu") Color.White else Color(0xFFFF5722),
+                                tint = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.LaranjaGeral),
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable { navController.navigate("LeaderBoardDetalhes") }

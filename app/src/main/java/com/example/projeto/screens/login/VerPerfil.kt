@@ -16,6 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
@@ -48,13 +51,13 @@ fun PerfilScreen(navController: NavHostController) {
                 Box(
                     modifier = Modifier
                         .size(100.dp)
-                        .background(Color.Gray, shape = CircleShape),
+                        .background(colorResource(id = R.color.Gray), shape = CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.AccountCircle,
                         contentDescription = "Foto de perfil",
-                        tint = Color.White,
+                        tint = colorResource(id = R.color.white),
                         modifier = Modifier.size(60.dp)
                     )
                 }
@@ -64,7 +67,7 @@ fun PerfilScreen(navController: NavHostController) {
                 // Dados do perfil com campos desabilitados
                 var nome by remember { mutableStateOf("Nome do Usuário") }
                 CaixaTexto(
-                    label = "Nome",
+                    label = stringResource(id = R.string.Nome),
                     value = nome,
                     onValueChange = { nome = it },
                     enabled = false // Campo desabilitado
@@ -72,7 +75,7 @@ fun PerfilScreen(navController: NavHostController) {
 
                 var email by remember { mutableStateOf("email@exemplo.com") }
                 CaixaTexto(
-                    label = "Email",
+                    label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it },
                     enabled = false
@@ -80,7 +83,7 @@ fun PerfilScreen(navController: NavHostController) {
 
                 var genero by remember { mutableStateOf("Gênero") }
                 CaixaTexto(
-                    label = "Gênero",
+                    label = stringResource(id = R.string.Genero),
                     value = genero,
                     onValueChange = { genero = it },
                     enabled = false
@@ -88,7 +91,7 @@ fun PerfilScreen(navController: NavHostController) {
 
                 var dataNascimento by remember { mutableStateOf("01/01/2000") }
                 CaixaTexto(
-                    label = "Data de nascimento",
+                    label = stringResource(id = R.string.DataNascimento),
                     value = dataNascimento,
                     onValueChange = { dataNascimento = it },
                     enabled = false
@@ -96,7 +99,7 @@ fun PerfilScreen(navController: NavHostController) {
 
                 var telefone by remember { mutableStateOf("123456789") }
                 CaixaTexto(
-                    label = "Telemóvel",
+                    label = stringResource(id = R.string.Telemovel),
                     value = telefone,
                     onValueChange = { telefone = it },
                     enabled = false
@@ -105,7 +108,7 @@ fun PerfilScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(10.dp))
             }
         },
-        containerColor = Color.White,
+        containerColor = colorResource(id = R.color.white),
         bottomBar = {
             BottomNavigationBar(navController)
         }

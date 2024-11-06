@@ -17,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,7 +43,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 Text(
-                    text = "A sua streak está no dia $dia!",
+                    text =  stringResource(id = R.string.Pontuacao, dia),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -50,13 +52,13 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(20.dp)
-                        .background(Color.LightGray, RoundedCornerShape(4.dp))
+                        .background(colorResource(id = R.color.Cinza), RoundedCornerShape(4.dp))
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(progress)
                             .height(20.dp)
-                            .background(Color(0xFFFF5722), RoundedCornerShape(4.dp))
+                            .background(colorResource(id = R.color.LaranjaGeral), RoundedCornerShape(4.dp))
                             .padding(10.dp, 0.dp)
                     )
                 }
@@ -66,7 +68,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                 Row(modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically){
                     Text(
-                        text = "Leaderboard Atual:",
+                        text =  stringResource(id = R.string.LeaderBoard),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(10.dp).weight(4f)
@@ -75,7 +77,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                     Icon(
                         imageVector = Icons.Default.ArrowForward,
                         contentDescription = "Ver página leaderboard",
-                        tint = Color.Black,
+                        tint = colorResource(id = R.color.black),
                         modifier = Modifier
                             .size(36.dp)
                             .clickable {navController.navigate("LeaderBoard")}
@@ -88,26 +90,26 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(4.dp)
-                                .background(Color(0xFFEEEEEE), RoundedCornerShape(8.dp))
+                                .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                                 .padding(8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
                                 text = name,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black,
+                                color = colorResource(id = R.color.black),
                                 modifier = Modifier.weight(1f)
                             )
                             Text(
-                                text = "$streakDays dias",
+                                text = stringResource(id = R.string.LeaderBoard, streakDays),
                                 fontWeight = FontWeight.Medium,
-                                color = Color.DarkGray,
+                                color = colorResource(id = R.color.DarkGray),
                                 modifier = Modifier.padding(end = 8.dp)
                             )
                             Icon(
                                 imageVector = Icons.Filled.Info,
                                 contentDescription = "Ver detalhes",
-                                tint = Color(0xFFFF5722),
+                                tint = colorResource(id = R.color.LaranjaGeral),
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable {

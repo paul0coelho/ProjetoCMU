@@ -1,4 +1,110 @@
 <resources>
     <string name="app_name">Projeto</string>
     <string name="Bem_Vindo">Bem vindo ao</string>
+    <string name="Pergunta">"Está pronto para o desafio?"</string>
+    <string name="Registar">"REGISTAR-SE GRATUITAMENTE"</string>
+    <string name="Entrar">"Entrar"</string>
+
+    <string name="Email">"Email"</string>
+    <string name="Palavra_Passe">"Palavra-passe"</string>
+
+    <string name="RecuperarPalavraPasse">"Recuperar Palavra-Passe"</string>
+    <string name="Ou">"OU"</string>
+
+    <string name="EntrarGoogle">"Entrar com o Google"</string>
+    <string name="EntrarFacebook">"Entrar com o Facebook"</string>
+
+    <string name="CriarConta">"Criar Conta"</string>
+    <string name="Nome">"Nome"</string>
+    <string name="Genero">"Gênero"</string>
+    <string name="DataNascimento">"Data de Nascimento"</string>
+    <string name="Telemovel">"Telemóvel"</string>
+    <string name="Senha">"Senha"</string>
+    <string name="ConfirmarSenha">"Confirmar Senha"</string>
+    <string name="Criar">"Create"</string>
+
+    <string name="EditarPerfil">"Editar Perfil"</string>
+    <string name="Guardar">"Guardar"</string>
+
+    <string name="NovaPalavraPasse">"Nova Palavra-Passe"</string>
+    <string name="ConfirmeNovaPalavraPasse">"Confirme Nova Palavra Passe"</string>
+    <string name="AlterarPalavraPasse">"Alterar Palavra-Passe"</string>
+
+    <string name="DescricaoPass">"Por favor, insira o email associado à sua conta para procedermos ao envio de um código de reposição de palavra passe."</string>
+    <string name="SolicitarCodigo">"Confirme Nova Palavra Passe"</string>
+
+
+    <string name="Alimentos">"Alimentos"</string>
+    <string name="Pesquisar">"Pesquisar"</string>
+    <string name="Historico">"Histórico"</string>
+
+    <string name="Calorias">"Calorias"</string>
+    <string name="Meta">"Meta"</string>
+    <string name="Ingeridas">"Ingeridas"</string>
+    <string name="Restantes">"Restantes"</string>
+    <string name="AdicionarAlimento">"Adicionar Alimento"</string>
+
+    <string name="IngestaoAgua">"Ingestão de Água"</string>
+    <string name="DescricaoAgua">"Hoje ingeriu água nestes momentos:"</string>
+
+    <string name="Livros">"Livros"</string>
+
+    <string name="PaginasLidas">"Páginas Lidas"</string>
+    <string name="DescricaoLivros">"Hoje já leu %1$d páginas! Faltam %2$d!"</string>
+    <string name="OsSeusLivros">"Os seus livros:"</string>
+    <string name="AdicionarPaginas">"Adicionar mais páginas lidas"</string>
+
+    <string name="Desafio">"Desafio"</string>
+    <string name="Diario">"Diário"</string>
+    <string name="Mais">"Mais"</string>
+
+    <string name="Pontuacao">"A sua sequência está no dia %1$d!"</string>
+    <string name="LeaderBoard">"Tabela Atual:"</string>
+    <string name="Dias">"%1$d dias:"</string>
+
+    <string name="FotoDia">"Foto do dia"</string>
+    <string name="Agua">"Água"</string>
+    <string name="Treinos">"Treinos"</string>
+    <string name="Treino">"Treino:"</string>
+
+    <string name="Board">"Tabela"</string>
+
+    <string name="PontuacaoDetalhada">"Sequência Atual: %1$d dias"</string>
+    <string name="PontuacaoMaior">"Maior Sequência Registada: %1$d dias"</string>
+    <string name="Top3Livros">"Top 3 Livros Lidos:"</string>
+    <string name="NumeroPaginasLidas">"%1$d páginaslidas"</string>
+    <string name="UltimaFoto">"Última foto da evolução"</string>
+
+    <string name="EvolucaoFotos">"Evolução por Fotos"</string>
+    <string name="Definicoes">"Definições"</string>
+
+    <string name="Notificacoes">"Notificações"</string>
+
+    <string name="AtingiuMetaCalorias">"Atingiu a sua meta de calorias diária!"</string>
+    <string name="DescricaoMetaCalorias">"Ao ingerir mais alguma caloria perderá a sua sequência!"</string>
+    <string name="AtingiuMetaTreino">"Concluiu os treinos diários!"</string>
+    <string name="DescricaoMetaTreino">"Parabéns, cumpriu uma das partes do seu dia!"</string>
+
+    <string name="CriarTreino">"Criar Treino"</string>
+    <string name="Tipo">"Tipo"</string>
+    <string name="Tipo2">"Tipo: "</string>
+    <string name="Duracao">"Duração"</string>
+    <string name="Duracao2">"Duração: "</string>
+    <string name="LocalInicial">"Local Inicial"</string>
+    <string name="LocalFinal">"Local Final"</string>
+    <string name="DataInicio">"Data de Início"</string>
+    <string name="HoraInicio">"Hora de Início"</string>
+
+    <string name="Descricao">"Descrição"</string>
+    <string name="Descricao2">"Descrição: "</string>
+    <string name="PontoInicial">"Ponto Inicial"</string>
+    <string name="PontoFinal">"Ponto Final"</string>
+    <string name="Dia">"Dia: "</string>
+
+    <string name="Imagem">"Imagem: "</string>
+
+    <string name="TreinosHoje">"Os Seus Treinos De Hoje: "</string>
+    <string name="Indoor">"Interior: "</string>
+    <string name="Outdoor">"Exterior: "</string>
+
 </resources>

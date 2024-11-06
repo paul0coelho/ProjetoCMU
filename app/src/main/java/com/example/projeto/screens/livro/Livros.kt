@@ -21,12 +21,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
@@ -49,10 +52,10 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
                         modifier = Modifier.size(30.dp).clickable {
                             navController.popBackStack()
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Text(
-                        text = "Páginas Lidas",
+                        text = stringResource(id = R.string.PaginasLidas),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -60,8 +63,10 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
 
                 Spacer(modifier = Modifier.height(10.dp))
 
+
                 Text(
-                    text = "Hoje já leu $paginasLidas páginas! Faltam $paginasEmFalta!",
+                    //Nao sei se isto esta a funcionar assim
+                    text = stringResource(id = R.string.DescricaoLivros, paginasLidas, paginasEmFalta),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -72,7 +77,7 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
                     .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically){
                     Text(
-                        text = "Os seus livros:",
+                        text = stringResource(id = R.string.OsSeusLivros),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.weight(1f)
@@ -84,7 +89,7 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
                         modifier = Modifier.size(24.dp).clickable {
                             navController.navigate("AdicionarLivro")
                         },
-                        tint = Color(0xFFFF5722),
+                        tint = colorResource(id = R.color.LaranjaGeral),
                     )
                 }
 
@@ -95,7 +100,7 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(60.dp)
-                                .background(Color.LightGray, RoundedCornerShape(8.dp))
+                                .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                                 .padding(8.dp, 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -105,11 +110,11 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
                                 Text(
                                     text = name,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.Black
+                                    color = colorResource(id = R.color.black)
                                 )
                                 Text(
-                                    text = "Adicionar mais páginas lidas",
-                                    color = Color(0xFFFF5722),
+                                    text = stringResource(id = R.string.AdicionarPaginas),
+                                    color = colorResource(id = R.color.LaranjaGeral),
                                     fontSize = 14.sp,
                                     modifier = Modifier.clickable {}
                                 )
@@ -117,7 +122,7 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
 
                             Text(
                                 text = "$pages",
-                                color = Color(0xFFFF5722),
+                                color = colorResource(id = R.color.LaranjaGeral),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
                             )

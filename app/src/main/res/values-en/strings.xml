@@ -2,8 +2,110 @@
 <resources>
     <string name="app_name">Projeto</string>
     <string name="Bem_Vindo">Welcome to</string>
+    <string name="Pergunta">Are you ready for the challenge?</string>
+    <string name="Registar">"REGISTER FOR FREE"</string>
+    <string name="Entrar">"To enter"</string>
+
+    <string name="Email">"Email"</string>
+    <string name="Palavra_Passe">"Password"</string>
+
+    <string name="RecuperarPalavraPasse">"Recover Password"</string>
+    <string name="Ou">"OR"</string>
+
+    <string name="EntrarGoogle">"Sign in with Google"</string>
+    <string name="EntrarFacebook">"Login with Facebook"</string>
+
+    <string name="CriarConta">"Create Account"</string>
+    <string name="Nome">"Name"</string>
+    <string name="Genero">"Gender"</string>
+    <string name="DataNascimento">"Date of birth"</string>
+    <string name="Telemovel">"Cell phone"</string>
+    <string name="Senha">"Password"</string>
+    <string name="ConfirmarSenha">"Confirm Password"</string>
+    <string name="Criar">"Create"</string>
+
+    <string name="EditarPerfil">"Edit Profile"</string>
+    <string name="Guardar">"Save"</string>
+
+    <string name="NovaPalavraPasse">"New Password"</string>
+    <string name="ConfirmeNovaPalavraPasse">"Confirm New Password"</string>
+    <string name="AlterarPalavraPasse">"Change Password"</string>
+
+    <string name="DescricaoPass">"Please enter the email associated with your account so that we can send you a password reset code."</string>
+    <string name="SolicitarCodigo">"Confirm New Password"</string>
 
 
+    <string name="Alimentos">"Food"</string>
+    <string name="Pesquisar">"To look for"</string>
+    <string name="Historico">"History"</string>
 
+    <string name="Calorias">"Calories"</string>
+    <string name="Meta">"Goal"</string>
+    <string name="Ingeridas">"Ingested"</string>
+    <string name="Restantes">"Remaining"</string>
+    <string name="AdicionarAlimento">"Add Food"</string>
+
+    <string name="IngestaoAgua">"Water Intake"</string>
+    <string name="DescricaoAgua">"Today you drank water at these times:"</string>
+
+    <string name="Livros">"Books"</string>
+
+    <string name="PaginasLidas">"Pages Read"</string>
+    <string name="DescricaoLivros">"Today you've read %1$d pages! %2$d missing!"</string>
+    <string name="OsSeusLivros">"Your books:"</string>
+    <string name="AdicionarPaginas">"Add more read pages"</string>
+
+    <string name="Desafio">"Challenge"</string>
+    <string name="Diario">"Daily"</string>
+    <string name="Mais">"More"</string>
+
+    <string name="Pontuacao">"Your streak is on day %1$d!"</string>
+    <string name="LeaderBoard">"LeaderBoard Current:"</string>
+    <string name="Dias">"%1$d days:"</string>
+
+    <string name="FotoDia">"Photo of the day"</string>
+    <string name="Agua">"Water"</string>
+    <string name="Treinos">"Workouts"</string>
+    <string name="Treino">"Workout:"</string>
+
+    <string name="Board">"Leaderboard"</string>
+
+    <string name="PontuacaoDetalhada">"Current Streak: %1$d days"</string>
+    <string name="PontuacaoMaior">"Longest Streak Recorded: %1$d days"</string>
+    <string name="Top3Livros">"Top 3 Books Read:"</string>
+    <string name="NumeroPaginasLidas">"%1$d pagesread"</string>
+    <string name="UltimaFoto">"Last photo of the evolution"</string>
+
+    <string name="EvolucaoFotos">"Evolution by Photos"</string>
+    <string name="Definicoes">"Definitions"</string>
+
+    <string name="Notificacoes">"Notifications"</string>
+
+    <string name="AtingiuMetaCalorias">"You've reached your daily calorie goal!"</string>
+    <string name="DescricaoMetaCalorias">"When you consume any more calories, you will lose your streak!"</string>
+    <string name="AtingiuMetaTreino">"Completed your daily workouts!"</string>
+    <string name="DescricaoMetaTreino">"Congratulations, you fulfilled one of the parts of your day!"</string>
+
+    <string name="CriarTreino">"Create Training"</string>
+    <string name="Tipo">"Type"</string>
+    <string name="Tipo2">"Type: "</string>
+    <string name="Duracao">"Duration"</string>
+    <string name="Duracao2">"Duration: "</string>
+    <string name="LocalInicial">"Starting Location"</string>
+    <string name="LocalFinal">"Final Location"</string>
+    <string name="DataInicio">"Start Date"</string>
+    <string name="HoraInicio">"Start Time"</string>
+
+    <string name="Descricao">"Description"</string>
+    <string name="Descricao2">"Description: "</string>
+    <string name="PontoInicial">"Starting Point"</string>
+    <string name="PontoFinal">"Full stop"</string>
+    <string name="Dia">"Day: "</string>
+
+    <string name="Imagem">"Image: "</string>
+
+    <string name="TreinosHoje">"Your Workouts Today:"</string>
+    <string name="Indoor">"Indoor: "</string>
+    <string name="Outdoor">"Outdoor: "</string>
 
 </resources>

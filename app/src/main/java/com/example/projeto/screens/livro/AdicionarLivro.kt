@@ -25,12 +25,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
@@ -54,10 +57,10 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                         modifier = Modifier.size(30.dp).clickable {
                             navController.popBackStack()
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Text(
-                        text = "Livros",
+                        text = stringResource(id = R.string.Livros),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -66,7 +69,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                 Spacer(modifier = Modifier.height(10.dp))
 
                 CaixaTexto(
-                    label = "Pesquisar",
+                    label = stringResource(id = R.string.Pesquisar),
                     value = livro,
                     onValueChange = { livro = it },
                     isPassword = false
@@ -75,7 +78,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Histórico",
+                    text = stringResource(id = R.string.Historico),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -87,7 +90,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(60.dp)
-                                .background(Color.LightGray, RoundedCornerShape(8.dp))
+                                .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                                 .padding(8.dp, 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -97,11 +100,11 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                                 Text(
                                     text = name,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.Black
+                                    color = colorResource(id = R.color.black)
                                 )
                                 Text(
                                     text = "$pages Páginas Lidas",
-                                    color = Color.DarkGray,
+                                    color = colorResource(id = R.color.DarkGray),
                                     fontSize = 14.sp
                                 )
                             }
@@ -109,7 +112,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                             Icon(
                                 imageVector = Icons.Filled.AddCircle,
                                 contentDescription = "Adicionar",
-                                tint = Color(0xFFFF5722),
+                                tint = colorResource(id = R.color.LaranjaGeral),
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable { }

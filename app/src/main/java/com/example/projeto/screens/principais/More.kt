@@ -30,6 +30,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
@@ -50,15 +53,15 @@ fun More(navController: NavHostController) {
         content = {
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 val menuItems = listOf(
-                    Triple(Icons.Default.AccountCircle, "Editar Perfil","EditarConta"),
-                    Triple(Icons.Default.History, "Histórico","EvolucaoFotos"),
-                    Triple(Icons.Default.Calculate, "Calorias Diárias","Calorias"),
-                    Triple(Icons.Default.Book, "Livros","Livros"),
-                    Triple(Icons.Default.FitnessCenter, "Treinos","Treinos"),
-                    Triple(Icons.Default.WaterDrop, "Água","IngestaoAgua"),
-                    Triple(Icons.Default.Leaderboard, "LeaderBoards","LeaderBoard"),
-                    Triple(Icons.Default.Image, "Evolução por fotos","EvolucaoFotos"),
-                    Triple(Icons.Default.Settings, "Definições","Definicoes")
+                    Triple(Icons.Default.AccountCircle, stringResource(id = R.string.EditarPerfil),"EditarConta"),
+                    Triple(Icons.Default.History, stringResource(id = R.string.Historico),"EvolucaoFotos"),
+                    Triple(Icons.Default.Calculate, stringResource(id = R.string.Calorias),"Calorias"),
+                    Triple(Icons.Default.Book, stringResource(id = R.string.Livros),"Livros"),
+                    Triple(Icons.Default.FitnessCenter, stringResource(id = R.string.Treinos),"Treinos"),
+                    Triple(Icons.Default.WaterDrop, stringResource(id = R.string.Agua),"IngestaoAgua"),
+                    Triple(Icons.Default.Leaderboard, stringResource(id = R.string.LeaderBoard),"LeaderBoard"),
+                    Triple(Icons.Default.Image, stringResource(id = R.string.EvolucaoFotos),"EvolucaoFotos"),
+                    Triple(Icons.Default.Settings, stringResource(id = R.string.Definicoes),"Definicoes")
                 )
 
                 menuItems.forEach { item ->
@@ -66,7 +69,7 @@ fun More(navController: NavHostController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp)
-                            .background(Color(0xFFEEEEF0), RoundedCornerShape(8.dp))
+                            .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                             .padding(8.dp, 4.dp)
                             .clickable { navController.navigate(item.third) },
                         verticalAlignment = Alignment.CenterVertically
@@ -74,7 +77,7 @@ fun More(navController: NavHostController) {
                         Icon(
                             imageVector = item.first,
                             contentDescription = item.second,
-                            tint = Color(0xFFFF5722),
+                            tint = colorResource(id = R.color.LaranjaGeral),
                             modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(16.dp))
@@ -82,7 +85,7 @@ fun More(navController: NavHostController) {
                             text = item.second,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black
+                            color = colorResource(id = R.color.black)
                         )
                     }
                     Spacer(modifier = Modifier.height(10.dp))
@@ -92,7 +95,7 @@ fun More(navController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController)
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

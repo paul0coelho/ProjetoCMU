@@ -17,12 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +41,7 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Recuperar Palavra-Passe",
+                        text = stringResource(id = R.string.RecuperarPalavraPasse),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(10.dp, 20.dp)
@@ -50,7 +53,7 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
                             modifier = Modifier.size(30.dp),
-                            tint = Color.Black
+                            tint = colorResource(id = R.color.black)
                         )
                     }
                 },
@@ -65,20 +68,20 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
             ) {
 
                 CaixaTexto(
-                    label = "Email",
+                    label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it }
                 )
 
                 CaixaTexto(
-                    label = "Nova Palavra-Passe",
+                    label = stringResource(id = R.string.NovaPalavraPasse),
                     value = novaSenha,
                     onValueChange = { novaSenha = it },
                     isPassword = true
                 )
 
                 CaixaTexto(
-                    label = "Confirme Nova Palavra-Passe",
+                    label = stringResource(id = R.string.ConfirmeNovaPalavraPasse),
                     value = confirmeSenha,
                     onValueChange = { confirmeSenha = it },
                     isPassword = true
@@ -89,15 +92,15 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(16.dp))
-                        .background(color = Color(0xFFFF5722))
+                        .background(color = colorResource(id = R.color.LaranjaGeral))
                         .clickable { navController.navigate("login")
                                    /* Ação ao clicar */ },
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Alterar Palavra-Passe",
+                        text = stringResource(id = R.string.AlterarPalavraPasse),
                         modifier = Modifier.padding(16.dp),
-                        color = Color.White,
+                        color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )

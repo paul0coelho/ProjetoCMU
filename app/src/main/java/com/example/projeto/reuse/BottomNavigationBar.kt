@@ -9,18 +9,21 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
+import com.example.projeto.R
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     NavigationBar(
-        containerColor = Color.Black,
-        contentColor = Color.White
+        containerColor = colorResource(id = R.color.black),
+        contentColor = colorResource(id = R.color.white)
     ) {
         NavigationBarItem(
-            icon = { Text(text = "75", color = Color(0xFFFF5722), fontWeight = FontWeight.Bold) },
-            label = { Text("Desafio", color = Color(0xFFFF5722)) },
+            icon = { Text(text = "75", color = colorResource(id = R.color.LaranjaGeral), fontWeight = FontWeight.Bold) },
+            label = { Text(stringResource(id = R.string.Desafio), color = colorResource(id = R.color.LaranjaGeral)) },
             selected = false,
             onClick = {navController.navigate("Desafio")}
         )
@@ -29,10 +32,10 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(
                     Icons.Default.Menu,
                     contentDescription = "Diary",
-                    tint = Color(0xFFFF5722)
+                    tint = colorResource(id = R.color.LaranjaGeral)
                 )
             },
-            label = { Text("Diário", color = Color.White) },
+            label = { Text(stringResource(id = R.string.Diario), color = colorResource(id = R.color.white)) },
             selected = true,
             onClick = {navController.navigate("Diario")}
         )
@@ -41,10 +44,10 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(
                     Icons.Default.MoreVert,
                     contentDescription = "More",
-                    tint = Color(0xFFFF5722)
+                    tint = colorResource(id = R.color.LaranjaGeral)
                 )
             },
-            label = { Text("More", color = Color(0xFFFF5722)) },
+            label = { Text(stringResource(id = R.string.Mais), color = colorResource(id = R.color.LaranjaGeral)) },
             selected = false,
             onClick = {navController.navigate("More")}
         )

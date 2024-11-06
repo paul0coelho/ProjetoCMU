@@ -25,12 +25,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
@@ -55,15 +58,16 @@ fun EvolucaoFotos(navController: NavHostController) {
                     text = "Fotos dos dias",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = colorResource(id = R.color.black),
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
 
+                //Isto nao esta bem feito a data
                 Text(
                     text = "Foto do dia 30/10/2024",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = colorResource(id = R.color.black),
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
 
@@ -77,7 +81,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Foto anterior",
-                        tint = Color.Black,
+                        tint = colorResource(id = R.color.black),
                         modifier = Modifier
                             .size(36.dp)
                             .clickable { }
@@ -87,16 +91,16 @@ fun EvolucaoFotos(navController: NavHostController) {
                         modifier = Modifier
                             .height(600.dp)
                             .width(300.dp)
-                            .background(Color.LightGray, RoundedCornerShape(8.dp)),
+                            .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "Imagem", color = Color.Gray)
+                        Text(text = stringResource(id = R.string.Imagem), color = colorResource(id = R.color.Gray))
                     }
 
                     Icon(
                         imageVector = Icons.Default.ArrowForward,
                         contentDescription = "Próxima foto",
-                        tint = Color.Black,
+                        tint = colorResource(id = R.color.black),
                         modifier = Modifier
                             .size(36.dp)
                             .clickable {}
@@ -107,7 +111,7 @@ fun EvolucaoFotos(navController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController)
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

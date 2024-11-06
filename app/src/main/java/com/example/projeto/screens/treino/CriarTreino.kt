@@ -15,12 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.CaixaTexto
 import com.example.projeto.reuse.Header
@@ -42,10 +45,10 @@ fun CriarTreinoScreen(navController: NavHostController) {
                         modifier = Modifier.size(30.dp).clickable {
                             navController.popBackStack()
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Text(
-                        text = "Criar Treino",
+                        text = stringResource(id = R.string.CriarTreino),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -54,43 +57,43 @@ fun CriarTreinoScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(10.dp))
                 var nome by remember { mutableStateOf("") }
                  CaixaTexto(
-                    "Nome",
+                     stringResource(id = R.string.Nome),
                     nome,
                     { novoNome -> nome = novoNome },
                 )
                 var tipo by remember { mutableStateOf("") }
                 CaixaTexto(
-                    "Tipo",
+                    stringResource(id = R.string.Tipo),
                     tipo,
                     { novoNome -> tipo = novoNome },
                 )
                 var duracao by remember { mutableStateOf("") }
                 CaixaTexto(
-                    "Duração",
+                    stringResource(id = R.string.Duracao),
                     duracao,
                     { novoNome -> duracao = novoNome },
                 )
                 var inicial by remember { mutableStateOf("") }
                 CaixaTexto(
-                    "Local Inicial",
+                    stringResource(id = R.string.LocalInicial),
                     inicial,
                     { novoNome -> inicial = novoNome },
                 )
                 var final by remember { mutableStateOf("") }
                 CaixaTexto(
-                    "Local Final",
+                    stringResource(id = R.string.LocalFinal),
                     final,
                     { novoNome -> final = novoNome },
                 )
                 var data by remember { mutableStateOf("") }
                 CaixaTexto(
-                    "Data de Início",
+                    stringResource(id = R.string.DataInicio),
                     data,
                     { novoNome -> data = novoNome },
                 )
                 var hora by remember { mutableStateOf("") }
                 CaixaTexto(
-                    "Hora de Início",
+                    stringResource(id = R.string.HoraInicio),
                     hora,
                     { novoNome -> hora = novoNome },
                 )
@@ -100,7 +103,7 @@ fun CriarTreinoScreen(navController: NavHostController) {
             bottomBar = {
                 BottomNavigationBar(navController)
             },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

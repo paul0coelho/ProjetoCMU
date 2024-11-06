@@ -14,12 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
@@ -42,7 +45,7 @@ fun DetalhesTreinoScreen(nome:String,tipoExercicio: String, dia: Int, duracao: S
                         modifier = Modifier.size(30.dp).clickable {
                             navController.popBackStack()
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Text(
                         text = "$nome",
@@ -53,52 +56,52 @@ fun DetalhesTreinoScreen(nome:String,tipoExercicio: String, dia: Int, duracao: S
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Dia: ",
+                        text = stringResource(id = R.string.Dia),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = colorResource(id = R.color.black)
                     )
                     Text(
                         text = "$dia",
                         fontSize = 16.sp,
-                        color = Color(0xFFFF5722)
+                        color = colorResource(id = R.color.LaranjaGeral)
                     )
                 }
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Duração: ",
+                        text = stringResource(id = R.string.Duracao2),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = colorResource(id = R.color.black)
                     )
                     Text(
                         text = duracao,
                         fontSize = 16.sp,
-                        color = Color(0xFFFF5722)
+                        color = colorResource(id = R.color.LaranjaGeral)
                     )
                 }
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Tipo: ",
+                        text = stringResource(id = R.string.Tipo2),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = colorResource(id = R.color.black)
                     )
                     Text(
                         text = tipoExercicio,
                         fontSize = 16.sp,
-                        color = Color(0xFFFF5722)
+                        color = colorResource(id = R.color.LaranjaGeral)
                     )
                 }
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Descricao: ",
+                        text = stringResource(id = R.string.Descricao2),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = colorResource(id = R.color.black)
                     )
                 }
 
@@ -108,55 +111,55 @@ fun DetalhesTreinoScreen(nome:String,tipoExercicio: String, dia: Int, duracao: S
                         .height(100.dp)
                         .border(
                             width = 0.5.dp,
-                            color = Color.Black,
+                            color = colorResource(id = R.color.black),
                             shape = RoundedCornerShape(20.dp)
                 ),
                     contentAlignment = Alignment.TopStart
                 ) {
-                    Text(text = "Descricao", color = Color.Black, modifier = Modifier.padding(horizontal = 20.dp))
+                    Text(text = stringResource(id = R.string.Descricao), color = colorResource(id = R.color.black), modifier = Modifier.padding(horizontal = 20.dp))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Ponto Inicial
                 Text(
-                    text = "Ponto inicial: $pontoInicial",
+                    text = stringResource(id = R.string.PontoInicial, pontoInicial),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = colorResource(id = R.color.black)
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(150.dp)
-                        .background(Color(0xFF2C2C2C), shape = RoundedCornerShape(8.dp)),
+                        .background(colorResource(id = R.color.DarkGray), shape = RoundedCornerShape(8.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Mapa - Ponto Inicial", color = Color.White)
+                    Text(text = "Mapa - Ponto Inicial", color = colorResource(id = R.color.white))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Ponto Final
                 Text(
-                    text = "Ponto final: $pontoFinal",
+                    text = stringResource(id = R.string.PontoFinal, pontoFinal),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = colorResource(id = R.color.black)
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(150.dp)
-                        .background(Color(0xFF2C2C2C), shape = RoundedCornerShape(8.dp)),
+                        .background(colorResource(id = R.color.DarkGray), shape = RoundedCornerShape(8.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Mapa - Ponto Final", color = Color.White)
+                    Text(text = "Mapa - Ponto Final", color = colorResource(id = R.color.white))
                 }
             }
         },
         bottomBar = { BottomNavigationBar(navController) },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

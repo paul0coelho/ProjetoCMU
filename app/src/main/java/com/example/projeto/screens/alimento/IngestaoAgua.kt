@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +33,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
+import com.example.projeto.R
+import androidx.compose.ui.res.stringResource
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -49,10 +52,10 @@ fun IngestaoAgua(navController: NavHostController) {
                         modifier = Modifier.size(30.dp).clickable {
                             navController.popBackStack()
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Text(
-                        text = "Ingestão de água",
+                        text = stringResource(id = R.string.IngestaoAgua),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -64,20 +67,20 @@ fun IngestaoAgua(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp)
-                        .background(Color(0xFFEEEEF0), RoundedCornerShape(10.dp)), contentAlignment = Alignment.Center
+                        .background(colorResource(id = R.color.Cinza), RoundedCornerShape(10.dp)), contentAlignment = Alignment.Center
                     ){
                     Row(Modifier.fillMaxSize(),horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
                             Text("3L", Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
-                            Text("Meta",Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                            Text(stringResource(id = R.string.Meta),Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
                         }
                         Column(Modifier.weight(1f)) {
                             Text("1,5L",Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
-                            Text("Ingeridas",Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                            Text(stringResource(id = R.string.Ingeridas),Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
                         }
                         Column(Modifier.weight(1f)) {
                             Text("1,5L",Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
-                            Text("Restantes",Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
+                            Text(stringResource(id = R.string.Restantes),Modifier.fillMaxWidth(),fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
                         }
                     }
                 }
@@ -85,7 +88,7 @@ fun IngestaoAgua(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Hoje ingeriu água nestes momentos:",
+                    text = stringResource(id = R.string.DescricaoAgua),
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -96,7 +99,7 @@ fun IngestaoAgua(navController: NavHostController) {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(60.dp)
-                                .background(Color(0xFFEEEEF0), RoundedCornerShape(8.dp))
+                                .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                                 .padding(30.dp, 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -106,14 +109,14 @@ fun IngestaoAgua(navController: NavHostController) {
                                 Text(
                                     text = "20:45",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.Black
+                                    color = colorResource(id = R.color.black)
                                 )
                             }
 
                             Text(
                                 text = "1.5L",
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFFFF5722)
+                                color = colorResource(id = R.color.LaranjaGeral)
                             )
                         }
                         Spacer(modifier = Modifier.height(10.dp))
@@ -124,7 +127,7 @@ fun IngestaoAgua(navController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController)
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

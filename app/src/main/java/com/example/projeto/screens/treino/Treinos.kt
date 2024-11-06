@@ -22,12 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
@@ -47,14 +50,16 @@ fun Treinos(navController: NavHostController) {
                         modifier = Modifier.size(30.dp).clickable {
                             navController.popBackStack()
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Text(
-                        text = "Treinos",
+                        text = stringResource(id = R.string.Treinos),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )
                 }
+
+                //Isto tambem nao esta bem feito
                 Text(
                     text = "Hoje ja treinou 1 vez! Falta 1",
                     Modifier.padding(top = 20.dp),
@@ -65,7 +70,7 @@ fun Treinos(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Os seus treinos de hoje:",
+                    text = stringResource(id = R.string.TreinosHoje),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -75,10 +80,10 @@ fun Treinos(navController: NavHostController) {
                     Row(modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically){
                         Text(
-                            text = "Indoor:",
+                            text = stringResource(id = R.string.Indoor),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFFFF5722),
+                            color = colorResource(id = R.color.LaranjaGeral),
                             modifier = Modifier.weight(1f)
                         )
                         Icon(
@@ -87,7 +92,7 @@ fun Treinos(navController: NavHostController) {
                             modifier = Modifier.size(24.dp).clickable {
                                 navController.navigate("AdicionarTreino")
                             },
-                            tint = Color(0xFFFF5722),
+                            tint = colorResource(id = R.color.LaranjaGeral),
                         )
                     }
 
@@ -96,7 +101,7 @@ fun Treinos(navController: NavHostController) {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(60.dp)
-                                .background(Color.LightGray, RoundedCornerShape(8.dp))
+                                .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                                 .padding(8.dp, 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -106,14 +111,14 @@ fun Treinos(navController: NavHostController) {
                                 Text(
                                     text = "Corrida 45 minutos",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.Black
+                                    color = colorResource(id = R.color.black)
                                 )
                             }
 
                             Icon(
                                 imageVector = Icons.Filled.MoreVert,
                                 contentDescription = "Ver detalhes",
-                                tint = Color(0xFFFF5722),
+                                tint = colorResource(id = R.color.LaranjaGeral),
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable {
@@ -130,10 +135,10 @@ fun Treinos(navController: NavHostController) {
                     Row(modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically){
                         Text(
-                            text = "Outdoor:",
+                            text = stringResource(id = R.string.Outdoor),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFFFF5722),
+                            color = colorResource(id = R.color.LaranjaGeral),
                             modifier = Modifier.weight(1f)
                         )
                         Icon(
@@ -142,7 +147,7 @@ fun Treinos(navController: NavHostController) {
                             modifier = Modifier.size(24.dp).clickable {
                                 navController.navigate("AdicionarLivro")
                             },
-                            tint = Color(0xFFFF5722),
+                            tint = colorResource(id = R.color.LaranjaGeral),
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
@@ -150,7 +155,7 @@ fun Treinos(navController: NavHostController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp)
-                            .background(Color.LightGray, RoundedCornerShape(8.dp))
+                            .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                             .padding(8.dp, 4.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -166,7 +171,7 @@ fun Treinos(navController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController)
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

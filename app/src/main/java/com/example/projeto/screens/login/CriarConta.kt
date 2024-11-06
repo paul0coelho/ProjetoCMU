@@ -15,12 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
 
 @SuppressLint("UnrememberedMutableState")
@@ -32,11 +35,16 @@ fun CriarContaScreen(navController: NavHostController) {
             TopAppBar(
                 modifier = Modifier.padding(horizontal = 10.dp),
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black,
-                    actionIconContentColor = Color.Black
+                    containerColor = colorResource(id = R.color.white),
+                    titleContentColor = colorResource(id = R.color.black),
+                    actionIconContentColor = colorResource(id = R.color.black)
                 ),
-                title = { Text("Criar Conta", fontWeight = FontWeight.Bold, fontSize = 25.sp) },
+                title = {
+                    Text(
+                        stringResource(id = R.string.CriarConta),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 25.sp)
+                        },
                 navigationIcon = {
                     Icon(
                         Icons.Default.ArrowBack,
@@ -44,7 +52,7 @@ fun CriarContaScreen(navController: NavHostController) {
                         modifier = Modifier.size(30.dp).clickable {
                             navController.navigate("login")
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                 },
             )
@@ -61,14 +69,14 @@ fun CriarContaScreen(navController: NavHostController) {
                 Box(
                     modifier = Modifier
                         .size(100.dp)
-                        .background(Color.Gray, shape = CircleShape)
+                        .background(colorResource(id = R.color.Gray), shape = CircleShape)
                         .clickable { /* Ação para adicionar foto */ },
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.AccountCircle,
                         contentDescription = "Adicionar foto de perfil",
-                        tint = Color.White,
+                        tint = colorResource(id = R.color.white),
                         modifier = Modifier.size(60.dp)
                     )
                 }
@@ -77,42 +85,42 @@ fun CriarContaScreen(navController: NavHostController) {
 
                 var nome by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Nome",
+                    label = stringResource(id = R.string.Nome),
                     value = nome,
                     onValueChange = { nome = it }
                 )
 
                 var email by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Email",
+                    label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it }
                 )
 
                 var genero by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Gênero",
+                    label = stringResource(id = R.string.Genero),
                     value = genero,
                     onValueChange = { genero = it }
                 )
 
                 var dataNascimento by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Data de nascimento",
+                    label = stringResource(id = R.string.DataNascimento),
                     value = dataNascimento,
                     onValueChange = { dataNascimento = it }
                 )
 
                 var telefone by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Telemóvel",
+                    label = stringResource(id = R.string.Telemovel),
                     value = telefone,
                     onValueChange = { telefone = it }
                 )
 
                 var senha by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Senha",
+                    label = stringResource(id = R.string.Senha),
                     value = senha,
                     onValueChange = { senha = it },
                     isPassword = true
@@ -120,7 +128,7 @@ fun CriarContaScreen(navController: NavHostController) {
 
                 var confirmarSenha by remember { mutableStateOf("") }
                 CaixaTexto(
-                    label = "Confirmar senha",
+                    label = stringResource(id = R.string.ConfirmarSenha),
                     value = confirmarSenha,
                     onValueChange = { confirmarSenha = it },
                     isPassword = true
@@ -132,23 +140,23 @@ fun CriarContaScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(30.dp))
-                        .background(color = Color(0xFFFF5722))
+                        .background(color = colorResource(id = R.color.LaranjaGeral))
                         .clickable {
                             // Ação ao clicar em "Criar"
                         },
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Criar",
+                        text = stringResource(id = R.string.Criar),
                         modifier = Modifier.padding(15.dp),
-                        color = Color.White,
+                        color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )
                 }
             }
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 

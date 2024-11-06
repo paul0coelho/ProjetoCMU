@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +36,7 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Recuperar Palavra-Passe",
+                        text = stringResource(id = R.string.RecuperarPalavraPasse),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(10.dp, 20.dp)
@@ -45,7 +48,7 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
                             modifier = Modifier.size(30.dp),
-                            tint = Color.Black
+                            tint = colorResource(id = R.color.black)
                         )
                     }
                 },
@@ -59,15 +62,15 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 CaixaTexto(
-                    label = "Email",
+                    label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it }
                 )
 
                 Text(
-                    text = "Por favor, insira o email associado à sua conta para procedermos ao envio de um código de reposição de palavra passe.",
+                    text = stringResource(id = R.string.DescricaoPass),
                     fontSize = 14.sp,
-                    color = Color.DarkGray,
+                    color = colorResource(id = R.color.DarkGray),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -77,7 +80,7 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(16.dp))
-                        .background(color = Color(0xFFFF5722))
+                        .background(color = colorResource(id = R.color.LaranjaGeral))
                         .clickable {
                             // Ação ao clicar
                             navController.navigate("RecuperarSenhaConfirmacao")
@@ -85,9 +88,9 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Solicitar Código",
+                        text = stringResource(id = R.string.SolicitarCodigo),
                         modifier = Modifier.padding(16.dp),
-                        color = Color.White,
+                        color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )

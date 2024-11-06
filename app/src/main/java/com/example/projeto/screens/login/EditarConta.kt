@@ -12,12 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,13 +55,13 @@ fun EditarContaScreen(
                         modifier = Modifier.size(30.dp).clickable {
                             navController.navigate("More")
                         },
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black,
-                    actionIconContentColor = Color.Black
+                    containerColor = colorResource(id = R.color.white),
+                    titleContentColor = colorResource(id = R.color.black),
+                    actionIconContentColor = colorResource(id = R.color.black)
                 )
             )
         },
@@ -71,13 +74,13 @@ fun EditarContaScreen(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                CaixaTexto(label = "Nome", value = nameState, onValueChange = { nameState = it })
-                CaixaTexto(label = "Email", value = emailState, onValueChange = { emailState = it })
-                CaixaTexto(label = "Gênero", value = genderState, onValueChange = { genderState = it })
-                CaixaTexto(label = "Data de nascimento", value = birthDateState, onValueChange = { birthDateState = it })
-                CaixaTexto(label = "Telemóvel", value = phoneState, onValueChange = { phoneState = it })
-                CaixaTexto(label = "Senha", isPassword = true, value = passwordState, onValueChange = { passwordState = it })
-                CaixaTexto(label = "Confirmar Senha", isPassword = true, value = confirmPasswordState, onValueChange = { confirmPasswordState = it })
+                CaixaTexto(label = stringResource(id = R.string.Nome), value = nameState, onValueChange = { nameState = it })
+                CaixaTexto(label = stringResource(id = R.string.Email), value = emailState, onValueChange = { emailState = it })
+                CaixaTexto(label = stringResource(id = R.string.Genero), value = genderState, onValueChange = { genderState = it })
+                CaixaTexto(label = stringResource(id = R.string.DataNascimento), value = birthDateState, onValueChange = { birthDateState = it })
+                CaixaTexto(label = stringResource(id = R.string.Telemovel), value = phoneState, onValueChange = { phoneState = it })
+                CaixaTexto(label = stringResource(id = R.string.Senha), isPassword = true, value = passwordState, onValueChange = { passwordState = it })
+                CaixaTexto(label = stringResource(id = R.string.ConfirmarSenha), isPassword = true, value = confirmPasswordState, onValueChange = { confirmPasswordState = it })
 
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -85,21 +88,21 @@ fun EditarContaScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(30.dp))
-                        .background(Color(0xFFFF5722))
+                        .background(colorResource(id = R.color.LaranjaGeral))
                         .clickable { onButtonClick() },
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = buttonText,
                         modifier = Modifier.padding(15.dp),
-                        color = Color.White,
+                        color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )
                 }
             }
         },
-        containerColor = Color.White
+        containerColor = colorResource(id = R.color.white)
     )
 }
 
@@ -113,8 +116,8 @@ fun EditProfileScreen(
     navController: NavHostController
 ) {
     EditarContaScreen(
-        title = "Editar Perfil",
-        buttonText = "Guardar",
+        title = stringResource(id = R.string.EditarPerfil),
+        buttonText = stringResource(id = R.string.Guardar),
         name = name,
         email = email,
         gender = gender,

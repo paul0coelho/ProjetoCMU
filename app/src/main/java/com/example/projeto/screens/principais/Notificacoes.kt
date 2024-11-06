@@ -14,12 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,10 +40,10 @@ fun Notificacoes(navController: NavHostController) {
                             modifier = Modifier.size(30.dp).clickable {
                                 navController.popBackStack()
                             },
-                            tint = Color.Black
+                            tint = colorResource(id = R.color.black)
                         )
                         Text(
-                            text = "Notificações",
+                            text = stringResource(id = R.string.Notificacoes),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                         )
@@ -59,7 +62,7 @@ fun Notificacoes(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(80.dp)
-                        .background(Color(0xFFEEEEF0), RoundedCornerShape(8.dp))
+                        .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -67,19 +70,19 @@ fun Notificacoes(navController: NavHostController) {
                         imageVector = Icons.Default.Calculate,
                         contentDescription = "Calorias",
                         modifier = Modifier.size(30.dp),
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Column {
                         Text(
-                            text = "Atingiu a sua meta de calorias diária!",
+                            text = stringResource(id = R.string.AtingiuMetaCalorias),
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black
+                            color = colorResource(id = R.color.black)
                         )
                         Text(
-                            text = "Ao ingerir mais alguma caloria perderá a sua streak!",
+                            text = stringResource(id = R.string.DescricaoMetaCalorias),
                             fontWeight = FontWeight.Bold,
-                            color = Color.Gray
+                            color = colorResource(id = R.color.Gray)
                         )
                     }
                 }
@@ -88,7 +91,7 @@ fun Notificacoes(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(80.dp)
-                        .background(Color(0xFFEEEEF0), RoundedCornerShape(8.dp))
+                        .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -96,19 +99,19 @@ fun Notificacoes(navController: NavHostController) {
                         imageVector = Icons.Default.AccessibilityNew,
                         contentDescription = "Calorias",
                         modifier = Modifier.size(30.dp),
-                        tint = Color.Black
+                        tint = colorResource(id = R.color.black)
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Column {
                         Text(
-                            text = "Concluiu os treinos diários!",
+                            text = stringResource(id = R.string.AtingiuMetaTreino),
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black
+                            color = colorResource(id = R.color.black)
                         )
                         Text(
-                            text = "Parabéns, cumpriu uma das partes do seu dia! ",
+                            text = stringResource(id = R.string.DescricaoMetaTreino),
                             fontWeight = FontWeight.Bold,
-                            color = Color.Gray
+                            color = colorResource(id = R.color.Gray)
                         )
                     }
                 }

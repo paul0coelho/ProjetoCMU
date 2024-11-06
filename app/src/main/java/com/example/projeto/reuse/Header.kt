@@ -13,17 +13,19 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.projeto.R
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun Header(navController: NavHostController) {
     TopAppBar(
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = Color.White,
-            titleContentColor = Color.Black,
-            actionIconContentColor = Color.Black
+            containerColor = colorResource(id = R.color.white),
+            titleContentColor = colorResource(id = R.color.black),
+            actionIconContentColor = colorResource(id = R.color.black)
 
         ),
         title = {},
@@ -34,7 +36,7 @@ fun Header(navController: NavHostController) {
                 modifier = Modifier.size(60.dp).clickable {
                     navController.navigate("")
                 },
-                tint = Color.Black
+                tint = colorResource(id = R.color.black)
             )
         },
         actions = {
@@ -44,7 +46,7 @@ fun Header(navController: NavHostController) {
                 modifier = Modifier.size(60.dp).clickable {
                     navController.navigate("Notificacoes")
                 },
-                tint = Color.Black
+                tint = colorResource(id = R.color.black)
             )
         }
     )
