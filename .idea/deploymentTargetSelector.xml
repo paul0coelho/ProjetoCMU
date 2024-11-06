@@ -21,6 +21,8 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="DesafioPreview">
+      </SelectionState>
+      <SelectionState runConfigName="EvolucaoFotosPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
