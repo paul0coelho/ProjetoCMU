@@ -69,7 +69,8 @@ fun EvolucaoFotos(navController: NavHostController) {
     var hasImage by remember { mutableStateOf<Boolean>(false) }
     var i by remember { mutableIntStateOf(0) }
     val directory = File(context.filesDir, "camera_images").apply { mkdirs() }
-    var imageFiles = directory.listFiles { file -> file.isFile && file.extension in listOf("jpg", "jpeg", "png") }?.sortedBy { it.lastModified() }
+    var imageFiles by remember { mutableStateOf(directory.listFiles { file -> file.isFile && file.extension in listOf("jpg", "jpeg", "png") }?.sortedBy { it.lastModified() }
+    )  }
 
     val cameraPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
@@ -158,7 +159,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                         contentAlignment = Alignment.Center,
                     ) {
                         if (!imageFiles.isNullOrEmpty()) {
-                            val imagem = imageFiles!![i]
+                            var imagem = imageFiles!![i]
                             imagem?.let {
                                 // Carregar a imagem do arquivo
                                 val bitmap = BitmapFactory.decodeFile(it.absolutePath)
