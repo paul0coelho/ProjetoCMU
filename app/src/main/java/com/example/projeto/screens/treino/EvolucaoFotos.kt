@@ -2,30 +2,18 @@ package com.example.projeto.screens.treino
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.provider.ContactsContract.Directory
-import android.provider.MediaStore
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.content.MediaType.Companion.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -47,28 +35,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCompositionContext
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
@@ -76,13 +58,8 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
-import androidx.appcompat.app.AppCompatActivity
-import com.example.projeto.MainActivity
-
-
+import androidx.compose.ui.res.stringResource
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -137,19 +114,19 @@ fun EvolucaoFotos(navController: NavHostController) {
                 if (imageFiles.isNullOrEmpty()) {
 
                     Text(
-                        text = "Nenhuma foto disponível",
+                        text = stringResource(id = R.string.NenhumaImagem),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color =  colorResource(id = R.color.black),
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
                 } else {
 
                     Text(
-                        text = "Foto do dia: ${imageFiles!![i].name.removeSuffix(".jpg").removeSuffix(".jpeg").removeSuffix(".png")}",
+                        text = stringResource(id = R.string.FotoDia) +" ${imageFiles!![i].name.removeSuffix(".jpg").removeSuffix(".jpeg").removeSuffix(".png")}",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color = colorResource(id = R.color.black),
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
                 }
@@ -177,7 +154,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                         modifier = Modifier
                             .height(450.dp)
                             .width(300.dp)
-                            .background(Color.LightGray, RoundedCornerShape(8.dp)),
+                            .background(colorResource(id = R.color.Cinza), RoundedCornerShape(8.dp)),
                         contentAlignment = Alignment.Center,
                     ) {
                         if (!imageFiles.isNullOrEmpty()) {
@@ -236,7 +213,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                     Icon(
                         imageVector = Icons.Default.CameraAlt,
                         contentDescription = "Abrir Câmera",
-                        tint = Color(0xFFFF5722),
+                        tint = colorResource(id = R.color.LaranjaGeral),
                         modifier = Modifier.size(36.dp)
                     )
                 }

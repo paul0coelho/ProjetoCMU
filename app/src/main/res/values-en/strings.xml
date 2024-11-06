@@ -102,7 +102,7 @@
     <string name="PontoFinal">"Full stop"</string>
     <string name="Dia">"Day: "</string>
 
-    <string name="Imagem">"Image: "</string>
+    <string name="NenhumaImagem">"No photos available: "</string>
 
     <string name="TreinosHoje">"Your Workouts Today:"</string>
     <string name="Indoor">"Indoor: "</string>

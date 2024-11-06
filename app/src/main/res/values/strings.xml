@@ -101,7 +101,7 @@
     <string name="PontoFinal">"Ponto Final"</string>
     <string name="Dia">"Dia: "</string>
 
-    <string name="Imagem">"Imagem: "</string>
+    <string name="NenhumaImagem">"Nenhuma foto disponível: "</string>
 
     <string name="TreinosHoje">"Os Seus Treinos De Hoje: "</string>
     <string name="Indoor">"Interior: "</string>
