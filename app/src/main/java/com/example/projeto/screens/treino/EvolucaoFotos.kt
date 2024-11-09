@@ -61,6 +61,8 @@ import java.util.Locale
 import android.util.Log
 import androidx.compose.ui.res.stringResource
 
+
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun EvolucaoFotos(navController: NavHostController) {
@@ -71,6 +73,13 @@ fun EvolucaoFotos(navController: NavHostController) {
     val directory = File(context.filesDir, "camera_images").apply { mkdirs() }
     var imageFiles by remember { mutableStateOf(directory.listFiles { file -> file.isFile && file.extension in listOf("jpg", "jpeg", "png") }?.sortedBy { it.lastModified() }
     )  }
+    lateinit var imagem: File
+    if (!imageFiles.isNullOrEmpty()) {
+        imagem = imageFiles!![i]
+    }
+
+
+
 
     val cameraPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
@@ -96,6 +105,9 @@ fun EvolucaoFotos(navController: NavHostController) {
         contract = ActivityResultContracts.TakePicture(),
         onResult = { success ->
             hasImage = success
+            if (!imageFiles.isNullOrEmpty()) {
+                imagem = imageFiles!![i]
+            }
         }
     )
 
@@ -158,8 +170,6 @@ fun EvolucaoFotos(navController: NavHostController) {
                             .background(colorResource(id = R.color.Cinza), RoundedCornerShape(8.dp)),
                         contentAlignment = Alignment.Center,
                     ) {
-                        if (!imageFiles.isNullOrEmpty()) {
-                            var imagem = imageFiles!![i]
                             imagem?.let {
                                 // Carregar a imagem do arquivo
                                 val bitmap = BitmapFactory.decodeFile(it.absolutePath)
@@ -171,7 +181,6 @@ fun EvolucaoFotos(navController: NavHostController) {
                                 )
                             }
                         }
-                    }
 
                     Icon(
                         imageVector = Icons.Default.ArrowForward,
@@ -204,7 +213,6 @@ fun EvolucaoFotos(navController: NavHostController) {
                             uri?.let { safeUri ->
                                 cameraLauncher.launch(safeUri)
                             }
-                            imageFiles = directory.listFiles { file -> file.isFile && file.extension in listOf("jpg", "jpeg", "png") }?.sortedBy { it.lastModified() }
 
                     },
                     colors = ButtonDefaults.buttonColors(Color.Black),
@@ -213,7 +221,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                 ) {
                     Icon(
                         imageVector = Icons.Default.CameraAlt,
-                        contentDescription = "Abrir Câmera",
+                        contentDescription = "Abrir Camara",
                         tint = colorResource(id = R.color.LaranjaGeral),
                         modifier = Modifier.size(36.dp)
                     )
