@@ -21,6 +21,7 @@ interface UtilizadorAPI {
 
     @PUT("updateUtilizador")
     fun updateUtilizador(
+        @Query("id") id: Int,
         @Body utilizador: Utilizador
     ): Call<Utilizador>
 

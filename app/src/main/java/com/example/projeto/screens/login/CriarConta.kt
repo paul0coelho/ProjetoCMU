@@ -1,6 +1,8 @@
 package com.example.projeto.screens.login
 
 import android.annotation.SuppressLint
+import android.telecom.Call
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -23,13 +26,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.projeto.API.RetrofitHelper
+import com.example.projeto.API.UtilizadorAPI
 import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
+import com.example.projeto.room.entities.Utilizador
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CriarContaScreen(navController: NavHostController) {
+    val context = LocalContext.current
     Scaffold(
         topBar = {
             TopAppBar(
@@ -142,7 +153,39 @@ fun CriarContaScreen(navController: NavHostController) {
                         .clip(RoundedCornerShape(30.dp))
                         .background(color = colorResource(id = R.color.LaranjaGeral))
                         .clickable {
-                            // Ação ao clicar em "Criar"
+                            if (validarCampos(nome, email, genero, dataNascimento, telefone, senha, confirmarSenha)) {
+                                val utilizador = Utilizador(
+                                    id = 0,
+                                    nome = nome,
+                                    email = email,
+                                    password = senha,
+                                    genero = genero,
+                                    data_nascimento = SimpleDateFormat("dd/MM/yyyy").parse(dataNascimento) ?: Date(),
+                                    telemovel = telefone.toIntOrNull(),
+                                    dataRegisto = Date(),
+                                    dataInicio = null,
+                                    maximoStreak = 0
+                                )
+
+                                val retrofit = RetrofitHelper.getInstance()
+                                val api = retrofit.create(UtilizadorAPI::class.java)
+
+                                api.createUtilizador(utilizador).enqueue(object : Callback<Utilizador> {
+                                    override fun onResponse(call: retrofit2.Call<Utilizador>, response: Response<Utilizador>) {
+                                        if (response.isSuccessful) {
+                                            navController.navigate("login")
+                                        } else {
+                                            Toast.makeText(context, "Erro ao criar conta", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+
+                                    override fun onFailure(call: retrofit2.Call<Utilizador>, t: Throwable) {
+                                        Toast.makeText(context, "Falha na conexão", Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                            } else {
+                                Toast.makeText(context, "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
+                            }
                         },
                     contentAlignment = Alignment.Center
                 ) {
@@ -159,6 +202,45 @@ fun CriarContaScreen(navController: NavHostController) {
         containerColor = colorResource(id = R.color.white)
     )
 }
+
+fun validarCampos(nome: String, email: String, genero: String, dataNascimento: String, telefone: String, senha: String,
+    confirmarSenha: String): Boolean {
+    if (nome.isEmpty() || email.isEmpty() || genero.isEmpty() || dataNascimento.isEmpty() || telefone.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
+        return false
+    }
+
+    if (senha != confirmarSenha) {
+        return false
+    }
+
+    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$".toRegex()
+    if (!email.matches(emailRegex)) {
+        return false
+    }
+
+    if (telefone.any { !it.isDigit() }) {
+        return false
+    }
+
+    if (telefone.length < 9) {
+        return false
+    }
+
+    try {
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        sdf.isLenient = false
+        sdf.parse(dataNascimento)
+    } catch (e: Exception) {
+        return false
+    }
+
+    if (senha.length < 6) {
+        return false
+    }
+    return true
+}
+
+
 
 @Preview(showBackground = true)
 @Composable
