@@ -27,20 +27,25 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.projeto.API.RetrofitHelper
-import com.example.projeto.API.UtilizadorAPI
 import com.example.projeto.R
 import com.example.projeto.reuse.CaixaTexto
+import com.example.projeto.room.AppDatabase
 import com.example.projeto.room.entities.Utilizador
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Date
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CriarContaScreen(navController: NavHostController) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -167,22 +172,11 @@ fun CriarContaScreen(navController: NavHostController) {
                                     maximoStreak = 0
                                 )
 
-                                val retrofit = RetrofitHelper.getInstance()
-                                val api = retrofit.create(UtilizadorAPI::class.java)
-
-                                api.createUtilizador(utilizador).enqueue(object : Callback<Utilizador> {
-                                    override fun onResponse(call: retrofit2.Call<Utilizador>, response: Response<Utilizador>) {
-                                        if (response.isSuccessful) {
-                                            navController.navigate("login")
-                                        } else {
-                                            Toast.makeText(context, "Erro ao criar conta", Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
-
-                                    override fun onFailure(call: retrofit2.Call<Utilizador>, t: Throwable) {
-                                        Toast.makeText(context, "Falha na conexão", Toast.LENGTH_SHORT).show()
-                                    }
-                                })
+                                val db = AppDatabase.getDatabase(context)
+                                coroutineScope.launch {
+                                    db.utilizadorDao().insert(utilizador)
+                                    navController.navigate("login")
+                                }
                             } else {
                                 Toast.makeText(context, "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
                             }

@@ -17,6 +17,9 @@ interface UtilizadorDao {
     @Query("SELECT * FROM Utilizador WHERE id = :id")
     suspend fun getById(id: Int): Utilizador?
 
+    @Query("SELECT * FROM Utilizador WHERE email = :email")
+    suspend fun getByEmail(email: String): Utilizador?
+
     @Query("SELECT * FROM Utilizador")
     suspend fun getAll(): List<Utilizador>
 }
