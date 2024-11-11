@@ -137,7 +137,7 @@ fun LeaderBoardDetalhes(position: Int, userName: String, currentStreak: Int, max
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "Desafio")
         }
     )
 }

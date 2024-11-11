@@ -130,7 +130,7 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "Desafio")
         }
     )
 }

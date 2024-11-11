@@ -92,7 +92,7 @@ fun More(navController: NavHostController) {
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "More")
         },
         containerColor = colorResource(id = R.color.white)
     )

@@ -99,7 +99,7 @@ fun DiaryScreen(navController: NavHostController) {
                 }
             }
         } ,
-        bottomBar = { BottomNavigationBar(navController) },
+        bottomBar = { BottomNavigationBar(navController, "Diario") },
         containerColor = colorResource(id = R.color.white)
     )
 }

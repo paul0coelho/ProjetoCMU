@@ -118,7 +118,7 @@ fun Notificacoes(navController: NavHostController) {
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "More")
         }
     )
 }

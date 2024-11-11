@@ -125,7 +125,7 @@ fun IngestaoAgua(navController: NavHostController) {
             }
             },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "Diario")
         },
         containerColor = colorResource(id = R.color.white)
     )

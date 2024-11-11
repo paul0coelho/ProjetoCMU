@@ -134,7 +134,7 @@ fun Livros(paginasLidas : Int, nomes: List<String>, paginas: List<Int>, modifier
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "Diario")
         }
     )
 }

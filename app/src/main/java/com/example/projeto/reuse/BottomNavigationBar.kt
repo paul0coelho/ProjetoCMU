@@ -16,40 +16,40 @@ import androidx.navigation.NavHostController
 import com.example.projeto.R
 
 @Composable
-fun BottomNavigationBar(navController: NavHostController) {
+fun BottomNavigationBar(navController: NavHostController, highlightedItem: String) {
     NavigationBar(
         containerColor = colorResource(id = R.color.black),
         contentColor = colorResource(id = R.color.white)
     ) {
         NavigationBarItem(
-            icon = { Text(text = "75", color = colorResource(id = R.color.LaranjaGeral), fontWeight = FontWeight.Bold) },
-            label = { Text(stringResource(id = R.string.Desafio), color = colorResource(id = R.color.LaranjaGeral)) },
-            selected = false,
-            onClick = {navController.navigate("Desafio")}
+            icon = { Text(text = "75", color = if (highlightedItem == "Desafio") Color.White else colorResource(id = R.color.LaranjaGeral), fontWeight = FontWeight.Bold) },
+            label = { Text(stringResource(id = R.string.Desafio), color = if (highlightedItem == "Desafio") Color.White else colorResource(id = R.color.LaranjaGeral)) },
+            selected = highlightedItem == "Desafio",
+            onClick = { navController.navigate("Desafio") }
         )
         NavigationBarItem(
             icon = {
                 Icon(
                     Icons.Default.Menu,
                     contentDescription = "Diary",
-                    tint = colorResource(id = R.color.LaranjaGeral)
+                    tint = if (highlightedItem == "Diario") Color.White else colorResource(id = R.color.LaranjaGeral)
                 )
             },
-            label = { Text(stringResource(id = R.string.Diario), color = colorResource(id = R.color.white)) },
-            selected = true,
-            onClick = {navController.navigate("Diario")}
+            label = { Text(stringResource(id = R.string.Diario), color = if (highlightedItem == "Diario") Color.White else colorResource(id = R.color.white)) },
+            selected = highlightedItem == "Diario",
+            onClick = { navController.navigate("Diario") }
         )
         NavigationBarItem(
             icon = {
                 Icon(
                     Icons.Default.MoreVert,
                     contentDescription = "More",
-                    tint = colorResource(id = R.color.LaranjaGeral)
+                    tint = if (highlightedItem == "More") Color.White else colorResource(id = R.color.LaranjaGeral)
                 )
             },
-            label = { Text(stringResource(id = R.string.Mais), color = colorResource(id = R.color.LaranjaGeral)) },
-            selected = false,
-            onClick = {navController.navigate("More")}
+            label = { Text(stringResource(id = R.string.Mais), color = if (highlightedItem == "More") Color.White else colorResource(id = R.color.LaranjaGeral)) },
+            selected = highlightedItem == "More",
+            onClick = { navController.navigate("More") }
         )
     }
 }

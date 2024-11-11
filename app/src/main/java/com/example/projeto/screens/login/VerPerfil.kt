@@ -110,7 +110,7 @@ fun PerfilScreen(navController: NavHostController) {
         },
         containerColor = colorResource(id = R.color.white),
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "More")
         }
     )
 }

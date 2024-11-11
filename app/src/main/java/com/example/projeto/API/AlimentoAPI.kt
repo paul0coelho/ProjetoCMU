@@ -19,42 +19,4 @@ interface AlimentoAPI {
     fun getAlimentoById(
         @Query("id") id: Int)
     : Call<Alimento?>
-
-    @POST("addAlimento")
-    fun createAlimento(
-        @Body utilizador: Utilizador
-    )
-    : Call<Alimento>
-
-    @PUT("updateAlimento")
-    fun updateAlimento(
-        @Body utilizador: Utilizador
-    )
-    : Call<Alimento>
-
-    @DELETE("deleteAlimento")
-    fun deleteAlimento(
-        @Query("id") id: Int)
-    : Call<Unit>
-
-    @POST("addAlimentoUtilizador")
-    fun addAlimentoUtilizador(
-        @Body alimentoUtilizador: AlimentoUtilizador)
-    : Call<AlimentoUtilizador>
-
-    @DELETE("deleteAlimentoUtilizador")
-    fun deleteAlimentoUtilizador(
-        @Query("idUtilizador") idUtilizador: Int,
-        @Query("idAlimento") idAlimento: Int)
-    : Call<Unit>
-
-    @GET("getAlimentoUtilizadoresByUserId")
-    fun getAlimentoUtilizadoresByUserId(
-        @Query("userId") userId: Int)
-    : Call<List<AlimentoUtilizador>>
-
-    @GET("getAlimentoUtilizadoresByAlimentoId")
-    fun getAlimentoUtilizadoresByAlimentoId(
-        @Query("alimentoId") alimentoId: Int)
-    : Call<List<AlimentoUtilizador>>
 }

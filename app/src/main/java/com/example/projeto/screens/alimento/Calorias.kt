@@ -73,7 +73,7 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                 }
             }
         },
-        bottomBar = { BottomNavigationBar(navController) },
+        bottomBar = { BottomNavigationBar(navController, "Diario") },
         containerColor = colorResource(id = R.color.white)
     )
 }

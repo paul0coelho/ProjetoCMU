@@ -139,7 +139,7 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "Diario")
         },
         containerColor = colorResource(id = R.color.white)
     )

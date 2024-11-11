@@ -130,7 +130,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
             }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, "Desafio")
         }
     )
 }
