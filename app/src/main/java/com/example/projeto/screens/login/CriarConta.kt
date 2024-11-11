@@ -172,7 +172,8 @@ fun CriarContaScreen(navController: NavHostController) {
                                     "telemovel" to telefone,
                                     "senha" to senha,
                                     "dataRegisto" to SimpleDateFormat("dd/MM/yyyy").format(Date()),
-                                    "maximoStreak" to 0
+                                    "maximoStreak" to 0,
+                                    "streakAtual" to 0
                                 )
 
                                 db.collection("Utilizadores")
