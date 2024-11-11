@@ -15,5 +15,6 @@ data class Utilizador(
     val telemovel: Int?,
     val dataRegisto: Date,
     val dataInicio: Date?,
-    val maximoStreak: Int?
+    val maximoStreak: Int?,
+    val streakAtual: Int?
 )
