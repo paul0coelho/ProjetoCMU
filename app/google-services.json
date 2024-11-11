@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481767694757",
+    "project_id": "hard-4696b",
+    "storage_bucket": "hard-4696b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481767694757:android:915770725c5a9c2ae0084c",
+        "android_client_info": {
+          "package_name": "com.example.projeto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEoKlHtt3VymeO-vbE4iKI2xbXnJJ_zFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

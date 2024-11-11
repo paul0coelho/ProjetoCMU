@@ -1,7 +1,9 @@
 package com.example.projeto.screens.login
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.telecom.Call
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -36,6 +38,8 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Date
 import androidx.compose.runtime.rememberCoroutineScope
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.launch
 
 
@@ -45,6 +49,7 @@ import kotlinx.coroutines.launch
 fun CriarContaScreen(navController: NavHostController) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
+    val db = Firebase.firestore
 
     Scaffold(
         topBar = {
@@ -159,24 +164,27 @@ fun CriarContaScreen(navController: NavHostController) {
                         .background(color = colorResource(id = R.color.LaranjaGeral))
                         .clickable {
                             if (validarCampos(nome, email, genero, dataNascimento, telefone, senha, confirmarSenha)) {
-                                val utilizador = Utilizador(
-                                    id = 0,
-                                    nome = nome,
-                                    email = email,
-                                    password = senha,
-                                    genero = genero,
-                                    data_nascimento = SimpleDateFormat("dd/MM/yyyy").parse(dataNascimento) ?: Date(),
-                                    telemovel = telefone.toIntOrNull(),
-                                    dataRegisto = Date(),
-                                    dataInicio = null,
-                                    maximoStreak = 0
+                                val utilizador = hashMapOf(
+                                    "nome" to nome,
+                                    "email" to email,
+                                    "genero" to genero,
+                                    "data_nascimento" to dataNascimento,
+                                    "telemovel" to telefone,
+                                    "senha" to senha,
+                                    "dataRegisto" to SimpleDateFormat("dd/MM/yyyy").format(Date()),
+                                    "maximoStreak" to 0
                                 )
 
-                                val db = AppDatabase.getDatabase(context)
-                                coroutineScope.launch {
-                                    db.utilizadorDao().insert(utilizador)
-                                    navController.navigate("login")
-                                }
+                                db.collection("Utilizadores")
+                                    .add(utilizador)
+                                    .addOnSuccessListener { documentReference ->
+                                        Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                                        navController.navigate("login")
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(TAG, "Error adding document", e)
+                                        Toast.makeText(context, "Erro ao criar conta", Toast.LENGTH_SHORT).show()
+                                    }
                             } else {
                                 Toast.makeText(context, "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
                             }
