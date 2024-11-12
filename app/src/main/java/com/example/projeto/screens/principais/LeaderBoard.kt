@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -14,9 +15,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,6 +37,15 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
     var selectedOption by remember { mutableStateOf("Atual") }
     val options = listOf("Atual", "De Sempre")
 
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.04).sp
+    val contentFontSize = (screenWidth.value * 0.03).sp
+    val bigIconSize = (screenWidth.value * 0.06).dp
+    val smallIconSize = (screenWidth.value * 0.05).dp
+
     Scaffold(
         topBar = {
             Header(navController)
@@ -42,11 +54,12 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
             Column(modifier = Modifier.padding(10.dp, 80.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(10.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
                         text = stringResource(id = R.string.Board),
-                        fontSize = 22.sp,
+                        fontSize = titleFontSize,
                         fontWeight = FontWeight.Bold,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
@@ -59,12 +72,12 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                         ) {
                             Text(
                                 text = selectedOption,
-                                fontSize = 18.sp
+                                fontSize = titleFontSize
                             )
                             Icon(
                                 imageVector = Icons.Filled.ArrowDropDown,
                                 contentDescription = "Abrir menu dropdown",
-                                modifier = Modifier.size(24.dp)
+                                modifier = Modifier.size(bigIconSize)
                             )
                         }
                         DropdownMenu(
@@ -73,7 +86,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                         ) {
                             options.forEach { option ->
                                 DropdownMenuItem(
-                                    text = { Text(option) },
+                                    text = { Text(option, fontSize = titleFontSize, textAlign = TextAlign.End,modifier=Modifier.fillMaxWidth()) },
                                     onClick = {
                                         selectedOption = option
                                         expanded = false
@@ -84,8 +97,12 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                     }
                 }
 
-                Column {
-                    leaderboardData.forEachIndexed { index, (name, streakDays) ->
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(leaderboardData.size) { index ->
+                        val (name, streakDays) = leaderboardData[index]
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -100,19 +117,21 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                             Text(
                                 text = "${index + 1}#",
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 18.sp,
+                                fontSize = contentFontSize,
                                 color = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.black),
                                 modifier = Modifier.padding(end = 8.dp)
                             )
                             Text(
                                 text = name,
+                                fontSize = contentFontSize,
                                 fontWeight = FontWeight.Bold,
                                 color = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.black),
                                 modifier = Modifier.weight(1f)
                             )
                             Text(
-                                text = stringResource(id = R.string.Dias, streakDays) ,
+                                text = stringResource(id = R.string.Dias, streakDays),
                                 fontWeight = FontWeight.Medium,
+                                fontSize = contentFontSize,
                                 color = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.DarkGray),
                                 modifier = Modifier.padding(end = 8.dp)
                             )
@@ -121,7 +140,7 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
                                 contentDescription = "Ver detalhes",
                                 tint = if (name == "Eu") colorResource(id = R.color.white) else colorResource(id = R.color.LaranjaGeral),
                                 modifier = Modifier
-                                    .size(24.dp)
+                                    .size(smallIconSize)
                                     .clickable { navController.navigate("LeaderBoardDetalhes") }
                             )
                         }
@@ -131,7 +150,8 @@ fun LeaderBoard(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifi
         },
         bottomBar = {
             BottomNavigationBar(navController, "Desafio")
-        }
+        },
+        containerColor = Color.White
     )
 }
 

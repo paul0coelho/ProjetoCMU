@@ -75,14 +75,14 @@ fun LoginScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it },
-                    isPassword = false
+                    isPassword = false, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 CaixaTexto(
                     label = stringResource(id = R.string.Palavra_Passe),
                     value = password,
                     onValueChange = { password = it },
-                    isPassword = true
+                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 Spacer(modifier = Modifier.height(5.dp))

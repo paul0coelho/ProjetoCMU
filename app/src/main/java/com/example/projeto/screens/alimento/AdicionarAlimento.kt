@@ -64,7 +64,7 @@ fun AdiconarAlimento(navController: NavHostController) {
                 CaixaTexto(
                     label = stringResource(id = R.string.Pesquisar),
                     value = pesquisa,
-                    onValueChange = { pesquisa = it }
+                    onValueChange = { pesquisa = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))

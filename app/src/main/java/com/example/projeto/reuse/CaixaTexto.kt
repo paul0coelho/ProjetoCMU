@@ -22,6 +22,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projeto.R
@@ -32,7 +35,7 @@ fun CaixaTexto(
     value: String,
     onValueChange: (String) -> Unit,
     isPassword: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,fontSize: TextUnit,iconSize: Dp
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -43,7 +46,7 @@ fun CaixaTexto(
             Text(
                 text = label,
                 style = TextStyle(
-                    fontSize = 20.sp,
+                    fontSize = fontSize,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -60,7 +63,7 @@ fun CaixaTexto(
                     imageVector = icon,
                     contentDescription = if (passwordVisible) "Hide password" else "Show password",
                     modifier = Modifier
-                        .size(24.dp)
+                        .size(iconSize)
                         .clickable { passwordVisible = !passwordVisible }
                 )
             }

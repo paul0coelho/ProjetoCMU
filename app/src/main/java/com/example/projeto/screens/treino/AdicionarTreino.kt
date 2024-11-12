@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
@@ -25,6 +27,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,6 +48,15 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
     val leaderboardData = nomes.zip(paginas)
     var treino by remember { mutableStateOf("") }
 
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.05).sp
+    val subtitleFontSize = (screenWidth.value * 0.04).sp
+    val contentFontSize = (screenWidth.value * 0.03).sp
+    val bigIconSize = (screenWidth.value * 0.06).dp
+    val smallIconSize = (screenWidth.value * 0.05).dp
     Scaffold(
         topBar = {
             Header(navController)
@@ -56,14 +69,14 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Back",
-                            modifier = Modifier.size(30.dp).clickable {
+                            modifier = Modifier.size(bigIconSize).clickable {
                                 navController.popBackStack()
                             },
                             tint = colorResource(id = R.color.black)
                         )
                     Text(
                         text = stringResource(id = R.string.Treino),
-                        fontSize = 22.sp,
+                        fontSize = titleFontSize,
                         fontWeight = FontWeight.Bold,
                         color = colorResource(id = R.color.black),
                         modifier = Modifier.weight(1f)
@@ -71,71 +84,73 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
                     Icon(
                         Icons.Filled.AddCircle,
                         contentDescription = "Profile",
-                        modifier = Modifier.size(24.dp).clickable {
+                        modifier = Modifier.size(bigIconSize).clickable {
                             navController.navigate("AdicionarLivro")
                         },
                         tint = colorResource(id = R.color.LaranjaGeral),
                     )
                 }
 
-                Spacer(modifier = Modifier.height(10.dp))
 
-                CaixaTexto(
+                Row(Modifier.padding(horizontal = 10.dp)) {
+                    CaixaTexto(
                     label = stringResource(id = R.string.Pesquisar),
                     value = treino,
                     onValueChange = { treino = it },
-                    isPassword = false
-                )
+                    isPassword = false, fontSize = titleFontSize, iconSize = smallIconSize
+                )}
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(
-                    text = stringResource(id = R.string.Historico),
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-
                 Column {
-                    leaderboardData.forEach { (name, pages) ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(60.dp)
-                                .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
-                                .padding(8.dp, 4.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Column(
-                                modifier = Modifier.weight(1f)
+                    Text(
+                    text = stringResource(id = R.string.Historico),
+                    fontSize = titleFontSize,
+                    fontWeight = FontWeight.Bold,
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    LazyColumn( ) {
+                        items(leaderboardData) { (name) ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
+                                    .padding(8.dp, 4.dp),
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Text(
-                                    text = name,
-                                    fontWeight = FontWeight.Bold,
-                                    color = colorResource(id = R.color.black)
-                                )
-                                Text(
-                                    text = "4 Séries de 10 repetições",
-                                    color = colorResource(id = R.color.Gray),
-                                    fontSize = 14.sp
+                                Column(
+                                    modifier = Modifier.weight(1f)
+                                ) {
+                                    Text(
+                                        text = name,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = subtitleFontSize,
+                                        color = colorResource(id = R.color.black),
+                                        modifier=Modifier.padding(bottom = 10.dp)
+                                    )
+                                    Text(
+                                        text = "4 Séries de 10 repetições",
+                                        color = colorResource(id = R.color.Gray),
+                                        fontSize = contentFontSize
+                                    )
+                                }
+
+                                Icon(
+                                    imageVector = Icons.Filled.AddCircle,
+                                    contentDescription = "Ver detalhes",
+                                    tint = colorResource(id = R.color.LaranjaGeral),
+                                    modifier = Modifier
+                                        .size(smallIconSize)
+                                        .clickable {
+                                            navController.navigate("Treinos")
+                                        }
                                 )
                             }
-
-                            Icon(
-                                imageVector = Icons.Filled.AddCircle,
-                                contentDescription = "Ver detalhes",
-                                tint = colorResource(id = R.color.LaranjaGeral),
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .clickable {
-                                        navController.navigate("Treinos")
-                                    }
-                            )
+                            Spacer(modifier = Modifier.height(10.dp))
                         }
-                        Spacer(modifier = Modifier.height(10.dp))
                     }
                 }
-
             }
         },
         bottomBar = {

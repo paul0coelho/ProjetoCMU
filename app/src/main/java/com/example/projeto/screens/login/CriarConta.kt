@@ -108,35 +108,35 @@ fun CriarContaScreen(navController: NavHostController) {
                 CaixaTexto(
                     label = stringResource(id = R.string.Nome),
                     value = nome,
-                    onValueChange = { nome = it }
+                    onValueChange = { nome = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var email by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.Email),
                     value = email,
-                    onValueChange = { email = it }
+                    onValueChange = { email = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var genero by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.Genero),
                     value = genero,
-                    onValueChange = { genero = it }
+                    onValueChange = { genero = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var dataNascimento by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.DataNascimento),
                     value = dataNascimento,
-                    onValueChange = { dataNascimento = it }
+                    onValueChange = { dataNascimento = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var telefone by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.Telemovel),
                     value = telefone,
-                    onValueChange = { telefone = it }
+                    onValueChange = { telefone = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var senha by remember { mutableStateOf("") }
@@ -144,7 +144,7 @@ fun CriarContaScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Senha),
                     value = senha,
                     onValueChange = { senha = it },
-                    isPassword = true
+                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var confirmarSenha by remember { mutableStateOf("") }
@@ -152,7 +152,7 @@ fun CriarContaScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.ConfirmarSenha),
                     value = confirmarSenha,
                     onValueChange = { confirmarSenha = it },
-                    isPassword = true
+                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))

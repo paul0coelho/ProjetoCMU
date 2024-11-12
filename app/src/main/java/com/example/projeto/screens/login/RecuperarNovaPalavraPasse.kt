@@ -70,21 +70,21 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
                 CaixaTexto(
                     label = stringResource(id = R.string.Email),
                     value = email,
-                    onValueChange = { email = it }
+                    onValueChange = { email = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 CaixaTexto(
                     label = stringResource(id = R.string.NovaPalavraPasse),
                     value = novaSenha,
                     onValueChange = { novaSenha = it },
-                    isPassword = true
+                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 CaixaTexto(
                     label = stringResource(id = R.string.ConfirmeNovaPalavraPasse),
                     value = confirmeSenha,
                     onValueChange = { confirmeSenha = it },
-                    isPassword = true
+                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 // Botão para alterar a palavra-passe

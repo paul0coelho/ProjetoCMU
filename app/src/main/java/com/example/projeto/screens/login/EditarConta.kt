@@ -74,13 +74,13 @@ fun EditarContaScreen(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                CaixaTexto(label = stringResource(id = R.string.Nome), value = nameState, onValueChange = { nameState = it })
-                CaixaTexto(label = stringResource(id = R.string.Email), value = emailState, onValueChange = { emailState = it })
-                CaixaTexto(label = stringResource(id = R.string.Genero), value = genderState, onValueChange = { genderState = it })
-                CaixaTexto(label = stringResource(id = R.string.DataNascimento), value = birthDateState, onValueChange = { birthDateState = it })
-                CaixaTexto(label = stringResource(id = R.string.Telemovel), value = phoneState, onValueChange = { phoneState = it })
-                CaixaTexto(label = stringResource(id = R.string.Senha), isPassword = true, value = passwordState, onValueChange = { passwordState = it })
-                CaixaTexto(label = stringResource(id = R.string.ConfirmarSenha), isPassword = true, value = confirmPasswordState, onValueChange = { confirmPasswordState = it })
+                CaixaTexto(label = stringResource(id = R.string.Nome), value = nameState, onValueChange = { nameState = it }, fontSize = 1.sp, iconSize = 1.dp)
+                CaixaTexto(label = stringResource(id = R.string.Email), value = emailState, onValueChange = { emailState = it }, fontSize = 1.sp, iconSize = 1.dp)
+                CaixaTexto(label = stringResource(id = R.string.Genero), value = genderState, onValueChange = { genderState = it }, fontSize = 1.sp, iconSize = 1.dp)
+                CaixaTexto(label = stringResource(id = R.string.DataNascimento), value = birthDateState, onValueChange = { birthDateState = it }, fontSize = 1.sp, iconSize = 1.dp)
+                CaixaTexto(label = stringResource(id = R.string.Telemovel), value = phoneState, onValueChange = { phoneState = it }, fontSize = 1.sp, iconSize = 1.dp)
+                CaixaTexto(label = stringResource(id = R.string.Senha), isPassword = true, value = passwordState, onValueChange = { passwordState = it }, fontSize = 1.sp, iconSize = 1.dp)
+                CaixaTexto(label = stringResource(id = R.string.ConfirmarSenha), isPassword = true, value = confirmPasswordState, onValueChange = { confirmPasswordState = it }, fontSize = 1.sp, iconSize = 1.dp)
 
                 Spacer(modifier = Modifier.height(20.dp))
 

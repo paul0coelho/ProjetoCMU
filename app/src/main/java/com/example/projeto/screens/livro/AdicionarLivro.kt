@@ -72,7 +72,7 @@ fun AdiconarLivro(nomes: List<String>, paginas: List<Int>, modifier: Modifier = 
                     label = stringResource(id = R.string.Pesquisar),
                     value = livro,
                     onValueChange = { livro = it },
-                    isPassword = false
+                    isPassword = false, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))

@@ -70,7 +70,7 @@ fun PerfilScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Nome),
                     value = nome,
                     onValueChange = { nome = it },
-                    enabled = false // Campo desabilitado
+                    enabled = false , fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var email by remember { mutableStateOf("email@exemplo.com") }
@@ -78,7 +78,7 @@ fun PerfilScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it },
-                    enabled = false
+                    enabled = false, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var genero by remember { mutableStateOf("Gênero") }
@@ -86,7 +86,7 @@ fun PerfilScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Genero),
                     value = genero,
                     onValueChange = { genero = it },
-                    enabled = false
+                    enabled = false, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var dataNascimento by remember { mutableStateOf("01/01/2000") }
@@ -94,7 +94,7 @@ fun PerfilScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.DataNascimento),
                     value = dataNascimento,
                     onValueChange = { dataNascimento = it },
-                    enabled = false
+                    enabled = false, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 var telefone by remember { mutableStateOf("123456789") }
@@ -102,7 +102,7 @@ fun PerfilScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Telemovel),
                     value = telefone,
                     onValueChange = { telefone = it },
-                    enabled = false
+                    enabled = false, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))

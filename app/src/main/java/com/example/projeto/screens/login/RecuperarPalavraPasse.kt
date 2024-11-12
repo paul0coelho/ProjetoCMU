@@ -64,7 +64,7 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                 CaixaTexto(
                     label = stringResource(id = R.string.Email),
                     value = email,
-                    onValueChange = { email = it }
+                    onValueChange = { email = it }, fontSize = 1.sp, iconSize = 1.dp
                 )
 
                 Text(

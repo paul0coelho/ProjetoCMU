@@ -59,6 +59,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import android.util.Log
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 
 
@@ -111,6 +112,16 @@ fun EvolucaoFotos(navController: NavHostController) {
         }
     )
 
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.06).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.03).sp
+    val bigIconSize = (screenWidth.value * 0.06).dp
+    val smallIconSize = (screenWidth.value * 0.05).dp
+
     Scaffold(
         topBar = {
             Header(navController)
@@ -128,7 +139,7 @@ fun EvolucaoFotos(navController: NavHostController) {
 
                     Text(
                         text = stringResource(id = R.string.NenhumaImagem),
-                        fontSize = 20.sp,
+                        fontSize =titleFontSize,
                         fontWeight = FontWeight.Bold,
                         color =  colorResource(id = R.color.black),
                         modifier = Modifier.padding(bottom = 16.dp)
@@ -137,7 +148,7 @@ fun EvolucaoFotos(navController: NavHostController) {
 
                     Text(
                         text = stringResource(id = R.string.FotoDia) +" ${imageFiles!![i].name.removeSuffix(".jpg").removeSuffix(".jpeg").removeSuffix(".png")}",
-                        fontSize = 20.sp,
+                        fontSize = titleFontSize,
                         fontWeight = FontWeight.Bold,
                         color = colorResource(id = R.color.black),
                         modifier = Modifier.padding(bottom = 16.dp)
@@ -153,9 +164,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Foto anterior",
                         tint = colorResource(id = R.color.black),
-                        modifier = Modifier
-                            .height(36.dp)
-                            .width(36.dp)
+                        modifier = Modifier.size(bigIconSize)
                             .clickable {
                                 if (i > 0) {
                                     i -= 1
@@ -165,19 +174,17 @@ fun EvolucaoFotos(navController: NavHostController) {
 
                     Box(
                         modifier = Modifier
-                            .height(450.dp)
-                            .width(300.dp)
+                            .height((screenHeight.value*0.7).dp).width((screenWidth.value*0.8).dp)
                             .background(colorResource(id = R.color.Cinza), RoundedCornerShape(8.dp)),
                         contentAlignment = Alignment.Center,
                     ) {
                             imagem?.let {
-                                // Carregar a imagem do arquivo
                                 val bitmap = BitmapFactory.decodeFile(it.absolutePath)
                                 Image(
                                     bitmap = bitmap.asImageBitmap(),
                                     contentDescription = "Background Image",
-                                    contentScale = ContentScale.Crop,  // Ajusta a imagem ao tamanho da Box
-                                    modifier = Modifier.matchParentSize() // Faz com que a imagem ocupe toda a Box
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.matchParentSize()
                                 )
                             }
                         }
@@ -187,8 +194,7 @@ fun EvolucaoFotos(navController: NavHostController) {
                         contentDescription = "Próxima foto",
                         tint = colorResource(id = R.color.black),
                         modifier = Modifier
-                            .height(36.dp)
-                            .width(36.dp)
+                            .size(bigIconSize)
                             .clickable {
                                 if (imageFiles != null && i < imageFiles!!.size - 1) {
                                     i += 1
@@ -216,14 +222,14 @@ fun EvolucaoFotos(navController: NavHostController) {
 
                     },
                     colors = ButtonDefaults.buttonColors(Color.Black),
-                    modifier = Modifier
-                        .padding(horizontal = 80.dp, vertical = 20.dp)
+                    modifier = Modifier.fillMaxSize()
+                        .padding(horizontal =(screenWidth.value*0.3).dp, vertical = 20.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.CameraAlt,
                         contentDescription = "Abrir Camara",
                         tint = colorResource(id = R.color.LaranjaGeral),
-                        modifier = Modifier.size(36.dp)
+                        modifier = Modifier.size(bigIconSize)
                     )
                 }
 
