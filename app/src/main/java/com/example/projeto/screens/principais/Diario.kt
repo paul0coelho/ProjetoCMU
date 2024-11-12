@@ -23,6 +23,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,10 +38,18 @@ import com.example.projeto.R
 import com.example.projeto.reuse.BottomNavigationBar
 import com.example.projeto.reuse.Header
 
+
+
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DiaryScreen(navController: NavHostController) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val contentFontSize = (screenWidth.value * 0.05).sp
     Scaffold(
         topBar = { Header(navController) },
         content= { paddingValues ->
@@ -48,20 +58,24 @@ fun DiaryScreen(navController: NavHostController) {
                     .fillMaxSize()
                     .padding(paddingValues)
                     .background(color = colorResource(id = R.color.white)),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
+                verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
 
-                Column(Modifier.align(Alignment.CenterHorizontally)) {
+                Row(Modifier.weight(0.6f)) {
+                    Column(Modifier) {
                     Text(
                         stringResource(id = R.string.FotoDia),
                         Modifier.fillMaxWidth(),
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    fontSize = 25.sp
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontSize = titleFontSize
                     )
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth().height(height = 250.dp).padding(horizontal = 35.dp).padding(vertical = 10.dp)
+                            .fillMaxWidth()
+                            .fillMaxSize()
+                            .padding(horizontal = 35.dp)
+                            .padding(vertical = 10.dp)
                             .clip(RoundedCornerShape(30.dp))
                             .background(color = colorResource(id = R.color.LaranjaGeral))
                             .clickable {
@@ -70,32 +84,36 @@ fun DiaryScreen(navController: NavHostController) {
                         contentAlignment = Alignment.Center
                     ) {}
                 }
+                }
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth().fillMaxHeight().padding(horizontal = 20.dp).align(Alignment.CenterHorizontally),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(Modifier.fillMaxSize().align(Alignment.Center),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
+                Column (Modifier.weight(0.5f).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(16.dp),
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically
+                            modifier = Modifier.fillMaxWidth().weight(1f).padding(horizontal = 20.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(20.dp),
+
+
                         ) {
-                            section(stringResource(id = R.string.Calorias),"500 restantes",navController,"Calorias")
-                            section(stringResource(id = R.string.Agua),"1,5/3L",navController,"IngestaoAgua")
+                            Column(modifier = Modifier.weight(1f)) {
+                                section(stringResource(id = R.string.Calorias),"500 restantes",navController,"Calorias")
+
+                            }
+                            Column(modifier = Modifier.weight(1f)) {
+                                section(stringResource(id = R.string.Agua),"1,5/3L",navController,"IngestaoAgua")
+                            }
                         }
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(16.dp),
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically
+                            modifier = Modifier.fillMaxWidth().weight(1f).padding(horizontal = 20.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(20.dp)
                         ) {
-                            section(stringResource(id = R.string.PaginasLidas),"3/10",navController,"Livros")
-                            section(stringResource(id = R.string.Treinos),"0/2",navController,"Treinos")
+                            Column(modifier = Modifier.weight(1f)){
+                                section(stringResource(id = R.string.PaginasLidas),"3/10",navController,"Livros")
+                            }
+                            Column(modifier = Modifier.weight(1f)){
+                                section(stringResource(id = R.string.Treinos),"0/2",navController,"Treinos")
+                            }
                         }
-                    }
                 }
             }
         } ,
@@ -106,32 +124,42 @@ fun DiaryScreen(navController: NavHostController) {
 
 @Composable
 fun section(title:String,content:String,navController: NavHostController,route:String){
-    Box(
-        Modifier
-            .height(160.dp).width(160.dp)
-            .clip(RoundedCornerShape(30.dp))
-            .clickable {
-                navController.navigate(route)
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        Column(Modifier.background(color = colorResource(id = R.color.CinzaClaro)).fillMaxHeight()) {
-            Text(modifier = Modifier.fillMaxWidth().weight(.4f).padding(top = 15.dp),text = title, fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center)
-            Box(
-                modifier = Modifier
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.06).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    Column (Modifier) {
+        Box(
+            Modifier
+                .clip(RoundedCornerShape(30.dp)).fillMaxSize()
+                .clickable {
+                    navController.navigate(route)
+                },
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                Modifier
+                    .background(color = colorResource(id = R.color.CinzaClaro))
+                    .fillMaxHeight().padding(horizontal = 10.dp)) {
+                Text(modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1.4f),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = content,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 35.sp,
-                    color = colorResource(id = R.color.LaranjaGeral),
-                    textAlign = TextAlign.Center
-                )
-            }}
+                    .weight(.4f)
+                    .padding(top = 15.dp),text = title, fontWeight = FontWeight.Bold, fontSize = contentFontSize, textAlign = TextAlign.Center)
+                    Text(
+                        text = content,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = titleFontSize,
+                        color = colorResource(id = R.color.LaranjaGeral),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                            .weight(.6f)
+                    )
+                }
+        }
     }
+
 }
 
 
