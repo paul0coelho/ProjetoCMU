@@ -1,5 +1,6 @@
 package com.example.projeto.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.projeto.room.entities.ExercicioUtilizador
 
@@ -12,9 +13,9 @@ interface ExercicioUtilizadorDao {
     suspend fun delete(exercicioUtilizador: ExercicioUtilizador)
 
     @Query("SELECT * FROM Exercicio_Utilizador WHERE Id_Utilizador = :userId")
-    suspend fun getByUserId(userId: Int): List<ExercicioUtilizador>
+    fun getByUserId(userId: Int): LiveData<List<ExercicioUtilizador>>
 
     @Query("SELECT * FROM Exercicio_Utilizador WHERE id_Exercicio = :exercicioId")
-    suspend fun getByExercicioId(exercicioId: Int): List<ExercicioUtilizador>
+    fun getByExercicioId(exercicioId: Int): LiveData<List<ExercicioUtilizador>>
 }
 

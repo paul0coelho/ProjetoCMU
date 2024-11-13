@@ -1,5 +1,6 @@
 package com.example.projeto.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.projeto.room.entities.Alimento
 
@@ -15,8 +16,8 @@ interface AlimentoDao {
     suspend fun delete(alimento: Alimento)
 
     @Query("SELECT * FROM Alimento WHERE id = :id")
-    suspend fun getById(id: Int): Alimento?
+    fun getById(id: Int): Alimento?
 
     @Query("SELECT * FROM Alimento")
-    suspend fun getAll(): List<Alimento>
+    fun getAll(): LiveData<List<Alimento>>
 }

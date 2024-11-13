@@ -1,5 +1,6 @@
 package com.example.projeto.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.projeto.room.entities.LivroUtilizador
 
@@ -12,8 +13,8 @@ interface LivroUtilizadorDao {
     suspend fun delete(livroUtilizador: LivroUtilizador)
 
     @Query("SELECT * FROM Livro_Utilizador WHERE Id_Utilizador = :userId")
-    suspend fun getByUserId(userId: Int): List<LivroUtilizador>
+    fun getByUserId(userId: Int): LiveData<List<LivroUtilizador>>
 
     @Query("SELECT * FROM Livro_Utilizador WHERE id_Livro = :livroId")
-    suspend fun getByLivroId(livroId: Int): List<LivroUtilizador>
+    fun getByLivroId(livroId: Int): LiveData<List<LivroUtilizador>>
 }

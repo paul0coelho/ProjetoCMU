@@ -1,5 +1,6 @@
 package com.example.projeto.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.projeto.room.entities.Exercicio
 
@@ -15,14 +16,14 @@ interface ExercicioDao {
     suspend fun delete(exercicio: Exercicio)
 
     @Query("SELECT * FROM Exercicio WHERE id = :id and tipo = 'indoor' ")
-    suspend fun getIndoorById(id: Int): Exercicio?
+    fun getIndoorById(id: Int): Exercicio?
 
     @Query("SELECT * FROM Exercicio WHERE id = :id and tipo = 'outdoor' ")
-    suspend fun getOutdoorById(id: Int): Exercicio?
+    fun getOutdoorById(id: Int): Exercicio?
 
     @Query("SELECT * FROM Exercicio WHERE tipo = 'indoor'")
-    suspend fun getAllIndoor(): List<Exercicio>
+    fun getAllIndoor(): LiveData<List<Exercicio>>
 
     @Query("SELECT * FROM Exercicio WHERE tipo = 'outdoor'")
-    suspend fun getAllOutdoor(): List<Exercicio>
+    fun getAllOutdoor(): LiveData<List<Exercicio>>
 }

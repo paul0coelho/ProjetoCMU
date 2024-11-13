@@ -1,5 +1,6 @@
 package com.example.projeto.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.projeto.room.entities.Utilizador
 
@@ -15,11 +16,11 @@ interface UtilizadorDao {
     suspend fun delete(utilizador: Utilizador)
 
     @Query("SELECT * FROM Utilizador WHERE id = :id")
-    suspend fun getById(id: Int): Utilizador?
+    fun getById(id: Int): Utilizador?
 
     @Query("SELECT * FROM Utilizador WHERE email = :email")
-    suspend fun getByEmail(email: String): Utilizador?
+    fun getByEmail(email: String): Utilizador?
 
     @Query("SELECT * FROM Utilizador")
-    suspend fun getAll(): List<Utilizador>
+    fun getAll(): LiveData<List<Utilizador>>
 }
