@@ -236,7 +236,7 @@ fun validarCampos(nome: String, email: String, genero: String, dataNascimento: S
         return false
     }
 
-    if (telefone.length < 9) {
+    if (telefone.length != 9) {
         return false
     }
 
