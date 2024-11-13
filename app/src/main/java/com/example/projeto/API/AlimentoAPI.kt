@@ -15,8 +15,4 @@ interface AlimentoAPI {
     @GET("getAlimentos")
     fun getAlimentos(): Call<List<Alimento>>
 
-    @GET("getAlimento")
-    fun getAlimentoById(
-        @Query("id") id: Int)
-    : Call<Alimento?>
 }

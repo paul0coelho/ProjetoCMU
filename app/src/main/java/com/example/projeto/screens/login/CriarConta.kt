@@ -177,13 +177,12 @@ fun CriarContaScreen(navController: NavHostController) {
                                 )
 
                                 db.collection("Utilizadores")
-                                    .add(utilizador)
-                                    .addOnSuccessListener { documentReference ->
-                                        Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                                    .document(email)
+                                    .set(utilizador)
+                                    .addOnSuccessListener {
                                         navController.navigate("login")
                                     }
-                                    .addOnFailureListener { e ->
-                                        Log.w(TAG, "Error adding document", e)
+                                    .addOnFailureListener {
                                         Toast.makeText(context, "Erro ao criar conta", Toast.LENGTH_SHORT).show()
                                     }
                             } else {
