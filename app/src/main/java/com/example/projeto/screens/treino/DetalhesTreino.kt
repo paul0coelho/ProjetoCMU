@@ -38,18 +38,19 @@ fun DetalhesTreinoScreen(nome:String,tipoExercicio: String, dia: Int, duracao: S
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
-    val titleFontSize = (screenWidth.value * 0.06).sp
+    val titleFontSize = (screenWidth.value * 0.07).sp
     val subtitleFontSize = (screenWidth.value * 0.05).sp
     val contentFontSize = (screenWidth.value * 0.03).sp
-    val bigIconSize = (screenWidth.value * 0.06).dp
+    val bigIconSize = (screenWidth.value * 0.07).dp
     val smallIconSize = (screenWidth.value * 0.05).dp
     Scaffold(
         topBar = { Header(navController) },
-        content = {
+        content = {paddingValues->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp,80.dp).verticalScroll(rememberScrollState()),
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp, vertical = 8.dp).verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Row (verticalAlignment = Alignment.CenterVertically){

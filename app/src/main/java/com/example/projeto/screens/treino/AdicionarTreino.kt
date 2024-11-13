@@ -52,8 +52,8 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
-    val titleFontSize = (screenWidth.value * 0.05).sp
-    val subtitleFontSize = (screenWidth.value * 0.04).sp
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
     val contentFontSize = (screenWidth.value * 0.03).sp
     val bigIconSize = (screenWidth.value * 0.06).dp
     val smallIconSize = (screenWidth.value * 0.05).dp
@@ -61,8 +61,9 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
         topBar = {
             Header(navController)
         },
-        content = {
-            Column(modifier = Modifier.padding(10.dp, 80.dp)) {
+        content = {paddingValues->
+            Column(modifier = Modifier.padding(paddingValues)
+                .padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Row(modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically){
 
@@ -97,7 +98,7 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
                     label = stringResource(id = R.string.Pesquisar),
                     value = treino,
                     onValueChange = { treino = it },
-                    isPassword = false, fontSize = titleFontSize, iconSize = smallIconSize
+                    isPassword = false, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )}
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -105,7 +106,7 @@ fun AdiconarTreino(nomes: List<String>, paginas: List<Int>, modifier: Modifier =
                 Column {
                     Text(
                     text = stringResource(id = R.string.Historico),
-                    fontSize = titleFontSize,
+                    fontSize = subtitleFontSize,
                     fontWeight = FontWeight.Bold,
                     )
                     Spacer(modifier = Modifier.height(10.dp))

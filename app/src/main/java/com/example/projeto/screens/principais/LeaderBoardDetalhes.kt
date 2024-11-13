@@ -46,18 +46,21 @@ fun LeaderBoardDetalhes(position: Int, userName: String, currentStreak: Int, max
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
-    val titleFontSize = (screenWidth.value * 0.05).sp
+    val titleFontSize = (screenWidth.value * 0.07).sp
+
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
     val contentFontSize = (screenWidth.value * 0.03).sp
-    val bigIconSize = (screenWidth.value * 0.06).dp
+    val bigIconSize = (screenWidth.value * 0.07).dp
     val smallIconSize = (screenWidth.value * 0.05).dp
 
     Scaffold(
         topBar = {
             Header(navController)
         },
-        content = {
-            Column(modifier = Modifier.padding(10.dp, 80.dp).padding(bottom = 20.dp)) {
-                Row (verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(.05f)){
+        content = {paddingValues->
+            Column(modifier = Modifier.padding(paddingValues)
+                .padding(horizontal = 16.dp, vertical = 8.dp)) {
+                Row (verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(.06f)){
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Back",
@@ -73,11 +76,11 @@ fun LeaderBoardDetalhes(position: Int, userName: String, currentStreak: Int, max
                     )
                 }
 
-                Column(Modifier.weight(.15f).padding(top = 10.dp), verticalArrangement = Arrangement.SpaceBetween) {
+                Column(Modifier.weight(.14f).padding(top = 10.dp), verticalArrangement = Arrangement.SpaceBetween) {
                     Text(
                         text = "$position# $userName",
                         color = colorResource(id = R.color.LaranjaGeral),
-                        fontSize = titleFontSize,
+                        fontSize = subtitleFontSize,
                         fontWeight = FontWeight.Bold
                     )
 
@@ -96,7 +99,7 @@ fun LeaderBoardDetalhes(position: Int, userName: String, currentStreak: Int, max
                 Column(modifier=Modifier.weight(.35f).padding(top = 15.dp), verticalArrangement =Arrangement.SpaceBetween) {
                     Text(
                         text = stringResource(id = R.string.Top3Livros),
-                        fontSize = titleFontSize,
+                        fontSize = subtitleFontSize,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.weight(.15f)
                     )
@@ -131,7 +134,7 @@ fun LeaderBoardDetalhes(position: Int, userName: String, currentStreak: Int, max
                 Column(Modifier.weight(.45f).padding(top = 10.dp)) {
                         Text(
                         text = stringResource(id = R.string.UltimaFoto),
-                        fontSize = titleFontSize,
+                        fontSize = subtitleFontSize,
                         fontWeight = FontWeight.Bold,
                             modifier = Modifier.weight(.1f)
                         )

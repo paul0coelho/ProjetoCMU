@@ -59,6 +59,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import android.util.Log
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 
@@ -174,7 +175,7 @@ fun EvolucaoFotos(navController: NavHostController) {
 
                     Box(
                         modifier = Modifier
-                            .height((screenHeight.value*0.7).dp).width((screenWidth.value*0.8).dp)
+                            .height((screenHeight.value*0.65).dp).width((screenWidth.value*0.8).dp)
                             .background(colorResource(id = R.color.Cinza), RoundedCornerShape(8.dp)),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -203,16 +204,17 @@ fun EvolucaoFotos(navController: NavHostController) {
                     )
                 }
 
-                Button(
-                    onClick = {
+                Row(Modifier.fillMaxSize(),verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+                    Button(
+                        onClick = {
 
-                        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
-                            ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
+                                ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-                            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
-                            storagePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        }
-                            Log.d("crazr", "Com permissão")
+                                cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                                storagePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            }
+                            Log.d("permissoes", "Com permissão")
                             val timeStamp: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
                             val file = File(directory, "$timeStamp.jpg")
                             uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
@@ -220,18 +222,20 @@ fun EvolucaoFotos(navController: NavHostController) {
                                 cameraLauncher.launch(safeUri)
                             }
 
-                    },
-                    colors = ButtonDefaults.buttonColors(Color.Black),
-                    modifier = Modifier.fillMaxSize()
-                        .padding(horizontal =(screenWidth.value*0.3).dp, vertical = 20.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.CameraAlt,
-                        contentDescription = "Abrir Camara",
-                        tint = colorResource(id = R.color.LaranjaGeral),
-                        modifier = Modifier.size(bigIconSize)
-                    )
+                        },
+                        colors = ButtonDefaults.buttonColors(Color.Black),
+                        modifier = Modifier.width((screenWidth.value*0.3).dp).height((screenHeight.value*0.08).dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CameraAlt,
+                            contentDescription = "Abrir Camara",
+                            tint = colorResource(id = R.color.LaranjaGeral),
+                            modifier = Modifier.size(bigIconSize)
+                        )
+                    }
                 }
+
+
 
 
 

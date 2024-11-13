@@ -9,7 +9,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessibilityNew
 import androidx.compose.material.icons.filled.ArrowBack
@@ -49,7 +51,8 @@ fun Notificacoes(navController: NavHostController) {
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
-    val titleFontSize = (screenWidth.value * 0.05).sp
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
     val contentFontSize = (screenWidth.value * 0.03).sp
     val bigIconSize = (screenWidth.value * 0.06).dp
     val smallIconSize = (screenWidth.value * 0.05).dp
@@ -75,11 +78,12 @@ fun Notificacoes(navController: NavHostController) {
                 }
             )
         },
-        content = {
+        content = {paddingValues->
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 80.dp)
-                    .fillMaxWidth(),
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .fillMaxWidth().verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
 
@@ -103,7 +107,7 @@ fun Notificacoes(navController: NavHostController) {
                             text = stringResource( R.string.AtingiuMetaCalorias),
                             fontWeight = FontWeight.Bold,
                             color = colorResource(id = R.color.black),
-                            fontSize = titleFontSize
+                            fontSize = subtitleFontSize
                         )
 
                         Text(
@@ -134,7 +138,7 @@ fun Notificacoes(navController: NavHostController) {
                             text = stringResource(id = R.string.AtingiuMetaTreino),
                             fontWeight = FontWeight.Bold,
                             color = colorResource(id = R.color.black),
-                            fontSize = titleFontSize
+                            fontSize = subtitleFontSize
                         )
                         Text(
                             text = stringResource(id = R.string.DescricaoMetaTreino),

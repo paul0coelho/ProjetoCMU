@@ -46,17 +46,18 @@ fun Treinos(navController: NavHostController) {
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
-    val titleFontSize = (screenWidth.value * 0.06).sp
-    val subtitleFontSize = (screenWidth.value * 0.04).sp
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
     val contentFontSize = (screenWidth.value * 0.03).sp
-    val bigIconSize = (screenWidth.value * 0.06).dp
-    val smallIconSize = (screenWidth.value * 0.05).dp
+    val bigIconSize = (screenWidth.value * 0.07).dp
+    val smallIconSize = (screenWidth.value * 0.06).dp
     Scaffold(
         topBar = {
             Header(navController)
         },
-        content = {
-            Column(modifier = Modifier.padding(10.dp, 80.dp)) {
+        content = {paddingValues->
+            Column(modifier = Modifier.padding(paddingValues)
+                .padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Row (verticalAlignment = Alignment.CenterVertically){
                     Icon(
                         imageVector = Icons.Default.ArrowBack,

@@ -3,7 +3,9 @@ package com.example.projeto.screens.alimento
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -30,6 +33,16 @@ import com.example.projeto.reuse.CaixaTexto
 fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Triple<String, Int, String>>, navController: NavHostController) {
     val caloriasRestantes = metaCalorias - caloriasIngeridas
 
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    val bigIconSize = (screenWidth.value * 0.06).dp
+    val smallIconSize = (screenWidth.value * 0.05).dp
+
     Scaffold(
         topBar = { Header(navController) },
         content = { paddingValues ->
@@ -46,7 +59,7 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(colorResource(id = R.color.CinzaClaro), RoundedCornerShape(8.dp))
-                        .padding(8.dp)
+                        .padding(8.dp).verticalScroll(rememberScrollState())
                 ) {
                     alimentos.forEach { (food, calories, time) ->
                         Row(
@@ -55,15 +68,15 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
                                 .padding(vertical = 10.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = time, fontSize = 16.sp, color = colorResource(id = R.color.Gray))
-                            Text(text = food, fontSize = 16.sp, color = colorResource(id = R.color.black))
-                            Text(text = "$calories kcal", fontSize = 16.sp, color = colorResource(id = R.color.black))
+                            Text(text = time, fontSize = contentFontSize, color = colorResource(id = R.color.Gray))
+                            Text(text = food, fontSize = contentFontSize, color = colorResource(id = R.color.black))
+                            Text(text = "$calories kcal", fontSize = contentFontSize, color = colorResource(id = R.color.black))
                         }
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = stringResource(id = R.string.AdicionarAlimento),
-                        fontSize = 14.sp,
+                        fontSize = contentFontSize,
                         color = colorResource(id = R.color.LaranjaGeral),
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.align(Alignment.Start).clickable {
@@ -80,18 +93,27 @@ fun CalorieScreen(metaCalorias: Int, caloriasIngeridas: Int, alimentos: List<Tri
 
 @Composable
 fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: Int, navController: NavHostController) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.05).sp
+    val subtitleFontSize = (screenWidth.value * 0.04).sp
+    val contentFontSize = (screenWidth.value * 0.03).sp
+    val bigIconSize = (screenWidth.value * 0.06).dp
+    val smallIconSize = (screenWidth.value * 0.05).dp
     Row (verticalAlignment = Alignment.CenterVertically){
         Icon(
             imageVector = Icons.Default.ArrowBack,
             contentDescription = "Back",
-            modifier = Modifier.size(30.dp).clickable {
+            modifier = Modifier.size(bigIconSize).clickable {
                 navController.popBackStack()
             },
             tint = colorResource(id = R.color.black)
         )
         Text(
             text = stringResource(id = R.string.Calorias),
-            fontSize = 22.sp,
+            fontSize = titleFontSize,
             fontWeight = FontWeight.Bold,
         )
     }
@@ -104,11 +126,11 @@ fun CalorieHeader(metaCalorias: Int, caloriasIngeridas: Int, caloriasRestantes: 
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = "$metaCalorias\n${stringResource(id = R.string.Meta)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = 16.sp)
-        Text(text = "-", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
-        Text(text = "$caloriasIngeridas\n${stringResource(id = R.string.Ingeridas)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = 16.sp)
-        Text(text = "=", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 16.sp)
-        Text(text = "$caloriasRestantes\n${stringResource(id = R.string.Restantes)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = 16.sp)
+        Text(text = "$metaCalorias\n${stringResource(id = R.string.Meta)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = subtitleFontSize)
+        Text(text = "-", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = subtitleFontSize)
+        Text(text = "$caloriasIngeridas\n${stringResource(id = R.string.Ingeridas)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = subtitleFontSize)
+        Text(text = "=", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = subtitleFontSize)
+        Text(text = "$caloriasRestantes\n${stringResource(id = R.string.Restantes)}", fontWeight = FontWeight.Bold, color = colorResource(id = R.color.black), fontSize = subtitleFontSize)
     }
 }
 

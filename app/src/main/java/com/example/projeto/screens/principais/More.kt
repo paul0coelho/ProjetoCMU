@@ -71,10 +71,11 @@ fun More(navController: NavHostController) {
         topBar = {
             Header(navController)
         },
-        content = {
+        content = {paddingValues->
                 LazyColumn(
                     modifier = Modifier
-                        .fillMaxSize().padding(10.dp, 80.dp)
+                        .fillMaxSize().padding(paddingValues)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
                     items(menuItems.size) { index ->
                         val item = menuItems[index]

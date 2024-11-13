@@ -49,8 +49,9 @@ fun Desafio(dia: Int, nomes: List<String>, dias: List<Int>, modifier: Modifier =
         topBar = {
             Header(navController)
         },
-        content = {
-            Column(modifier = Modifier.padding(10.dp, 80.dp)) {
+        content = {paddingValues->
+            Column(modifier = Modifier.padding(paddingValues)
+                .padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Column(modifier.weight(.2f)) {
                     Text(
                         text =  stringResource(id = R.string.Pontuacao, dia),

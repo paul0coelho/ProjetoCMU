@@ -57,6 +57,7 @@ fun DiaryScreen(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
                     .background(color = colorResource(id = R.color.white)),
                 verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
