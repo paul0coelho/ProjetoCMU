@@ -1,9 +1,11 @@
 package com.example.projeto.reuse
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -54,7 +56,7 @@ fun CaixaTexto(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        textStyle = TextStyle(fontSize = 16.sp, color = colorResource(id = R.color.black)),
+        textStyle = TextStyle(fontSize =fontSize, color = colorResource(id = R.color.black)),
         visualTransformation = if (isPassword && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         trailingIcon = {
             if (isPassword) {
@@ -66,6 +68,7 @@ fun CaixaTexto(
                         .size(iconSize)
                         .clickable { passwordVisible = !passwordVisible }
                 )
+                Spacer(Modifier.width(15.dp))
             }
         },
         singleLine = true,

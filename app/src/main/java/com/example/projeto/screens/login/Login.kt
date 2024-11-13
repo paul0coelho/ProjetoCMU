@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -31,11 +32,20 @@ import com.example.projeto.reuse.CaixaTexto
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavHostController) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    val bigIconSize = (screenWidth.value * 0.07).dp
+    val smallIconSize = (screenWidth.value * 0.06).dp
     Scaffold(
         topBar = {
             TopAppBar(
                 modifier = Modifier
-                    .padding(top = 20.dp, start = 10.dp, end = 10.dp),
+                    .padding(10.dp),
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = colorResource(id = R.color.white),
                     titleContentColor = colorResource(id = R.color.black),
@@ -45,13 +55,13 @@ fun LoginScreen(navController: NavHostController) {
                     Text(
                         stringResource(id = R.string.Entrar),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 25.sp)
+                        fontSize = titleFontSize)
                         },
                 navigationIcon = {
                     Icon(
                         Icons.Default.ArrowBack,
                         contentDescription = "Voltar",
-                        modifier = Modifier.size(30.dp).clickable {
+                        modifier = Modifier.size(bigIconSize).clickable {
                             navController.navigate("inicial")
                         },
                         tint = colorResource(id = R.color.black)
@@ -75,14 +85,14 @@ fun LoginScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Email),
                     value = email,
                     onValueChange = { email = it },
-                    isPassword = false, fontSize = 1.sp, iconSize = 1.dp
+                    isPassword = false, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 CaixaTexto(
                     label = stringResource(id = R.string.Palavra_Passe),
                     value = password,
                     onValueChange = { password = it },
-                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
+                    isPassword = true, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 Spacer(modifier = Modifier.height(5.dp))
@@ -98,65 +108,20 @@ fun LoginScreen(navController: NavHostController) {
                         text = stringResource(id = R.string.Entrar),
                         color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = subtitleFontSize
                     )
                 }
 
-                // Link para Recuperar Senha
-                ClickableText(
-                    text = AnnotatedString(stringResource(id = R.string.RecuperarPalavraPasse)),
-                    style = TextStyle(color = colorResource(id = R.color.LaranjaGeral), fontSize = 15.sp, fontWeight = FontWeight.Bold),
-                    onClick = {navController.navigate("RecuperarSenha")}
-                )
-
-                // Separador "OU"
                 Text(
-                    text = stringResource(id = R.string.Ou),
+                    text = stringResource(id = R.string.RecuperarPalavraPasse),
+                    color = colorResource(id = R.color.LaranjaGeral),
+                    fontSize =contentFontSize,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(vertical = 10.dp)
+                    modifier = Modifier.padding(16.dp).clickable {
+                        navController.navigate("RecuperarSenha")
+                    }
                 )
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth().clip(RoundedCornerShape(30.dp))
-                        .shadow(
-                            elevation = 8.dp,
-                            shape = RoundedCornerShape(30.dp),
-                            clip = false
-                        )
-                        .clickable {
-
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.EntrarGoogle),
-                        Modifier.padding(10.dp),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 25.sp
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth().clip(RoundedCornerShape(30.dp))
-                        .shadow(
-                            elevation = 8.dp,
-                            shape = RoundedCornerShape(30.dp),
-                            clip = false
-                        )
-                        .clickable {
-
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.EntrarFacebook),
-                        Modifier.padding(10.dp),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 25.sp
-                    )
-                }
             }
         },
         containerColor = colorResource(id = R.color.white)

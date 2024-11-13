@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,15 +37,24 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
     var novaSenha by remember { mutableStateOf("") }
     var confirmeSenha by remember { mutableStateOf("") }
 
+
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    val bigIconSize = (screenWidth.value * 0.07).dp
+    val smallIconSize = (screenWidth.value * 0.06).dp
     Scaffold(
         topBar = {
-            TopAppBar(
+            TopAppBar(modifier = Modifier.padding(10.dp),
                 title = {
                     Text(
                         text = stringResource(id = R.string.RecuperarPalavraPasse),
-                        fontSize = 22.sp,
+                        fontSize = titleFontSize,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(10.dp, 20.dp)
                     )
                 },
                 navigationIcon = {
@@ -52,39 +62,40 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
-                            modifier = Modifier.size(30.dp),
+                            modifier = Modifier.size(bigIconSize),
                             tint = colorResource(id = R.color.black)
                         )
                     }
                 },
             )
         },
-        content = {
+        content = {paddingValues->
+            Spacer(Modifier.height((screenHeight.value*0.1).dp))
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 80.dp)
-                    .fillMaxWidth(),
+                    .padding(paddingValues).padding((screenWidth.value*0.03).dp)
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
 
                 CaixaTexto(
                     label = stringResource(id = R.string.Email),
                     value = email,
-                    onValueChange = { email = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { email = it }, fontSize =subtitleFontSize, iconSize = smallIconSize
                 )
 
                 CaixaTexto(
                     label = stringResource(id = R.string.NovaPalavraPasse),
                     value = novaSenha,
                     onValueChange = { novaSenha = it },
-                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
+                    isPassword = true, fontSize =subtitleFontSize, iconSize = smallIconSize
                 )
 
                 CaixaTexto(
                     label = stringResource(id = R.string.ConfirmeNovaPalavraPasse),
                     value = confirmeSenha,
                     onValueChange = { confirmeSenha = it },
-                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
+                    isPassword = true,  fontSize =subtitleFontSize, iconSize = smallIconSize
                 )
 
                 // Botão para alterar a palavra-passe
@@ -102,7 +113,7 @@ fun RecuperarNovaPalavraPasse(navController: NavHostController) {
                         modifier = Modifier.padding(16.dp),
                         color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize =subtitleFontSize
                     )
                 }
             }

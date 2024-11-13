@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,14 +31,22 @@ import com.example.projeto.reuse.CaixaTexto
 @Composable
 fun RecuperarPalavraPasse(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
 
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    val bigIconSize = (screenWidth.value * 0.07).dp
+    val smallIconSize = (screenWidth.value * 0.06).dp
     Scaffold(
         topBar = {
-            TopAppBar(
+            TopAppBar(modifier = Modifier.padding(10.dp),
                 title = {
                     Text(
                         text = stringResource(id = R.string.RecuperarPalavraPasse),
-                        fontSize = 22.sp,
+                        fontSize = titleFontSize,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(10.dp, 20.dp)
                     )
@@ -47,29 +56,30 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
-                            modifier = Modifier.size(30.dp),
+                            modifier = Modifier.size(bigIconSize),
                             tint = colorResource(id = R.color.black)
                         )
                     }
                 },
             )
         },
-        content = {
+        content = {paddingValues->
+            Spacer(Modifier.height((screenHeight.value*0.1).dp))
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 80.dp)
+                    .padding(paddingValues).padding((screenWidth.value*0.03).dp)
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 CaixaTexto(
                     label = stringResource(id = R.string.Email),
                     value = email,
-                    onValueChange = { email = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { email = it }, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 Text(
                     text = stringResource(id = R.string.DescricaoPass),
-                    fontSize = 14.sp,
+                    fontSize = contentFontSize,
                     color = colorResource(id = R.color.DarkGray),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
@@ -92,7 +102,7 @@ fun RecuperarPalavraPasse(navController: NavHostController) {
                         modifier = Modifier.padding(16.dp),
                         color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize = subtitleFontSize
                     )
                 }
             }

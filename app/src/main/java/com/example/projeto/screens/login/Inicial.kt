@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -29,6 +30,15 @@ import com.example.projeto.R
 
 @Composable
 fun InicialScreen(navController: NavHostController) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    val bigIconSize = (screenWidth.value * 0.07).dp
+    val smallIconSize = (screenWidth.value * 0.06).dp
     Scaffold(
         content= { paddingValues ->
             Column(
@@ -36,54 +46,59 @@ fun InicialScreen(navController: NavHostController) {
                     .fillMaxSize()
                     .padding(paddingValues)
                     .padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-               Text(
-                   stringResource(id = R.string.Bem_Vindo),
-                   fontSize = 20.sp,fontWeight = FontWeight.Bold
-               )
-                Text("75 HARD", fontSize = 50.sp, color = colorResource(id = R.color.LaranjaGeral), fontWeight = FontWeight.Bold)
-                Image(
+                Column(Modifier.weight(0.1f),horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(10.dp,Alignment.CenterVertically)) {
+                    Text(
+                    stringResource(id = R.string.Bem_Vindo),
+                    fontSize = contentFontSize,fontWeight = FontWeight.Bold
+                )
+                    Text("75 HARD", fontSize = titleFontSize, color = colorResource(id = R.color.LaranjaGeral), fontWeight = FontWeight.Bold)
+                }
+
+               Image(
                     painter = painterResource(id = R.drawable.logo75),
                     contentDescription = "Logo 75",
-                    modifier = Modifier.fillMaxWidth()
-                        .height(400.dp),
+                    modifier = Modifier.fillMaxWidth().weight(0.7f)
+                        .height((screenHeight.value*0.7).dp),
                     contentScale = ContentScale.Crop
                 )
-                Text(
-                    stringResource(id = R.string.Pergunta),
-                    fontSize = 20.sp,fontWeight = FontWeight.Bold
-                )
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth().clip(RoundedCornerShape(16.dp))
-                        .background(color = colorResource(id = R.color.LaranjaGeral))
-                        .clickable {
-                            // Ação ao clicar
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
+                Column(Modifier.weight(0.2f),horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceBetween) {
                     Text(
-                        text = stringResource(id = R.string.Registar),
-                        modifier = Modifier.padding(20.dp).clickable {
-                            navController.navigate("Registar")
-                        },
-                        color = colorResource(id = R.color.white),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        stringResource(id = R.string.Pergunta),
+                        fontSize = contentFontSize,fontWeight = FontWeight.Bold
+                    )
+                    Box(
+                        modifier = Modifier
+                            .width((screenWidth.value*0.850).dp).height((screenHeight.value*0.06).dp).clip(RoundedCornerShape(16.dp))
+                            .background(color = colorResource(id = R.color.LaranjaGeral))
+                            .clickable {
+                                // Ação ao clicar
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.Registar),
+                            modifier = Modifier.clickable {
+                                navController.navigate("Registar")
+                            },
+                            color = colorResource(id = R.color.white),
+                            fontWeight = FontWeight.Bold,
+                            fontSize =  subtitleFontSize
 
+                        )
+                    }
+                    Text(
+                        text = stringResource(id = R.string.Entrar),
+                        color = colorResource(id = R.color.LaranjaGeral),
+                        fontSize =contentFontSize,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(16.dp).clickable {
+                            navController.navigate("login")
+                        }
                     )
                 }
-                Text(
-                    text = stringResource(id = R.string.Entrar),
-                    color = colorResource(id = R.color.LaranjaGeral),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp).clickable {
-                        navController.navigate("login")
-                    }
-                )
+
                 }
             },
         containerColor = colorResource(id = R.color.white)

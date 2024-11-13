@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
@@ -38,6 +40,7 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Date
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalConfiguration
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.launch
@@ -51,10 +54,19 @@ fun CriarContaScreen(navController: NavHostController) {
     val coroutineScope = rememberCoroutineScope()
     val db = Firebase.firestore
 
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val titleFontSize = (screenWidth.value * 0.07).sp
+    val subtitleFontSize = (screenWidth.value * 0.05).sp
+    val contentFontSize = (screenWidth.value * 0.04).sp
+    val bigIconSize = (screenWidth.value * 0.07).dp
+    val smallIconSize = (screenWidth.value * 0.06).dp
     Scaffold(
         topBar = {
             TopAppBar(
-                modifier = Modifier.padding(horizontal = 10.dp),
+                modifier = Modifier.padding(10.dp),
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = colorResource(id = R.color.white),
                     titleContentColor = colorResource(id = R.color.black),
@@ -64,13 +76,13 @@ fun CriarContaScreen(navController: NavHostController) {
                     Text(
                         stringResource(id = R.string.CriarConta),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 25.sp)
+                        fontSize = titleFontSize)
                         },
                 navigationIcon = {
                     Icon(
                         Icons.Default.ArrowBack,
                         contentDescription = "Voltar",
-                        modifier = Modifier.size(30.dp).clickable {
+                        modifier = Modifier.size(bigIconSize).clickable {
                             navController.navigate("login")
                         },
                         tint = colorResource(id = R.color.black)
@@ -83,13 +95,13 @@ fun CriarContaScreen(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(15.dp),
-                verticalArrangement = Arrangement.spacedBy(5.dp),
+                    .padding(15.dp).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier
-                        .size(100.dp)
+                        .size((screenHeight.value*0.1).dp)
                         .background(colorResource(id = R.color.Gray), shape = CircleShape)
                         .clickable { /* Ação para adicionar foto */ },
                     contentAlignment = Alignment.Center
@@ -98,7 +110,7 @@ fun CriarContaScreen(navController: NavHostController) {
                         imageVector = Icons.Default.AccountCircle,
                         contentDescription = "Adicionar foto de perfil",
                         tint = colorResource(id = R.color.white),
-                        modifier = Modifier.size(60.dp)
+                        modifier = Modifier.size((screenHeight.value*0.1).dp)
                     )
                 }
 
@@ -108,35 +120,35 @@ fun CriarContaScreen(navController: NavHostController) {
                 CaixaTexto(
                     label = stringResource(id = R.string.Nome),
                     value = nome,
-                    onValueChange = { nome = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { nome = it }, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 var email by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.Email),
                     value = email,
-                    onValueChange = { email = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { email = it }, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 var genero by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.Genero),
                     value = genero,
-                    onValueChange = { genero = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { genero = it }, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 var dataNascimento by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.DataNascimento),
                     value = dataNascimento,
-                    onValueChange = { dataNascimento = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { dataNascimento = it }, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 var telefone by remember { mutableStateOf("") }
                 CaixaTexto(
                     label = stringResource(id = R.string.Telemovel),
                     value = telefone,
-                    onValueChange = { telefone = it }, fontSize = 1.sp, iconSize = 1.dp
+                    onValueChange = { telefone = it }, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 var senha by remember { mutableStateOf("") }
@@ -144,7 +156,7 @@ fun CriarContaScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.Senha),
                     value = senha,
                     onValueChange = { senha = it },
-                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
+                    isPassword = true, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 var confirmarSenha by remember { mutableStateOf("") }
@@ -152,7 +164,7 @@ fun CriarContaScreen(navController: NavHostController) {
                     label = stringResource(id = R.string.ConfirmarSenha),
                     value = confirmarSenha,
                     onValueChange = { confirmarSenha = it },
-                    isPassword = true, fontSize = 1.sp, iconSize = 1.dp
+                    isPassword = true, fontSize = subtitleFontSize, iconSize = smallIconSize
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -196,7 +208,7 @@ fun CriarContaScreen(navController: NavHostController) {
                         modifier = Modifier.padding(15.dp),
                         color = colorResource(id = R.color.white),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize = subtitleFontSize
                     )
                 }
             }

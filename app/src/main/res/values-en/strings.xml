@@ -4,7 +4,7 @@
     <string name="Bem_Vindo">Welcome to</string>
     <string name="Pergunta">Are you ready for the challenge?</string>
     <string name="Registar">"REGISTER FOR FREE"</string>
-    <string name="Entrar">"To enter"</string>
+    <string name="Entrar">"Login"</string>
 
     <string name="Email">"Email"</string>
     <string name="Palavra_Passe">"Password"</string>
@@ -12,7 +12,7 @@
     <string name="RecuperarPalavraPasse">"Recover Password"</string>
     <string name="Ou">"OR"</string>
 
-    <string name="EntrarGoogle">"Sign in with Google"</string>
+    <string name="EntrarGoogle">"Login with Google"</string>
     <string name="EntrarFacebook">"Login with Facebook"</string>
 
     <string name="CriarConta">"Create Account"</string>
@@ -36,7 +36,7 @@
 
 
     <string name="Alimentos">"Food"</string>
-    <string name="Pesquisar">"To look for"</string>
+    <string name="Pesquisar">"Search"</string>
     <string name="Historico">"History"</string>
 
     <string name="Calorias">"Calories"</string>
@@ -73,7 +73,7 @@
     <string name="PontuacaoDetalhada">"Current Streak: %1$d days"</string>
     <string name="PontuacaoMaior">"Longest Streak Recorded: %1$d days"</string>
     <string name="Top3Livros">"Top 3 Books Read:"</string>
-    <string name="NumeroPaginasLidas">"%1$d pagesread"</string>
+    <string name="NumeroPaginasLidas">"%1$d pages read"</string>
     <string name="UltimaFoto">"Last photo of the evolution"</string>
 
     <string name="EvolucaoFotos">"Evolution by Photos"</string>
@@ -82,7 +82,7 @@
     <string name="Notificacoes">"Notifications"</string>
 
     <string name="AtingiuMetaCalorias">"You've reached your daily calorie goal!"</string>
-    <string name="DescricaoMetaCalorias">"When you consume any more calories, you will lose your streak!"</string>
+    <string name="DescricaoMetaCalorias">"If you consume any more calories today, you will lose your streak!"</string>
     <string name="AtingiuMetaTreino">"Completed your daily workouts!"</string>
     <string name="DescricaoMetaTreino">"Congratulations, you fulfilled one of the parts of your day!"</string>
 
@@ -99,10 +99,10 @@
     <string name="Descricao">"Description"</string>
     <string name="Descricao2">"Description: "</string>
     <string name="PontoInicial">"Starting Point"</string>
-    <string name="PontoFinal">"Full stop"</string>
+    <string name="PontoFinal">"Stop Point"</string>
     <string name="Dia">"Day: "</string>
 
-    <string name="NenhumaImagem">"No photos available: "</string>
+    <string name="NenhumaImagem">"No photos available"</string>
 
     <string name="TreinosHoje">"Your Workouts Today:"</string>
     <string name="Indoor">"Indoor: "</string>
